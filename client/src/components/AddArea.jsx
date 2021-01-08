@@ -24,8 +24,12 @@ function AddArea(){
     let {name, value} = event.target;
     console.log("name: "+name+" value: "+value);
     if (name=="Imgfile"){
+      if (value==""){
+        value = "";
+      } else{
       value = URL.createObjectURL(event.target.files[0]);
       console.log(value);
+      }
     }
     setClub(prevClub => {
       console.log(prevClub);
@@ -62,13 +66,13 @@ function AddArea(){
         <div className="row add-Area">
           <div className="container-fluid-add col-lg-5 col-md-12">
             <h4>Upload Image</h4>
-              <div className="my-4" style= {{height: "30%"}}>
-                <img src={club.Imgfile} alt="hi" style= {{width: "100%", height:"100%", borderRadius:"3px"}} />
+              <div className="my-4" style= {{height: "30%", borderStyle: "solid",borderWidth: "5px", borderColor:"#fbf2f7",}}>
+                  <img src={club.Imgfile} alt="Input Image" style= {{width: "100%", height:"100%"}} />
               </div>
             <div className="custom-file">
-              <input type="file" className="custom-file-input" id="clubPhoto" name="Imgfile" onChange={handleChange} />
+              <input type="file" className="custom-file-input" id="clubPhoto" name="Imgfile" onChange={handleChange} accept="image/*" />
               <label className="custom-file-label" for="clubPhoto">{club.Imgfile}</label>
-              <div className="invalid-feedback">Example invalid custom file feedback</div>
+              {/* <div className="invalidFeedback">Example invalid custom file feedback</div> */}
             </div>
           </div>
          

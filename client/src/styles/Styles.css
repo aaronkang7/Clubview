@@ -89,36 +89,34 @@ p {
   margin-bottom: 1.2%;
 }
 
-.card-img-caption {
+.card-img-container {
   border-top-left-radius: calc(.25rem - 1px);
   border-top-right-radius: calc(.25rem - 1px);
   padding: 0 auto;
+  position: relative;
 }
 
-.card-img-caption .card-img-top {
+.card-img-container .card-img-top {
   z-index: 0;
-
+  position: relative;
 }
 
-.card-img-caption .card-text {
-  text-align: center;
-  width: 90%;
-  margin-top: 22%;
-  margin-left: 5%;
+.card-img-container .card-text {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 1;
   font-weight: 900;
-  font-size: 50px;
+  font-size: 200%;
 }
 
 .clubInfo-container {
   margin-top: 3%;
 }
 
-.card-img-top ::after {
-  transition: opacity 1s ease;
-}
-
-.card_img-top :hover::after {
-  opacity: 0.5;
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
 }

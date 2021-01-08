@@ -19,11 +19,11 @@ function Club(props){
 
   return(
       <Link to={linkRoute}>
+        <div class="card-img-container">
+          <img class="card-img-top" src="./images/smallLong.png" alt="Card image cap" />
+          <p class="card-text">{props.cname}</p>
+        </div>
         <div className="card">
-          <div class="card-img-caption">
-            <p class="card-text">{props.cname}</p>
-           <img class="card-img-top" src="./images/clubPhoto.png" alt="Card image cap" />
-          </div>
           <div className="card-body">
           <span style = {statusInd}></span>
             <p className="card-text">
