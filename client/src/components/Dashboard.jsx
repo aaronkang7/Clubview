@@ -13,7 +13,6 @@ function Dashboard(){
     const diffTime = new Date(startDate).getTime() - new Date().getTime();
     const over = 0>(new Date(dueDate).getTime() - new Date().getTime());
     const diffHours = Math.round(diffTime / (1000 * 60 * 60)); 
-    console.log(diffHours);
 
     if (ifrecriuting){
       return (

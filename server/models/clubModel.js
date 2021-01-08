@@ -12,10 +12,6 @@ const clubSchema = new Schema({
   site: String,
   start: Date,
   end: Date,
-  // img: {
-  //   data: Buffer,
-  //   contentType: String
-  // }
 })
 
 const Club = mongoose.model('Club', clubSchema);

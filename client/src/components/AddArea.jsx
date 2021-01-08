@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import "../styles/Styles.css";
 
@@ -7,31 +7,6 @@ import "../styles/Styles.css";
 
 function AddArea(){
 
-  // const inpFile = document.getElementById("clubPhoto");
-  // const previewContainer = document.getElementById("imagePreview");
-  // const previewImage = previewContainer.querySelector(".previewImage");
-  // const previewText = previewContainer.querySelector(".imageText");
-
-  // inpFile.addEventListener("change", function(){
-  //   const file = this.files[0];
-  //   console.log(file);
-  //   if (file){
-  //     const reader = new FileReader();
-
-  //     previewText.style.display ="none";
-  //     previewImage.style.display ="block";
-
-  //     reader.addEventListener("load",function(){
-  //       previewImage.setAttribute("src",reader.result);
-  //     })
-
-  //     reader.readAsDataURL(file);
-  //   } else {
-  //     previewText.style.display =null;
-  //     previewImage.style.display =null;
-  //     previewImage.setAttribute("src","");
-  //   }
-  // });
   const [club, setClub] = useState({
     cname: "",
     lead: "",
@@ -40,15 +15,20 @@ function AddArea(){
     desc: "",
     site: "",
     start: new Date(),
-    end: new Date()
+    end: new Date(),
+    Imgfile: ""
   });
 
-  
 
   function handleChange(event){
-    const {name, value} = event.target;
-
+    let {name, value} = event.target;
+    console.log("name: "+name+" value: "+value);
+    if (name=="Imgfile"){
+      value = URL.createObjectURL(event.target.files[0]);
+      console.log(value);
+    }
     setClub(prevClub => {
+      console.log(prevClub);
       return {
         ...prevClub,
         [name]: value
@@ -61,13 +41,19 @@ function AddArea(){
       .then(res=>console.log(res.data))
       .catch(err=> console.log(err));
 
-    
     setClub({
-      title: "",
-      content: ""
+      cname: "",
+      lead: "",
+      email: "",
+      category: "",
+      desc: "",
+      site: "",
+      start: new Date(),
+      end: new Date(),
+      Imgfile: ""
     });
     event.preventDefault();
-    
+
   }
 
   return (
@@ -76,13 +62,12 @@ function AddArea(){
         <div className="row add-Area">
           <div className="container-fluid-add col-lg-5 col-md-12">
             <h4>Upload Image</h4>
-            <div className="image-preview" id="imagePreview">
-              <img src="" alt="" className="previewImage" />
-              <span className="imageText">image Preview</span>
-            </div>
+              <div className="my-4" style= {{height: "30%"}}>
+                <img src={club.Imgfile} alt="hi" style= {{width: "100%", height:"100%", borderRadius:"3px"}} />
+              </div>
             <div className="custom-file">
-              <input type="file" className="custom-file-input" id="clubPhoto" />
-              <label className="custom-file-label" for="clubPhoto">Choose file...</label>
+              <input type="file" className="custom-file-input" id="clubPhoto" name="Imgfile" onChange={handleChange} />
+              <label className="custom-file-label" for="clubPhoto">{club.Imgfile}</label>
               <div className="invalid-feedback">Example invalid custom file feedback</div>
             </div>
           </div>
@@ -95,17 +80,17 @@ function AddArea(){
             <h4>Club Information</h4>
 
             <div className="form-group row">
-              <label for="cName_">Club Name</label>
-              <input name="cname" type="text" className="form-control" id="cName_" onChange ={handleChange} value={club.cname} Required />
+              <label for="cName_">Club Name*</label>
+              <input name="cname" type="text" className="form-control" id="cName_" onChange ={handleChange} value={club.cname} required />
             </div>
 
             <div className="form-group row">
-              <label for="cLead">Club Lead Name</label>
+              <label for="cLead">Club Lead Name(s)*</label>
               <input name="lead" type="text" className="form-control" id="cLead" onChange ={handleChange} value={club.lead} required />
             </div>
 
             <div className="form-group row">
-              <label for="email">Club Lead e-mail</label>
+              <label for="email">Club Lead e-mail*</label>
               <div className="input-group">
                 <input name="email" type="text" className="form-control" id="email" onChange ={handleChange} aria-describedby="emailHelp" value={club.email} required />
                 <div className="input-group-append">
@@ -116,8 +101,9 @@ function AddArea(){
             </div>
 
             <div className="form-group row">
-              <label for="category">Club Category</label>
+              <label for="category">Club Category*</label>
               <select name="category" className="form-control" id="category" onChange ={handleChange} value={club.category} required>
+                <option>                        </option>
                 <option>Academic and Educational</option>
                 <option>Community service</option>
                 <option>Media and Publication</option>
