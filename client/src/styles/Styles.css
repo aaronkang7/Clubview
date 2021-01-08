@@ -1,0 +1,125 @@
+/* General */
+
+body {
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  background-color: #fff;
+}
+
+.add-Area {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', sans-serif;
+}
+
+p {
+  color: rgb(54, 32, 32);
+}
+
+/* Nav Bar */
+
+.navbar {
+  padding: 1.2rem 0 1.2rem;
+  background-color: white;
+}
+
+.navbar-brand {
+  font-family: "Ubuntu";
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.nav-item {
+  padding: 0 18px;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  font-family: 'Lato', sans-serif;
+}
+
+/* Container */
+
+.container-fluid {
+  padding: 0% 6%;
+}
+
+.container-fluid-add {
+  padding: 2% 5%;
+}
+
+/* Add Page */
+
+.image-preview {
+  width: 300px;
+  min-height: 200px;
+  border: 2px solid #dddddd;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #cccccc;
+}
+
+.previewImage {
+  display: none;
+  width: 100%;
+}
+
+#club-Area {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-styling {
+  margin-top: 1.2%;
+  margin-bottom: 1.2%;
+}
+
+.card-img-caption {
+  border-top-left-radius: calc(.25rem - 1px);
+  border-top-right-radius: calc(.25rem - 1px);
+  padding: 0 auto;
+}
+
+.card-img-caption .card-img-top {
+  z-index: 0;
+
+}
+
+.card-img-caption .card-text {
+  text-align: center;
+  width: 90%;
+  margin-top: 22%;
+  margin-left: 5%;
+  position: absolute;
+  z-index: 1;
+  font-weight: 900;
+  font-size: 50px;
+}
+
+.clubInfo-container {
+  margin-top: 3%;
+}
+
+.card-img-top ::after {
+  transition: opacity 1s ease;
+}
+
+.card_img-top :hover::after {
+  opacity: 0.5;
+}
