@@ -5,6 +5,32 @@ import "../styles/Styles.css";
 
 function Dashboard(){
 
+  const [searchTerm, setSearch] = useState("");
+  const [clubs, setClubs] = useState([]);
+
+  const fetchData = async ()=> {
+    await axios.get("https://clubview-server.herokuapp.com/clubs")
+      .then(res =>setClubs(res.data))
+      .catch(err => console.log(err));
+  }
+
+  useEffect(()=>{
+    fetchData();
+  }, [])
+
+  const RowGroups = [];
+            for (let i = 0; i < clubs.length; i = i + 3)
+                RowGroups.push(clubs.slice(i, i + 3));
+
+
+  function handleChange(event){
+    const val = event.target.value;
+    setSearch(val);
+    console.log(searchVal);
+  }
+
+
+
   function compareTime(startDate,dueDate){ 
 
      var ifrecriuting = (new Date(startDate).getTime() <= new Date().getTime()) && 
@@ -28,29 +54,14 @@ function Dashboard(){
     }
     else{
       const startString = startDate.slice(0,10);
-      return(["Opening on: "+startString, "#d3d3d3"])
+      return(["Opening on: "+ startString, "#d3d3d3"])
     }
 
   }
 
-  const [clubs, setClubs] = useState([]);
-
-  const fetchData = async ()=> {
-    await axios.get("http://localhost:5000/clubs")
-      .then(res =>setClubs(res.data))
-      .catch(err => console.log(err));
-  }
-
-  useEffect(()=>{
-    fetchData();
-  }, [])
-
-  const RowGroups = [];
-            for (let i = 0; i < clubs.length; i = i + 3)
-                RowGroups.push(clubs.slice(i, i + 3));
 
   function clubList(){
-    return RowGroups.map((clubRow, index)=> {
+    return (RowGroups.map((clubRow, index)=> {
       return (
         <div className="row">
           {clubRow.map(clubItem=>{
@@ -71,14 +82,19 @@ function Dashboard(){
             )
           })}
         </div>
-    )
-  })
-  }
+        )
+      })
+    )}
 
   
 
   return (
    <div>
+      <form className="form-inline" style={{padding: "1%"}}>
+        <input className="form-control mr-sm-2" type="text" value={searchTerm.content} 
+         onChange={handleChange} placeholder="Search Club" aria-label="Search" />
+        <button className="btn btn-outline-success my-2 my-sm-0">Search</button>
+        </form>
       {clubList()}
     </div>
   )

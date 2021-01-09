@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
+import FileUpload from "../FileUpload";
 import axios from "axios";
 import "../styles/Styles.css";
+
 
 
 
@@ -41,7 +43,7 @@ function AddArea(){
   }
 
   function submitClub(event) {
-    axios.post("http://localhost:5000/clubs/add",club)
+    axios.post("https://clubview-server.herokuapp.com/clubs/add",club)
       .then(res=>console.log(res.data))
       .catch(err=> console.log(err));
 

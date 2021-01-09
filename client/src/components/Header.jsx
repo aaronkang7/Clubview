@@ -6,7 +6,6 @@ function Header(){
   return (
     <nav className="navbar sticky-top navbar-expand-lg navbar-light">
       <Link className="navbar-brand" to="/clubs">Club View</Link>
-
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
         <span className="navbar-toggler-icon"></span>
       </button>
