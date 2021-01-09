@@ -15,21 +15,12 @@ function AddArea(){
     site: "",
     start: new Date(),
     end: new Date(),
-    Imgfile: ""
+    emoji: "💡"
   });
 
 
   function handleChange(event){
     let {name, value} = event.target;
-    console.log("name: "+name+" value: "+value);
-    if (name=="Imgfile"){
-      if (value==""){
-        value = "";
-      } else{
-      value = URL.createObjectURL(event.target.files[0]);
-      console.log(value);
-      }
-    }
     setClub(prevClub => {
       console.log(prevClub);
       return {
@@ -53,7 +44,7 @@ function AddArea(){
       site: "",
       start: new Date(),
       end: new Date(),
-      Imgfile: ""
+      emoji: "💡"
     });
     event.preventDefault();
 
@@ -64,14 +55,13 @@ function AddArea(){
       <form className="needs-validation" noValidate>
         <div className="row add-Area">
           <div className="container-fluid-add col-lg-5 col-md-12">
-            <h4>Upload Image</h4>
-              <div className="my-4" style= {{height: "30%", borderStyle: "solid",borderWidth: "5px", borderColor:"#fbf2f7",}}>
-                  <img src={club.Imgfile} alt="Input Image" style= {{width: "100%", height:"100%"}} />
+            <h4>Choose an emoji!</h4>
+            <p>that best represents your club</p>
+              <div className="content">
+                {club.emoji}
               </div>
-            <div className="custom-file">
-              <input type="file" className="custom-file-input" id="clubPhoto" name="Imgfile" onChange={handleChange} accept="image/*" />
-              <label className="custom-file-label" for="clubPhoto">{club.Imgfile}</label>
-            </div>
+              <input name="emoji" type="text" style={{width: "60px", textAlign:"center"}} 
+              className="form-control mx-auto" onChange ={handleChange} value={club.emoji} maxLength="2" required />
           </div>
          
 
@@ -95,11 +85,7 @@ function AddArea(){
               <label for="email">Club Lead e-mail*</label>
               <div className="input-group">
                 <input name="email" type="text" className="form-control" id="email" onChange ={handleChange} aria-describedby="emailHelp" value={club.email} required />
-                <div className="input-group-append">
-                  <span className="input-group-text" id="basic-addon2">@cornell.edu</span>
-                </div>
               </div>
-              <small id="emailHelp" className="form-text text-muted">A Sign-up confirmation e-mail will be sent to the lead.</small>
             </div>
 
             <div className="form-group row">

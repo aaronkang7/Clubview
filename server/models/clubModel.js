@@ -12,6 +12,7 @@ const clubSchema = new Schema({
   site: String,
   start: Date,
   end: Date,
+  emoji: String
 })
 
 const Club = mongoose.model('Club', clubSchema);

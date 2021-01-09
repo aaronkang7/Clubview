@@ -16,10 +16,12 @@ router.post('/add',(req,res) => {
   const category = req.body.category;
   const desc = req.body.desc;
   const site = req.body.site;
-  const start = Date.parse(req.body.start);
-  const end = Date.parse(req.body.end);
+  const start = req.body.start;   
+  const end = req.body.end;
+  const emoji = req.body.emoji;
 
-  const newClub = new Club({cname,lead,email,category,desc,site,start,end});
+
+  const newClub = new Club({cname,lead,email,category,desc,site,start,end,emoji});
 
   newClub.save()
   .then(() => res.json('Club Added!'))
@@ -41,8 +43,9 @@ router.post("/update/:id", (req,res)=> {
     club.category = req.body.cat;
     club.desc = req.body.desc;
     club.site = req.body.site;
-    club.start = Date.parse(req.body.start);
-    club.end = Date.parse(req.body.end);
+    club.start = req.body.start;
+    club.end = req.body.end;
+    club.emoji = req.body.emoji
 
     club.save()
     .then(()=>res.json("Club Updated!"))

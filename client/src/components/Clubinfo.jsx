@@ -16,7 +16,7 @@ function Clubinfo(){
     site: "",
     start: new Date(),
     end: new Date(),
-    Imgfile: ""
+    emoji: ""
   });
 
   axios.get("https://clubview-server.herokuapp.com/clubs/"+id)
@@ -26,8 +26,8 @@ function Clubinfo(){
   return (
   <div className= "row">
     <div className="container-fluid-add col-lg-7 col-md-12">
-      <div className="my-4" style= {{height: ""}}>
-        <img src="../images/clubPhoto.png" alt="Club Photo" style= {{width: "100%", height:"100%"}} />
+      <div className="content" style={{fontSize:"220px"}}>
+       {clubInfo.emoji}
       </div>
     </div>
     <div className="container-fluid-add col-lg-5 col-md-12" style={{textAlign: "left"}}>

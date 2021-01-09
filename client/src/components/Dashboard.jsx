@@ -75,10 +75,10 @@ function Dashboard(){
   function clubList(){
     return (RowGroups.map((clubRow, index)=> {
       return (
-        <div className="row">
+        <div className="row mx-auto" style={{width:"100%"}}>
           {clubRow.map(clubItem=>{
             return (
-              <div className="col-lg-4 col-md-6 col-sm-12 card-styling col-xs">
+              <div className="col-lg-4 col-sm-12 card-styling col-xs">
                 <Club
                   key = {clubItem._id}
                   id = {clubItem._id}
@@ -88,6 +88,7 @@ function Dashboard(){
                   category = {clubItem.category}
                   desc ={clubItem.desc}
                   site ={clubItem.site}
+                  emoji ={clubItem.emoji}
                   recruit ={compareTime(clubItem.start,clubItem.end)}
                 />
               </div>
@@ -103,7 +104,7 @@ function Dashboard(){
   return (
    <div>
       <form className="form-inline" style={{padding: "1%"}}>
-          <input className="form-control mr-sm-2" type="text" value={searchTerm.content} 
+          <input className="form-control mr-sm-2" type="text" value={searchTerm} 
          onChange={handleChange} placeholder="Search Club" aria-label="Search" />
           <button type="button" onClick={handleSearch} className="btn btn-outline-danger my-2 my-sm-0">Search</button>
         </form>
