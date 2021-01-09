@@ -16,6 +16,7 @@ function Dashboard(){
 
   useEffect(()=>{
     fetchData();
+    setSearch(""); 
   }, [])
 
   const RowGroups = [];
@@ -26,7 +27,20 @@ function Dashboard(){
   function handleChange(event){
     const val = event.target.value;
     setSearch(val);
-    console.log(searchVal);
+    console.log(searchTerm);
+  }
+
+  function handleSearch(event){
+    console.log(searchTerm);
+    const sTerm = searchTerm.toLowerCase();
+    const c= clubs.find(club => (String(club.cname).toLowerCase() == sTerm));
+    
+    if (c===undefined){
+      alert("Club not found");
+      setSearch("");
+    } else{
+      window.location.href= "/clubs/"+c._id;
+    }
   }
 
 
@@ -56,9 +70,7 @@ function Dashboard(){
       const startString = startDate.slice(0,10);
       return(["Opening on: "+ startString, "#d3d3d3"])
     }
-
   }
-
 
   function clubList(){
     return (RowGroups.map((clubRow, index)=> {
@@ -91,14 +103,13 @@ function Dashboard(){
   return (
    <div>
       <form className="form-inline" style={{padding: "1%"}}>
-        <input className="form-control mr-sm-2" type="text" value={searchTerm.content} 
+          <input className="form-control mr-sm-2" type="text" value={searchTerm.content} 
          onChange={handleChange} placeholder="Search Club" aria-label="Search" />
-        <button className="btn btn-outline-success my-2 my-sm-0">Search</button>
+          <button type="button" onClick={handleSearch} className="btn btn-outline-danger my-2 my-sm-0">Search</button>
         </form>
       {clubList()}
     </div>
   )
-
 }
 
 export default Dashboard;

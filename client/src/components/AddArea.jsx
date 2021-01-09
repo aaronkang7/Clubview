@@ -1,9 +1,6 @@
 import React, {useState} from "react";
-import FileUpload from "../FileUpload";
 import axios from "axios";
 import "../styles/Styles.css";
-
-
 
 
 
@@ -74,7 +71,6 @@ function AddArea(){
             <div className="custom-file">
               <input type="file" className="custom-file-input" id="clubPhoto" name="Imgfile" onChange={handleChange} accept="image/*" />
               <label className="custom-file-label" for="clubPhoto">{club.Imgfile}</label>
-              {/* <div className="invalidFeedback">Example invalid custom file feedback</div> */}
             </div>
           </div>
          
