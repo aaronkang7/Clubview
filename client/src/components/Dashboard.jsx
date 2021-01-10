@@ -7,6 +7,7 @@ function Dashboard(){
 
   const [searchTerm, setSearch] = useState("");
   const [clubs, setClubs] = useState([]);
+  
 
   const fetchData = async ()=> {
     await axios.get("https://clubview-server.herokuapp.com/clubs")
@@ -63,20 +64,20 @@ function Dashboard(){
         ["Opening soon (<7days)", "#f7f46f"]
       )
     } else if (over){
-      const endString = startDate.slice(0,10);
+      const endString = dueDate.substring(0,10);
       return(["Applications closed on: "+endString, "#f99487"])
     }
     else{
-      const startString = startDate.slice(0,10);
+      const startString = startDate.substring(0,10);
       return(["Opening on: "+ startString, "#d3d3d3"])
     }
   }
 
   function clubList(){
-    return (RowGroups.map((clubRow, index)=> {
+    return (RowGroups.map((clubRow,ind)=> {
       return (
-        <div className="row mx-auto" style={{width:"100%"}}>
-          {clubRow.map(clubItem=>{
+        <div className="row mx-auto" style={{width:"100%"}} key={(clubRow.toString(0,3))+ind}>
+          {clubRow.map((clubItem)=>{
             return (
               <div className="col-lg-4 col-sm-12 card-styling col-xs">
                 <Club

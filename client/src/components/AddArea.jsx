@@ -1,22 +1,41 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import axios from "axios";
+import {Redirect} from "react-router-dom";
 import "../styles/Styles.css";
 
 
 
-function AddArea(){
+function AddArea(props){
+  const isEdit = props.isEdit;
+  const currentURL_string = window.location.href;
+  const id = currentURL_string.substring(currentURL_string.lastIndexOf("/")+1);
 
   const [club, setClub] = useState({
     cname: "",
     lead: "",
     email: "",
-    category: "",
+    category: "                        ",
     desc: "",
     site: "",
-    start: new Date(),
-    end: new Date(),
+    start: "",
+    end: "",
     emoji: "💡"
   });
+
+  useEffect(()=>{
+    if (props.isEdit==true){
+      console.log("hello");
+      getClubInfo();
+      console.log(club);
+    }
+  },[]);
+
+  function getClubInfo(){
+    console.log("getting info")
+    axios.get("https://clubview-server.herokuapp.com/clubs/"+id)
+      .then(res=>setClub(res.data))
+      .catch(err=> console.log(err));
+  }
 
 
   function handleChange(event){
@@ -30,24 +49,27 @@ function AddArea(){
     });
   }
 
+  function stillEmpty(){
+    return (club.cname=="" ||club.lead=="" || club.email =="" ||
+    club.category =="                        " || club.desc=="" || club.start=="" || club.end=="")
+  }
+
   function submitClub(event) {
-    axios.post("https://clubview-server.herokuapp.com/clubs/add",club)
-      .then(res=>console.log(res.data))
-      .catch(err=> console.log(err));
-
-    setClub({
-      cname: "",
-      lead: "",
-      email: "",
-      category: "",
-      desc: "",
-      site: "",
-      start: new Date(),
-      end: new Date(),
-      emoji: "💡"
-    });
-    event.preventDefault();
-
+    if (stillEmpty()){alert("Please fill in all required sections");event.preventDefault();}
+    else{
+      if (props.isEdit==false){
+      alert("Club Add successful.")
+      axios.post("https://clubview-server.herokuapp.com/clubs/add",club)
+        .then(res =console.log(res.data))
+        .catch(err=> console.log(err));
+    } else{
+      alert("Club Infomration Updated!!!!! ");
+      axios.post("https://clubview-server.herokuapp.com/clubs/update/"+id,club)
+        .then(res=>console.log(res.data))
+        .catch(err=> console.log(err));
+    } 
+  }
+  event.preventDefault();
   }
 
   return (
@@ -61,7 +83,7 @@ function AddArea(){
                 {club.emoji}
               </div>
               <input name="emoji" type="text" style={{width: "60px", textAlign:"center"}} 
-              className="form-control mx-auto" onChange ={handleChange} value={club.emoji} maxLength="2" required />
+              className="form-control mx-auto" onChange ={handleChange} value={club.emoji} maxLength="3" required />
           </div>
          
 
@@ -103,7 +125,7 @@ function AddArea(){
             </div>
 
             <div className="form-group row">
-              <label for="clubDesc">Description of the Club</label>
+              <label for="clubDesc">Description of the Club*</label>
               <textarea className="form-control" name="desc" id="clubDesc" rows="3" onChange ={handleChange} value={club.desc} required></textarea>
             </div>
 
@@ -129,10 +151,7 @@ function AddArea(){
                 </div>
               </div>
             </div>
-
-
-
-            <button type="submit" onClick ={submitClub} className="btn btn-primary" style={{textAlign:"right"}}>Submit</button>
+            <button type="button" onClick ={submitClub} className="btn btn-primary" style={{textAlign:"right"}}>{props.isEdit ? "Update" : "Submit"}</button>
 
           </div>
         </div>

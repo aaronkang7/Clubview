@@ -6,7 +6,9 @@ import "../styles/Styles.css"
 
 function Club(props){
 
-  const linkRoute= "clubs/" + props.id;
+  const infoLinkRoute= "clubs/" + props.id;
+  const editLinkRoute = "edit/" + props.id;
+
 
   const statusInd = {
     height: "17px",
@@ -19,21 +21,25 @@ function Club(props){
   }
 
   return(
-      <Link to={linkRoute}>
+      <div>
+      <Link to={infoLinkRoute}>
         <div class="card-img-container">
           <img class="card-img-top" src="./images/smallLong.png" alt="Card image cap" />
           <p class="card-text">{props.emoji}</p>
         </div>
+      </Link>
         <div className="card mb-4">
           <div className="card-body">
-          <h3 style={{color:"black"}}>{props.cname}</h3>
+          <Link to={infoLinkRoute}>
+            <h3 style={{color:"black"}}>{props.cname}</h3>
+          </Link>
             <span style= {statusInd}></span>
             <p className="card-text">
-            {props.recruit[0]}
+            {props.recruit[0]} <br /> <Link to={editLinkRoute}><small>Edit</small></Link>
             </p>
           </div>
         </div>
-      </Link>
+      </div>
   )
 }
 

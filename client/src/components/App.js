@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 function App(){
   return (
+    <div>
       <div class="container-fluid">
         <Router>
             <Header />
@@ -24,18 +25,22 @@ function App(){
               </div>
               </Route>
               <Route path="/clubs/add" exact>
-                <AddArea />
+                <AddArea isEdit={false}/>
+              </Route>
+              <Route path="/edit">
+                <AddArea isEdit={true}/>
               </Route>
               <Route path="/clubs/">
                 <Clubinfo />
               </Route>
+
               <Route path="/">
               <div className="jumbotron jumbotron-fluid mt-2" style={{textAlign:"left"}}>
                 <div className="container">
                   <h1 className="display-4">Welcome to Cornell Clubview!🐻</h1>
                   <p className="lead">Explore clubs and keep track of application due dates!🥳</p>
                   <Link to="/clubs">
-                    <button type="button" className="btn btn-warning" href="/clubs">Start Exploring</button>
+                    <button type="button" className="btn btn-warning">Start Exploring</button>
                   </Link>
                 </div>
               </div>
@@ -43,6 +48,14 @@ function App(){
             </Switch>
         </Router>
       </div>
+      <footer>
+        <p>
+          © 2021 Copyright:
+          <a href="https://github.com/aaronkang7/"> Aaron Kang</a>
+        </p>
+
+      </footer>
+</div>
   )
 }
 
