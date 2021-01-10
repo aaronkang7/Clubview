@@ -48,13 +48,6 @@ function App(){
             </Switch>
         </Router>
       </div>
-      <footer>
-        <p>
-          © 2021 Copyright:
-          <a href="https://github.com/aaronkang7/"> Aaron Kang</a>
-        </p>
-
-      </footer>
 </div>
   )
 }

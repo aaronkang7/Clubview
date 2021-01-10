@@ -24,14 +24,12 @@ function AddArea(props){
 
   useEffect(()=>{
     if (props.isEdit==true){
-      console.log("hello");
       getClubInfo();
       console.log(club);
     }
   },[]);
 
   function getClubInfo(){
-    console.log("getting info")
     axios.get("https://clubview-server.herokuapp.com/clubs/"+id)
       .then(res=>setClub(res.data))
       .catch(err=> console.log(err));
