@@ -20,10 +20,6 @@ function Dashboard(){
     setSearch(""); 
   }, [])
 
-  const RowGroups = [];
-            for (let i = 0; i < clubs.length; i = i + 3)
-                RowGroups.push(clubs.slice(i, i + 3));
-
 
   function handleChange(event){
     const val = event.target.value;
@@ -74,12 +70,9 @@ function Dashboard(){
   }
 
   function clubList(){
-    return (RowGroups.map((clubRow,ind)=> {
+    return (clubs.map((clubItem)=> {
       return (
-        <div className="row mx-auto" style={{width:"100%"}} key={(clubRow.toString(0,3))+ind}>
-          {clubRow.map((clubItem)=>{
-            return (
-              <div className="col-lg-4 col-sm-12 card-styling col-xs">
+            
                 <Club
                   key = {clubItem._id}
                   id = {clubItem._id}
@@ -92,10 +85,6 @@ function Dashboard(){
                   emoji ={clubItem.emoji}
                   recruit ={compareTime(clubItem.start,clubItem.end)}
                 />
-              </div>
-            )
-          })}
-        </div>
         )
       })
     )}
@@ -109,7 +98,9 @@ function Dashboard(){
          onChange={handleChange} placeholder="Search Club" aria-label="Search" />
           <button type="button" onClick={handleSearch} className="btn btn-outline-danger my-2 my-sm-0">Search</button>
         </form>
+        <div className="dashboard">
       {clubList()}
+      </div>
     </div>
   )
 }

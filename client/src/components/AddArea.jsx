@@ -1,9 +1,6 @@
 import React, {useState,useEffect} from "react";
 import axios from "axios";
-import {Redirect} from "react-router-dom";
 import "../styles/Styles.css";
-
-
 
 function AddArea(props){
   const isEdit = props.isEdit;
@@ -58,7 +55,7 @@ function AddArea(props){
       if (props.isEdit==false){
       alert("Club Add successful.")
       axios.post("https://clubview-server.herokuapp.com/clubs/add",club)
-        .then(res =console.log(res.data))
+        .then(res =>console.log(res.data))
         .catch(err=> console.log(err));
     } else{
       alert("Club Infomration Updated!!!!! ");
