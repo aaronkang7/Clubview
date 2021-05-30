@@ -1,6 +1,8 @@
 import React from "react";
-import "../styles/Styles.css";
 import {Link} from "react-router-dom";
+import Fab from "@material-ui/core/Fab"
+import AddIcon from "@material-ui/icons/Add"
+import "../styles/Styles.css";
 
 function Header(){
   return (
@@ -20,7 +22,12 @@ function Header(){
             <Link className="nav-link" to="/profile">Profile</Link>
           </li>
           <li className="nav-item">
-            <Link to="/clubs/add"><button type="button" class="btn btn-danger btn-lg">Add Club</button></Link>
+            <Link to="/clubs/add">
+              <Fab variant="extended" size="large">
+                <AddIcon />
+                  Add Club
+              </Fab>
+            </Link>
           </li>
         </ul>
       </div>

@@ -1,6 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {Link} from "react-router-dom";
 import $ from "jquery";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import Fab from '@material-ui/core/Fab'
 import "../styles/Styles.css"
 
 
@@ -17,6 +20,7 @@ function Club(props){
 
   const infoLinkRoute= "clubs/" + props.id;
   const editLinkRoute = "edit/" + props.id;
+  const [isFav, setFav] = useState(false);
 
 
   const statusInd = {
@@ -31,7 +35,12 @@ function Club(props){
 
   return(
     <>
-    <div class="card mb-4">
+    <div className="card mb-4">
+      <div className="edit-icon-container">
+        <Fab className="edit-icon" onClick= {() => {setFav(!isFav)}} aria-label="favorite" size="small">
+           {isFav ? <FavoriteIcon className="edit-icon-heart" fontSize="small" /> : <FavoriteBorderIcon className="edit-icon-heart" fontSize="small" /> }
+        </Fab>
+      </div>
       <Link to={infoLinkRoute}>
         <div class="card-img-container">
           <img class="card-img-top" src="./images/smallLong.png" alt="Card image cap" />
@@ -44,7 +53,7 @@ function Club(props){
           </Link>
             <span style= {statusInd}></span>
             <p className="card-text">
-            {props.recruit[0]} <br /> <Link to={editLinkRoute}><small>Edit</small></Link>
+            {props.recruit[0]}
             </p>
         </div>
     </div>
