@@ -6,12 +6,6 @@ body {
   background-color: #fff;
 }
 
-.add-Area {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 h1,
 h2,
 h3,
@@ -21,151 +15,14 @@ h6 {
   font-family: 'Lato', sans-serif;
 }
 
+*:focus {
+  outline: 0 !important;
+}
+
 p {
   color: rgb(54, 32, 32);
 }
 
-/* Nav Bar */
-
-.navbar {
-  padding: 1.2rem 0 1.2rem;
-  background-color: white;
-}
-
-.navbar-brand {
-  font-family: "Ubuntu";
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #000;
-}
-
-.nav-item {
-  padding: 0 18px;
-}
-
-.nav-link {
-  font-size: 1.2rem;
-  font-family: 'Lato', sans-serif;
-}
-
-/* Container */
-
 .container-fluid {
   padding: 0% 6%;
-}
-
-.container-fluid-add {
-  padding: 2% 5%;
-}
-
-/* Add Page */
-
-#club-Area {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* .card {
-  transition: box-shadow .3s;
-}
-
-.card :hover {
-  box-shadow: 0 0 11px rgba(255, 0, 0, 0.2);
-} */
-
-.card {
-  border-radius: calc(.25rem);
-  display: inline-block;
-  width: 100%;
-}
-
-.edit-icon-container {
-  position: absolute;
-  right: 5%;
-  top: 5%;
-  z-index: 10;
-}
-
-.edit-icon-container button {
-  background: #FBFAF5;
-}
-
-.edit-icon-heart {
-  color: #dc3545;
-}
-
-.card-img-container {
-  /* border-top-left-radius: calc(.25rem - 1px);
-  border-top-right-radius: calc(.25rem - 1px); */
-  padding: 0 auto;
-  position: relative;
-}
-
-.card-img-container .card-img-top {
-  z-index: 0;
-  position: relative;
-}
-
-@media (min-width: 1px) {
-  .card-img-container .card-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    font-size: 60px;
-  }
-
-  .content {
-    position: relative;
-    padding: 10% 15% 15% 15%;
-    width: 100%;
-    height: 70%;
-    font-size: 220px;
-  }
-
-  .dashboard {
-    column-count: 2;
-    column-gap: 10px;
-  }
-
-
-
-}
-
-@media (min-width: 992px) {
-  .card-img-container .card-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    font-size: 100px;
-  }
-
-  .content {
-    position: relative;
-    padding: 7% 20% 20% 20%;
-    width: 100%;
-    height: 35%;
-    font-size: 120px;
-  }
-
-  .dashboard {
-    column-count: 4;
-    column-gap: 15px;
-  }
-}
-
-
-
-.clubInfo-container {
-  margin-top: 3%;
-}
-
-.card-img-top {
-  width: 100%;
-  height: 15vw;
-  object-fit: cover;
 }

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
-import Club from "./Club";
+import Club from "../Club/Club";
 import axios from "axios";
-import "../styles/Styles.css";
+import "./Dashboard.css";
 
 function Dashboard(){
 

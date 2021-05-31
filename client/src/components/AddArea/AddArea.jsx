@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from "react";
 import axios from "axios";
-import "../styles/Styles.css";
+import "./AddArea.css";
 
 function AddArea(props){
   const isEdit = props.isEdit;
@@ -77,13 +77,9 @@ function AddArea(props){
               <div className="content">
                 {club.emoji}
               </div>
-              <input name="emoji" type="text" style={{width: "60px", textAlign:"center"}} 
-              className="form-control mx-auto" onChange ={handleChange} value={club.emoji} maxLength="3" required />
+              <input name="emoji" type="text" 
+              className="input-styling form-control mx-auto" onChange ={handleChange} value={club.emoji} maxLength="3" required />
           </div>
-         
-
-
-
 
           <div className="container-fluid-add col-lg-7 col-md-12">
             <h4>Club Information</h4>

@@ -1,0 +1,55 @@
+.card {
+  border-radius: calc(.25rem);
+  display: inline-block;
+  width: 100%;
+}
+
+.edit-icon-container {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  z-index: 10;
+}
+
+.edit-icon-container button {
+  background: #FBFAF5;
+}
+
+.edit-icon-heart {
+  color: #dc3545;
+}
+
+.card-img-container {
+  /* border-top-left-radius: calc(.25rem - 1px);
+  border-top-right-radius: calc(.25rem - 1px); */
+  padding: 0 auto;
+  position: relative;
+}
+
+.card-img-container .card-img-top {
+  z-index: 0;
+  position: relative;
+  max-height: 15rem;
+}
+
+@media (min-width: 1px) {
+  .card-img-container .card-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    font-size: 60px;
+  }
+}
+
+@media (min-width: 992px) {
+  .card-img-container .card-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    font-size: 100px;
+  }
+}

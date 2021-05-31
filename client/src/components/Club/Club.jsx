@@ -4,7 +4,7 @@ import $ from "jquery";
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Fab from '@material-ui/core/Fab'
-import "../styles/Styles.css"
+import "./Club.css"
 
 
 

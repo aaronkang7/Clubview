@@ -1,7 +1,6 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
 import axios from "axios";
-import "../styles/Styles.css";
+import "./Clubinfo.css";
 
 function Clubinfo(){
   const currentURL_string = window.location.href;

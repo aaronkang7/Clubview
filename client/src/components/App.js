@@ -1,12 +1,12 @@
 import React from "react";
-import Welcome from "./Welcome";
-import Header from "./Header";
-import Dashboard from "./Dashboard";
-import Profile from "./Profile";
-import AddArea from "./AddArea";
-import Clubinfo from "./Clubinfo";
+import Welcome from "../components/Welcome";
+import Header from "../components/Header/Header";
+import Dashboard from "../components/Dashboard/Dashboard";
+import Profile from "../components/Profile/Profile";
+import AddArea from "../components/AddArea/AddArea";
+import Clubinfo from "../components/Clubinfo/Clubinfo";
 import "../styles/Styles.css";
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 function App(){
   return (
