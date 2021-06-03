@@ -1,5 +1,3 @@
-/* General */
-
 body {
   font-family: 'Lato', sans-serif;
   text-align: center;
@@ -17,6 +15,10 @@ h6 {
 
 *:focus {
   outline: 0 !important;
+}
+
+* {
+  text-decoration: none;
 }
 
 p {

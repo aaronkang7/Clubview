@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import Fab from "@material-ui/core/Fab"
 import AddIcon from "@material-ui/icons/Add"
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import "./Header.css";
 
 function Header(){
@@ -19,13 +20,17 @@ function Header(){
             <Link className="nav-link active" to="/clubs">Clubs</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/profile">Profile</Link>
-          </li>
-          <li className="nav-item">
             <Link to="/clubs/add">
               <Fab variant="extended" size="large">
                 <AddIcon />
                   Add Club
+              </Fab>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/profile">
+              <Fab size="medium">
+                <AccountCircleIcon />
               </Fab>
             </Link>
           </li>
