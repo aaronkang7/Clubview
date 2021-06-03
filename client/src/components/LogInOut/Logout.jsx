@@ -1,13 +1,12 @@
-import React from 'react';
-import { GoogleLogout } from 'react-google-login';
+import React from "react";
+import { GoogleLogout } from "react-google-login";
 
-const clientId =
-'321312020600-t1b4guo1u9dajoegr8ova94veijnm43l.apps.googleusercontent.com';
+const clientId = process.env.CLIENT_ID;
 
 function Logout() {
   const onSuccess = () => {
-    console.log('Logout made successfully');
-    alert('Logout made successfully ✌');
+    console.log("Logout made successfully");
+    alert("Logout made successfully ✌");
   };
 
   return (

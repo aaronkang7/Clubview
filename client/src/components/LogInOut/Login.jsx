@@ -1,26 +1,35 @@
-import React from "react";
-import {GoogleLogin} from "react-google-login";
+import React, { useContext } from "react";
+import { refreshTokenSetup } from "../../utils/refreshToken";
+import { UserContext } from "../../context/user";
+import { GoogleLogin } from "react-google-login";
 
-const clientID = '321312020600-t1b4guo1u9dajoegr8ova94veijnm43l.apps.googleusercontent.com';
+const clientID = process.env.CLIENT_ID;
 
 function Login() {
+  const { user, setUser } = useContext(UserContext);
   const onSuccess = (res) => {
-    console.log('[Login Success] currentUser:', res);
+    console.log("[Login Success] currentUser:", res);
+    setUser(res.profileObj);
+    console.log("user is now" + user.familyName);
+    refreshTokenSetup(res);
   };
 
   const onFailure = (res) => {
-    console.log('Login failed', res, 'hello');
-  }
+    console.log("Login failed", res, "hello");
+  };
 
   return (
     <div>
-      <GoogleLogin 
+      <GoogleLogin
         clientId={clientID}
+        accessType="offline"
         buttonText="Login with Google"
         onSuccess={onSuccess}
         onFailure={onFailure}
-        cookiePolicy={'single_host_origin'}
-        style={{marginTop: '100px'}}
+        approvalPrompt="force"
+        prompt="consent"
+        cookiePolicy={"single_host_origin"}
+        style={{ marginTop: "100px" }}
         isSignedIn={true}
       />
     </div>

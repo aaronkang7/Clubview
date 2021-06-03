@@ -1,14 +1,14 @@
 import React from "react";
-import Login from "../LogInOut/Login"
-import Logout from "../LogInOut/Logout"
+import Login from "../LogInOut/Login";
+import Logout from "../LogInOut/Logout";
 
-function Profile(){
+function Profile() {
   return (
     <>
-      <Login/>
+      <Login />
       <Logout />
     </>
-  )
+  );
 }
 
 export default Profile;

@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Welcome from "../components/Welcome";
 import Header from "../components/Header/Header";
 import Dashboard from "../components/Dashboard/Dashboard";
 import Profile from "../components/Profile/Profile";
 import AddArea from "../components/AddArea/AddArea";
 import Clubinfo from "../components/Clubinfo/Clubinfo";
+import { UserContext } from "../context/user";
 import "../styles/Styles.css";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App(){
+function App() {
+  const [user, setUser] = useState({});
+
   return (
     <div>
       <div class="container-fluid">
-        <Router>
+        <UserContext.Provider value={{ user, setUser }}>
+          <Router>
             <Header />
             <Switch>
               <Route path="/clubs" exact>
@@ -22,10 +26,10 @@ function App(){
                 <Profile />
               </Route>
               <Route path="/clubs/add" exact>
-                <AddArea isEdit={false}/>
+                <AddArea isEdit={false} />
               </Route>
               <Route path="/edit">
-                <AddArea isEdit={true}/>
+                <AddArea isEdit={true} />
               </Route>
               <Route path="/clubs/">
                 <Clubinfo />
@@ -34,10 +38,11 @@ function App(){
                 <Welcome />
               </Route>
             </Switch>
-        </Router>
+          </Router>
+        </UserContext.Provider>
       </div>
-</div>
-  )
+    </div>
+  );
 }
 
 export default App;
