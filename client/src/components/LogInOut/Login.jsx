@@ -7,12 +7,16 @@ const clientID = process.env.CLIENT_ID;
 
 function Login() {
   const { user, setUser } = useContext(UserContext);
+
   const onSuccess = (res) => {
-    console.log("[Login Success] currentUser:", res);
     setUser(res.profileObj);
-    console.log("user is now" + user.familyName);
     refreshTokenSetup(res);
   };
+
+  async function secondFunction(res) {
+    await setUser(res.profileObj);
+    console.log(user.familyName);
+  }
 
   const onFailure = (res) => {
     console.log("Login failed", res, "hello");

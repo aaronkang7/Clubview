@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import "./Header.css";
+import { UserContext } from "../../context/user";
 
 function Header() {
+  const { user } = useContext(UserContext);
+  const [profile, setProfile] = useState("");
+
+  useEffect(() => {
+    if (user != null) {
+      setProfile(user.imageUrl);
+    }
+  }, [user]);
+
   return (
     <nav className="navbar sticky-top navbar-expand-lg navbar-light">
       <Link className="navbar-brand" to="/clubs">
@@ -38,7 +48,11 @@ function Header() {
           <li className="nav-item">
             <Link to="/profile">
               <Fab size="medium">
-                <AccountCircleIcon />
+                {user != null ? (
+                  <img className="profile-picture" src={profile}></img>
+                ) : (
+                  <AccountCircleIcon />
+                )}
               </Fab>
             </Link>
           </li>

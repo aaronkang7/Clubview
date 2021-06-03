@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
@@ -12,9 +11,9 @@ const clubSchema = new Schema({
   site: String,
   start: Date,
   end: Date,
-  emoji: String
-})
+  emoji: String,
+});
 
-const Club = mongoose.model('Club', clubSchema);
+const Club = mongoose.model("Club", clubSchema);
 
 export default Club;
