@@ -10,6 +10,7 @@ function Login() {
 
   const onSuccess = (res) => {
     setUser(res.profileObj);
+    console.log(res.profileObj);
     refreshTokenSetup(res);
   };
 
