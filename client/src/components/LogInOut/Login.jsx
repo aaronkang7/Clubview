@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import axios from "axios";
 import { refreshTokenSetup } from "../../utils/refreshToken";
 import { UserContext } from "../../context/user";
 import { GoogleLogin } from "react-google-login";
@@ -12,6 +13,9 @@ function Login() {
     setUser(res.profileObj);
     console.log(res.profileObj);
     refreshTokenSetup(res);
+    axios.post('/profile',user)
+    .then((res)=>{console.log(res)});
+
   };
 
   async function secondFunction(res) {
@@ -20,7 +24,7 @@ function Login() {
   }
 
   const onFailure = (res) => {
-    console.log("Login failed", res, "hello");
+    console.log("Login failed", res,);
   };
 
   return (

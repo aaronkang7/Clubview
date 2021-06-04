@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import {Link} from "react-router-dom";
 import $ from "jquery";
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -9,14 +9,6 @@ import "./Club.css"
 
 
 function Club(props){
-
-  useEffect(() => {
-    $(".card").on("mouseenter", function() {
-      $(this).addClass('shadow-lg').css('cursor', 'pointer'); 
-    }).on("mouseleave", function() {
-      $(this).removeClass('shadow-lg');});
-    }
-  );
 
   const infoLinkRoute= "clubs/" + props.id;
   const editLinkRoute = "edit/" + props.id;

@@ -8,3 +8,7 @@ const userSchema = new Schema({
   email: String,
   favorites: [{ type: Schema.Types.ObjectId, ref: 'Club' }]
 });
+
+const User = mongoose.model("User", userSchema);
+
+export default User;
