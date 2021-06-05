@@ -3,7 +3,11 @@ import User from '../models/userModel';
 
 const router = express.Router();
 
-router.post('https://clubview-server.herokuapp.com/profile', (req,res) => {
+router.get('/profile', (req,res) => {
+  res.send('hello');
+})
+
+router.post('/profile', (req,res) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const email = req.body.email;
