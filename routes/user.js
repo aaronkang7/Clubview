@@ -4,7 +4,7 @@ import User from '../models/userModel';
 const router = express.Router();
 
 router.get('/profile', (req,res) => {
-  res.send('hello');
+  res.json('hello');
 })
 
 router.post('/profile', (req,res) => {
