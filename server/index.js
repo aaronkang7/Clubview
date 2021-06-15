@@ -3,7 +3,8 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import postRoutes from "./routes/clubs.js";
+import clubRoutes from "./routes/clubs.js";
+import profileRoutes from "./routes/user.js";
 
 const app = express();
 dotenv.config();
@@ -13,7 +14,8 @@ dotenv.config();
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit:"30mb", extended: true}));
 app.use(cors());
-app.use('/clubs',postRoutes);
+app.use('/clubs',clubRoutes);
+app.use('/profile',profileRoutes);
 
 app.get('/', (req,res)=>{res.send("Hello ClubView API")});
 

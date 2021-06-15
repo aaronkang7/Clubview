@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { refreshTokenSetup } from "../../utils/refreshToken";
 import { UserContext } from "../../context/user";
@@ -9,22 +9,27 @@ const clientID = process.env.CLIENT_ID;
 function Login() {
   const { user, setUser } = useContext(UserContext);
 
-  const onSuccess = (res) => {
-    setUser(res.profileObj);
-    console.log(res.profileObj);
-    refreshTokenSetup(res);
-    axios.post('/profile',user)
-    .then((res)=>{console.log(res)});
+  useEffect(() => {
+    console.log("auth useEffect says: " + user);
+    console.log(user);
+    //when logging in
+    if (user !== null) {
+      console.log(user.familyName);
+    }
+    //when logging out
+    else {
+      console.log(user);
+    }
+  }, [user]);
 
+  const onSuccess = (res) => {
+    console.log("login success!!!");
+    setUser(res.profileObj);
+    refreshTokenSetup(res);
   };
 
-  async function secondFunction(res) {
-    await setUser(res.profileObj);
-    console.log(user.familyName);
-  }
-
   const onFailure = (res) => {
-    console.log("Login failed", res,);
+    console.log("Login failed", res);
   };
 
   return (

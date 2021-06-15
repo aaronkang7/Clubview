@@ -1,0 +1,9 @@
+.disable{
+  visibility: hidden;
+  margin-top: 100px;
+  background-color: black;
+}
+
+.enable{
+  visibility: visible;
+}

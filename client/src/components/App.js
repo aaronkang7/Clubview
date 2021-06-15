@@ -10,11 +10,11 @@ import "../styles/Styles.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   return (
     <div>
-      <div class="container-fluid">
+      <div className="container-fluid">
         <UserContext.Provider value={{ user, setUser }}>
           <Router>
             <Header />
