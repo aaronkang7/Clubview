@@ -5,7 +5,7 @@ import Dashboard from "../components/Dashboard/Dashboard";
 import Profile from "../components/Profile/Profile";
 import AddArea from "../components/AddArea/AddArea";
 import Clubinfo from "../components/Clubinfo/Clubinfo";
-import { UserContext } from "../context/user";
+import { UserContext, AuthContext } from "../context/user";
 import "../styles/Styles.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 

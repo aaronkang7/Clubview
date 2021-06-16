@@ -10,11 +10,13 @@ function Login() {
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
-    console.log("auth useEffect says: " + user);
-    console.log(user);
     //when logging in
+    console.log(user);
     if (user !== null) {
-      console.log(user.familyName);
+      axios
+        .post("http://localhost:5000/profile/user", user)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
     }
     //when logging out
     else {
