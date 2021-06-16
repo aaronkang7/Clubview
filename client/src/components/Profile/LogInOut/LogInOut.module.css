@@ -1,0 +1,9 @@
+.disable {
+  position: absolute;
+  visibility: hidden;
+}
+
+.enable {
+  position: absolute;
+  visibility: visible;
+}

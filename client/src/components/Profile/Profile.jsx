@@ -1,23 +1,13 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../../context/user";
-import Login from "../LogInOut/Login";
-import Logout from "../LogInOut/Logout";
-import styles from "./profile.module.css";
+import React from "react";
+import Sidebar from "./Sidebar/Sidebar";
+import LogInOut from "./LogInOut/LogInOut";
 
 function Profile() {
-  const { isSignedIn } = useContext(AuthContext);
-  const logoutStyle = isSignedIn === true ? "enable" : "disable";
-  const loginStyle = isSignedIn === false ? "enable" : "disable";
-
   return (
     <>
       <div>
-        <div className={styles[logoutStyle]}>
-          <Logout />
-        </div>
-        <div className={styles[loginStyle]}>
-          <Login />
-        </div>
+        <Sidebar />
+        <LogInOut />
       </div>
     </>
   );
