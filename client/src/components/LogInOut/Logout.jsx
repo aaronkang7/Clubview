@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { GoogleLogout } from "react-google-login";
 import { AuthContext, UserContext } from "../../context/user";
 
@@ -6,7 +6,7 @@ const clientId = process.env.CLIENT_ID;
 
 function Logout() {
   const { setUser } = useContext(UserContext);
-  const { isSignedIn, setSignedIn } = useContext(AuthContext);
+  const { setSignedIn } = useContext(AuthContext);
 
   const onLogoutSuccess = () => {
     setUser(null);

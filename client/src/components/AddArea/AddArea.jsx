@@ -48,13 +48,13 @@ function AddArea(props) {
 
   function stillEmpty() {
     return (
-      club.cname == "" ||
-      club.lead == "" ||
-      club.email == "" ||
-      club.category == "                        " ||
-      club.desc == "" ||
-      club.start == "" ||
-      club.end == ""
+      club.cname === "" ||
+      club.lead === "" ||
+      club.email === "" ||
+      club.category === "                        " ||
+      club.desc === "" ||
+      club.start === "" ||
+      club.end === ""
     );
   }
 

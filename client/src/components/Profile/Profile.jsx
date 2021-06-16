@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AuthContext, UserContext } from "../../context/user";
+import { AuthContext } from "../../context/user";
 import Login from "../LogInOut/Login";
 import Logout from "../LogInOut/Logout";
 import styles from "./profile.module.css";
