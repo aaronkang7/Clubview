@@ -1,17 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { refreshTokenSetup } from "../../utils/refreshToken";
-import { UserContext } from "../../context/user";
+import { AuthContext, UserContext } from "../../context/user";
 import { GoogleLogin } from "react-google-login";
 
 const clientID = process.env.CLIENT_ID;
 
 function Login() {
   const { user, setUser } = useContext(UserContext);
+  const { isSignedIn, setSignedIn } = useContext(AuthContext);
 
   useEffect(() => {
     //when logging in
-    console.log(user);
+    console.log("user is " + user);
     if (user !== null) {
       axios
         .post("http://localhost:5000/profile/user", user)
@@ -22,11 +23,12 @@ function Login() {
     else {
       console.log(user);
     }
-  }, [user]);
+  }, [isSignedIn]);
 
   const onSuccess = (res) => {
     console.log("login success!!!");
     setUser(res.profileObj);
+    setSignedIn(true);
     refreshTokenSetup(res);
   };
 
