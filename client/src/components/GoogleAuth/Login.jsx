@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { refreshTokenSetup } from "../../utils/refreshToken";
 import { AuthContext, UserContext } from "../../context/user";
@@ -11,12 +11,15 @@ function Login() {
   const { isSignedIn, setSignedIn } = useContext(AuthContext);
 
   useEffect(() => {
+    console.log("USER IS", user);
+  }, [user]);
+
+  useEffect(() => {
     //when logging in
-    console.log("user is " + user);
     if (user !== null) {
       axios
         .post("http://localhost:5000/profile/user", user)
-        .then((res) => console.log(res))
+        .then((res) => setUser(res.data))
         .catch((err) => console.log(err));
     }
     //when logging out

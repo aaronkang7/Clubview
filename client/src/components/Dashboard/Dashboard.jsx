@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Club from "../Club/Club";
 import axios from "axios";
 import "./Dashboard.css";
+import Filter from "../Filter/Filter";
 
 function Dashboard() {
   const [searchTerm, setSearch] = useState("");
@@ -72,6 +73,7 @@ function Dashboard() {
           desc={clubItem.desc}
           site={clubItem.site}
           emoji={clubItem.emoji}
+          isFav
           recruit={compareTime(clubItem.start, clubItem.end)}
         />
       );
@@ -96,7 +98,8 @@ function Dashboard() {
         >
           Search
         </button>
-      </form>{" "}
+        <Filter className="mr-0" />
+      </form>
       <div className="dashboard"> {clubList()}</div>
     </div>
   );

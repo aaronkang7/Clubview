@@ -11,7 +11,7 @@ function Header() {
   const [profile, setProfile] = useState("");
 
   useEffect(() => {
-    if (user != null) {
+    if (user != null && user.imageUrl != null) {
       setProfile(user.imageUrl);
     }
   }, [user]);
@@ -46,7 +46,7 @@ function Header() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/profile">
+            <Link to="/profile/settings">
               <Fab size="medium">
                 {user != null ? (
                   <img className="profile-picture" src={profile}></img>

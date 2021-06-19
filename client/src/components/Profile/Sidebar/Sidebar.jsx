@@ -1,25 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Paper } from "@material-ui/core";
 import "./Sidebar.css";
 
 function Sidebar() {
   const pages = [
-    { pageName: "Profile", path: "/" },
-    { pageName: "My Clubs", path: "/my" },
+    { pageName: "MyClubs", path: "/my" },
     { pageName: "Favorites", path: "/favs" },
     { pageName: "Settings", path: "/settings" },
   ];
 
   return (
-    <div className="sidenav">
-      {pages.map(({ pageName, path }) => {
-        return (
-          <div className="sideItem" to={path}>
-            <Link>{pageName}</Link>
-          </div>
-        );
-      })}
-    </div>
+    <Paper className="sidenav" elevation="3">
+      <div className="listContainer">
+        {pages.map(({ pageName, path }) => {
+          return (
+            <Link to={"/profile" + path}>
+              <div className="sideItem">{pageName}</div>
+            </Link>
+          );
+        })}
+      </div>
+    </Paper>
   );
 }
 

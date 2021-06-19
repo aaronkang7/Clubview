@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import $ from "jquery";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import Fab from "@material-ui/core/Fab";
@@ -21,15 +20,17 @@ function Club(props) {
     zIndex: "2",
   };
 
+  const handleFavClick = () => {
+    setFav(!isFav);
+  };
+
   return (
     <>
       <div className="card mb-4">
         <div className="edit-icon-container">
           <Fab
             className="edit-icon"
-            onClick={() => {
-              setFav(!isFav);
-            }}
+            onClick={handleFavClick}
             aria-label="favorite"
             size="small"
           >

@@ -1,12 +1,30 @@
 .sidenav {
-  height: 25rem; /* Full-height: remove this if you want "auto" height */
-  width: 17%; /* Set the width of the sidebar */
+  height: 25rem;
+  width: 100%;
   min-width: 7rem;
   margin-top: 2rem;
-  position: relative; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
+  position: relative;
   top: 0%;
   left: 0;
-  background-color: gray; /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
+}
+
+a,
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.sideItem {
+  transition: 0.5s;
+  font-weight: bold;
+  font-size: large;
+  padding: 5% 0%;
+}
+
+.sideItem:hover {
+  background-color: #e8e8e8;
+}
+
+.listContainer {
+  padding-top: 10%;
 }
