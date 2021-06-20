@@ -4,14 +4,16 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import "./Header.css";
-import { UserContext } from "../../context/user";
+import { AuthContext, UserContext } from "../../context/user";
 
 function Header() {
   const { user } = useContext(UserContext);
+  const { isSignedIn, setSignedIn } = useContext(AuthContext);
+
   const [profile, setProfile] = useState("");
 
   useEffect(() => {
-    if (user != null && user.imageUrl != null) {
+    if (user && isSignedIn) {
       setProfile(user.imageUrl);
     }
   }, [user]);
@@ -48,7 +50,7 @@ function Header() {
           <li className="nav-item">
             <Link to="/profile/settings">
               <Fab size="medium">
-                {user != null ? (
+                {isSignedIn ? (
                   <img className="profile-picture" src={profile}></img>
                 ) : (
                   <AccountCircleIcon />

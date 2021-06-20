@@ -11,6 +11,7 @@ function Logout() {
   const onLogoutSuccess = () => {
     setUser(null);
     setSignedIn(false);
+    console.log("hello");
   };
 
   return (

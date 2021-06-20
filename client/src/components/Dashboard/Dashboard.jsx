@@ -1,22 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Club from "../Club/Club";
 import axios from "axios";
 import "./Dashboard.css";
 import Filter from "../Filter/Filter";
+import { useRadioGroup } from "@material-ui/core";
+import { UserContext } from "../../context/user";
 
 function Dashboard() {
   const [searchTerm, setSearch] = useState("");
   const [clubs, setClubs] = useState([]);
+  const { user } = useContext(UserContext);
 
-  const fetchData = async () => {
+  const fetchClubsData = async () => {
     await axios
       .get("https://clubview-server.herokuapp.com/clubs")
       .then((res) => setClubs(res.data))
       .catch((err) => console.log(err));
   };
 
+  // const fetchFavData = () => {
+  //   if (user && user.hasOwnProperty("favorites")) {
+  //     setFavs(user.favorites);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   // axios
+  //   //   .post("http://localhost:5000/clubs/" + user.email, favs)
+  //   //   .then((res) => console.log(res));
+  // }, [favs]);
+
   useEffect(() => {
-    fetchData();
+    fetchClubsData();
+    // fetchFavData();
   }, []);
 
   function handleChange(event) {
@@ -73,7 +89,8 @@ function Dashboard() {
           desc={clubItem.desc}
           site={clubItem.site}
           emoji={clubItem.emoji}
-          isFav
+          // isFav={favs.includes(clubItem)}
+          // setFav={editFavs}
           recruit={compareTime(clubItem.start, clubItem.end)}
         />
       );

@@ -8,7 +8,12 @@ const clientID = process.env.CLIENT_ID;
 
 function Login() {
   const { user, setUser } = useContext(UserContext);
+  const [rawData, setRawData] = useState(null);
   const { isSignedIn, setSignedIn } = useContext(AuthContext);
+
+  //TO-DO:
+  //make user have imageURL and seperate from raw data so that
+  // that we can get rid of null pointer exceptions
 
   useEffect(() => {
     console.log("USER IS", user);
@@ -16,21 +21,24 @@ function Login() {
 
   useEffect(() => {
     //when logging in
-    if (user !== null) {
+    if (rawData !== null) {
+      console.log("in if");
+      console.log("raw data is", rawData);
       axios
-        .post("http://localhost:5000/profile/user", user)
+        .post("http://localhost:5000/profile/user", rawData)
         .then((res) => setUser(res.data))
         .catch((err) => console.log(err));
     }
     //when logging out
     else {
-      console.log(user);
+      console.log("logging out", user);
     }
   }, [isSignedIn]);
 
   const onSuccess = (res) => {
     console.log("login success!!!");
-    setUser(res.profileObj);
+    setRawData(res.profileObj);
+    console.log(res.profileObj);
     setSignedIn(true);
     refreshTokenSetup(res);
   };

@@ -8,7 +8,7 @@ import "./Club.css";
 function Club(props) {
   const infoLinkRoute = "clubs/" + props.id;
   const editLinkRoute = "edit/" + props.id;
-  const [isFav, setFav] = useState(false);
+  const [isFav, setFav] = useState(props.isFav);
 
   const statusInd = {
     height: "17px",
@@ -57,6 +57,7 @@ function Club(props) {
         <div className="card-body">
           <Link to={infoLinkRoute}>
             <h4 style={{ color: "black" }}>{props.cname}</h4>
+            <p>{isFav ? "true" : "false"}</p>
           </Link>
           <span style={statusInd}></span>
           <p className="card-text">{props.recruit[0]}</p>
