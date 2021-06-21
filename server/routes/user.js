@@ -1,5 +1,6 @@
 import express from "express";
 import User from "../models/userModel.js";
+import Club from "../models/clubModel.js";
 
 const router = express.Router();
 
@@ -28,6 +29,17 @@ router.post("/user", (req, res) => {
       newUser.save().then((res) => res.send(res));
     }
   });
+});
+
+router.post("/:email/editfav", (req, res) => {
+  const toWhat = req.body.notisFav;
+  const clubid = req.body.clubid;
+  if (toWhat === false) {
+    User.findOne({ email: req.params.email }, {});
+    User.updateOne({ email: req.params.email }, { $set: {} });
+  } else {
+    res.send("user not found");
+  }
 });
 
 export default router;
