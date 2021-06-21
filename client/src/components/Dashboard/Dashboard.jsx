@@ -3,13 +3,13 @@ import Club from "../Club/Club";
 import axios from "axios";
 import "./Dashboard.css";
 import Filter from "../Filter/Filter";
-import { useRadioGroup } from "@material-ui/core";
-import { UserContext } from "../../context/user";
+import { AuthContext, UserContext } from "../../context/user";
 
 function Dashboard() {
   const [searchTerm, setSearch] = useState("");
   const [clubs, setClubs] = useState([]);
   const { user } = useContext(UserContext);
+  const { isSignedIn } = useContext(AuthContext);
 
   const fetchClubsData = async () => {
     await axios
@@ -31,9 +31,10 @@ function Dashboard() {
   // }, [favs]);
 
   useEffect(() => {
+    //axios.post
     fetchClubsData();
-    // fetchFavData();
-  }, []);
+    console.log("user is ", user);
+  }, [user]);
 
   function handleChange(event) {
     const val = event.target.value;
@@ -76,6 +77,11 @@ function Dashboard() {
     }
   }
 
+  function findIsFav(clubItem) {
+    const userFavs = isSignedIn ? Array.from(user.favorites) : [];
+    return userFavs.includes(clubItem);
+  }
+
   function clubList() {
     return clubs.map((clubItem) => {
       return (
@@ -89,7 +95,7 @@ function Dashboard() {
           desc={clubItem.desc}
           site={clubItem.site}
           emoji={clubItem.emoji}
-          // isFav={favs.includes(clubItem)}
+          isFav={findIsFav(clubItem)}
           // setFav={editFavs}
           recruit={compareTime(clubItem.start, clubItem.end)}
         />

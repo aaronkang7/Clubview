@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import Fab from "@material-ui/core/Fab";
 import "./Club.css";
+import { AuthContext, UserContext } from "../../context/user";
+import axios from "axios";
 
 function Club(props) {
   const infoLinkRoute = "clubs/" + props.id;
   const editLinkRoute = "edit/" + props.id;
+  const { user, setUser } = useContext(UserContext);
+  const { isSignedIn } = useContext(AuthContext);
   const [isFav, setFav] = useState(props.isFav);
 
   const statusInd = {
@@ -20,7 +24,15 @@ function Club(props) {
     zIndex: "2",
   };
 
+  useEffect(() => {}, isFav);
+
   const handleFavClick = () => {
+    const notisFav = !isFav;
+    const clubid = props.id;
+    axios.post("http://localhost:5000/" + user.email + "/editfav", {
+      notisFav,
+      clubid,
+    });
     setFav(!isFav);
   };
 

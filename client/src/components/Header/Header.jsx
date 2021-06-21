@@ -8,7 +8,7 @@ import { AuthContext, UserContext } from "../../context/user";
 
 function Header() {
   const { user } = useContext(UserContext);
-  const { isSignedIn, setSignedIn } = useContext(AuthContext);
+  const { isSignedIn } = useContext(AuthContext);
 
   const [profile, setProfile] = useState("");
 
