@@ -6,8 +6,17 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   res.send("hello");
-  // User.find()
-  // .then(users => res.json(users))
+});
+
+//TO-DO: send an array of all complete favoriteis
+router.get("/favs/:email", (req, res) => {
+  User.findOne({ email: req.params.email }).then((result) => {
+    if (result) {
+      res.send(result.favorites);
+    } else {
+      console.log("not found");
+    }
+  });
 });
 
 router.post("/user", (req, res) => {
@@ -34,12 +43,22 @@ router.post("/user", (req, res) => {
 router.post("/:email/editfav", (req, res) => {
   const toWhat = req.body.notisFav;
   const clubid = req.body.clubid;
-  if (toWhat === false) {
-    User.findOne({ email: req.params.email }, {});
-    User.updateOne({ email: req.params.email }, { $set: {} });
-  } else {
-    res.send("user not found");
-  }
+  let newFavs;
+  User.findOne({ email: req.params.email }).then((result) => {
+    if (result) {
+      if (toWhat === false) {
+        newFavs = results.favorites.filter((fav) => {
+          fav.id !== clubid;
+        });
+      } else {
+        newFavs = results.favorites;
+        newFavs.push(clubid); //CHECK LATER
+      }
+    } else {
+      res.send("user not found");
+    }
+  });
+  User.updateOne({ email: req.params.email }, { $set: { favs: newFavs } });
 });
 
 export default router;
