@@ -16,10 +16,6 @@ function Login() {
   // that we can get rid of null pointer exceptions
 
   useEffect(() => {
-    console.log("USER IS", user);
-  }, [user]);
-
-  useEffect(() => {
     //when logging in
     if (rawData !== null) {
       console.log("in if");

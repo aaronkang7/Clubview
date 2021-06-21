@@ -24,7 +24,7 @@ function Club(props) {
     zIndex: "2",
   };
 
-  useEffect(() => {}, isFav);
+  useEffect(() => {}, [isFav]);
 
   const handleFavClick = () => {
     const notisFav = !isFav;
