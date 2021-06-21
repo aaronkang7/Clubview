@@ -16,8 +16,12 @@ function Login() {
   // that we can get rid of null pointer exceptions
 
   useEffect(() => {
+    console.log("USER IS NOW: ", user);
+  }, [user]);
+
+  useEffect(() => {
     //when logging in
-    if (rawData !== null) {
+    if (isSignedIn === true) {
       console.log("in if");
       console.log("raw data is", rawData);
       axios
@@ -34,7 +38,6 @@ function Login() {
   const onSuccess = (res) => {
     console.log("login success!!!");
     setRawData(res.profileObj);
-    console.log(res.profileObj);
     setSignedIn(true);
     refreshTokenSetup(res);
   };
