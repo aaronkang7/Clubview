@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext, UserContext } from "../../../context/user";
-import { Table } from "@material-ui/core";
+import moment from "moment";
 
 function Favs() {
   const [favs, setFavs] = useState([]);
@@ -28,9 +28,22 @@ function Favs() {
     if (data.length === 0) {
       return <div>You have no clubs</div>;
     } else {
-      return data.map((fav) => {
-        return <div> {fav}</div>;
-      });
+      return (
+        <table className="table table-striped">
+          <tbody>
+            {data.map(({ cname, start, end, category }) => {
+              return (
+                <tr>
+                  <td>{cname}</td>
+                  <td>{category}</td>
+                  <td>{moment(start).format("MM/DD/YYYY")}</td>
+                  <td>{moment(end).format("MM/DD/YYYY")}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      );
     }
   }
 
