@@ -18,18 +18,6 @@ function Dashboard() {
       .catch((err) => console.log(err));
   };
 
-  // const fetchFavData = () => {
-  //   if (user && user.hasOwnProperty("favorites")) {
-  //     setFavs(user.favorites);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   // axios
-  //   //   .post("http://localhost:5000/clubs/" + user.email, favs)
-  //   //   .then((res) => console.log(res));
-  // }, [favs]);
-
   useEffect(() => {
     //axios.post
     fetchClubsData();

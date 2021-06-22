@@ -10,7 +10,7 @@ import axios from "axios";
 function Club(props) {
   const infoLinkRoute = "clubs/" + props.id;
   const editLinkRoute = "edit/" + props.id;
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { isSignedIn } = useContext(AuthContext);
   const [isFav, setFav] = useState(props.isFav);
 
@@ -29,10 +29,12 @@ function Club(props) {
   const handleFavClick = () => {
     const notisFav = !isFav;
     const clubid = props.id;
-    axios.post("http://localhost:5000/" + user.email + "/editfav", {
-      notisFav,
-      clubid,
-    });
+    axios
+      .post("http://localhost:5000/profile/" + user.email + "/editfav", {
+        notisFav,
+        clubid,
+      })
+      .then((res) => console.log(res));
     setFav(!isFav);
   };
 
@@ -44,6 +46,7 @@ function Club(props) {
             className="edit-icon"
             onClick={handleFavClick}
             aria-label="favorite"
+            disabled={!isSignedIn}
             size="small"
           >
             {isFav ? (

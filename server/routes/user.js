@@ -68,22 +68,28 @@ router.post("/user", (req, res) => {
 router.post("/:email/editfav", (req, res) => {
   const toWhat = req.body.notisFav;
   const clubid = req.body.clubid;
-  let newFavs;
-  User.findOne({ email: req.params.email }).then((result) => {
-    if (result) {
-      if (toWhat === false) {
-        newFavs = results.favorites.filter((fav) => {
-          fav.id !== clubid;
-        });
+  let newFavs = [];
+  User.findOne({ email: req.params.email })
+    .then((result) => {
+      if (result != null) {
+        if (toWhat === false) {
+          newFavs = result.favorites.filter((fav) => {
+            fav.id !== clubid;
+          });
+        } else {
+          newFavs = result.favorites;
+          newFavs.push(clubid); //CHECK LATER
+        }
       } else {
-        newFavs = results.favorites;
-        newFavs.push(clubid); //CHECK LATER
+        res.send("user not found");
       }
-    } else {
-      res.send("user not found");
-    }
-  });
-  User.updateOne({ email: req.params.email }, { $set: { favs: newFavs } });
+    })
+    .then(() => {
+      User.updateOne(
+        { email: req.params.email },
+        { $set: { favorites: newFavs } }
+      );
+    });
 });
 
 export default router;
