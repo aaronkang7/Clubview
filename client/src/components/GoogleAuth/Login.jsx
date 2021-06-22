@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { refreshTokenSetup } from "../../utils/refreshToken";
 import { AuthContext, UserContext } from "../../context/user";
-import { GoogleLogin } from "react-google-login";
+import { GoogleLogin, GoogleButton } from "react-google-login";
 
 const clientID = process.env.CLIENT_ID;
 
@@ -60,7 +60,6 @@ function Login() {
         onSuccess={onSuccess}
         onFailure={onFailure}
         cookiePolicy={"single_host_origin"}
-        style={{ marginTop: "100px" }}
         isSignedIn={true}
       />
     </div>

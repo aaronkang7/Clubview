@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext, UserContext } from "../../../context/user";
+import { Table } from "@material-ui/core";
 
 function Favs() {
   const [favs, setFavs] = useState([]);
@@ -13,7 +14,7 @@ function Favs() {
   useEffect(() => {
     if (isSignedIn) {
       axios
-        .get("http://localhost:5000/profile/favs/" + user.email)
+        .get("http://localhost:5000/profile/favsFull/" + user.email)
         .then((res) => setFavs(res.data));
     }
   }, []);
@@ -33,7 +34,7 @@ function Favs() {
     }
   }
 
-  return <>{isSignedIn ? renderFavs() : "Login first!"}</>;
+  return <>{renderFavs()}</>;
 }
 
 export default Favs;

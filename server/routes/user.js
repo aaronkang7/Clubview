@@ -9,12 +9,37 @@ router.get("/", (req, res) => {
 });
 
 //TO-DO: send an array of all complete favoriteis
-router.get("/favs/:email", (req, res) => {
+router.get("/favsID/:email", (req, res) => {
   User.findOne({ email: req.params.email }).then((result) => {
     if (result) {
       res.send(result.favorites);
     } else {
       console.log("not found");
+    }
+  });
+});
+
+//sends and array of full fav clubs
+router.get("/favsFull/:email", (req, res) => {
+  const FavArray = [];
+  User.findOne({ email: req.params.email }).then((result) => {
+    if (result) {
+      var doLoop = new Promise((resolve, reject) => {
+        result.favorites.forEach((favID, index, array) => {
+          Club.findById(favID)
+            .then((club) => {
+              FavArray.push(club);
+            })
+            .then(() => {
+              if (index === array.length - 1) resolve();
+            });
+        });
+      });
+      doLoop.then(() => {
+        res.send(FavArray);
+      });
+    } else {
+      console.log("user not found");
     }
   });
 });
