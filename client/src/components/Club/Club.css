@@ -1,21 +1,21 @@
 .card {
-  border-radius: calc(.25rem);
+  border-radius: calc(0.25rem);
   display: inline-block;
   width: 100%;
 }
 
-.edit-icon-container {
+.fav-icon-container {
   position: absolute;
   right: 5%;
   top: 5%;
   z-index: 10;
 }
 
-.edit-icon-container button {
-  background: #FBFAF5;
+.fav-icon-container button {
+  background: #fbfaf5;
 }
 
-.edit-icon-heart {
+.fav-icon-heart {
   color: #dc3545;
 }
 
@@ -28,6 +28,22 @@
   z-index: 0;
   position: relative;
   max-height: 15rem;
+}
+
+.clubName {
+  text-align: left;
+  font-size: 23px;
+}
+
+.recDate {
+  text-align: left;
+  font-size: 17px;
+}
+
+.status {
+  bottom: 20%;
+  right: 5%;
+  background-color: green;
 }
 
 @media (min-width: 1px) {

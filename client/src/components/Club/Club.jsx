@@ -44,7 +44,7 @@ function Club(props) {
     setFav(!isFav);
   };
 
-  function renderMessage() {
+  function renderTag() {
     // if (startMom.diff(nowMom, "days") < 10) {
     //   return yellow;
     // } else if (nowMom.isBetween(startMom, endMom, undefined, "[]")) {
@@ -62,21 +62,18 @@ function Club(props) {
   return (
     <>
       <div className="card mb-4">
-        <div className="edit-icon-container">
+        <div className="fav-icon-container">
           <Fab
-            className="edit-icon"
+            className="fav-icon"
             onClick={handleFavClick}
             aria-label="favorite"
             disabled={!isSignedIn}
             size="small"
           >
             {isFav ? (
-              <FavoriteIcon className="edit-icon-heart" fontSize="small" />
+              <FavoriteIcon className="fav-icon-heart" fontSize="small" />
             ) : (
-              <FavoriteBorderIcon
-                className="edit-icon-heart"
-                fontSize="small"
-              />
+              <FavoriteBorderIcon className="fav-icon-heart" fontSize="small" />
             )}
           </Fab>
         </div>
@@ -91,11 +88,15 @@ function Club(props) {
           </div>
         </Link>
         <div className="card-body">
-          <Link to={infoLinkRoute}>
-            <h4 style={{ color: "black" }}>{props.cname}</h4>
-          </Link>
-          <span></span>
-          <p className="card-text">{renderDate()}</p>
+          <div className="d-flex">
+            <Link to={infoLinkRoute}>
+              <p style={{ color: "black" }} className="clubName">
+                {props.cname}
+              </p>
+            </Link>
+            <span className="status ml-auto">{renderTag()}</span>
+          </div>
+          <p className="recDate">{renderDate()}</p>
         </div>
       </div>
     </>
