@@ -14,9 +14,9 @@ function Favs() {
     if (isSignedIn) {
       axios
         .get("http://localhost:5000/profile/favs/" + user.email)
-        .then((res) => console.log(res));
+        .then((res) => setFavs(res.data));
     }
-  });
+  }, []);
 
   useEffect(() => {
     console.log("favs is now", favs);
@@ -28,7 +28,7 @@ function Favs() {
       return <div>You have no clubs</div>;
     } else {
       return data.map((fav) => {
-        return <div> fav</div>;
+        return <div> {fav}</div>;
       });
     }
   }

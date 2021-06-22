@@ -35,7 +35,7 @@ router.post("/user", (req, res) => {
         email: email,
         favorites: [],
       });
-      newUser.save().then((res) => res.send(res));
+      newUser.save().then((ress) => res.send(ress));
     }
   });
 });

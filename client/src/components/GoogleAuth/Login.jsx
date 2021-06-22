@@ -17,12 +17,17 @@ function Login() {
 
   useEffect(() => {
     console.log("USER IS NOW: ", user);
-  }, [user]);
+    console.log("RAW DATA IS: ", rawData);
+    console.log("ISSIGNEDIN is: ", isSignedIn);
+  }, [user, rawData, isSignedIn]);
 
   useEffect(() => {
-    //when logging in
-    if (isSignedIn === true) {
+    console.log("IS IN isSignedIn USEEFFECT");
+    console.log("ISSIGNEDIN is: ", isSignedIn);
+    console.log("RAWDATA is: ", rawData);
+    if (isSignedIn && rawData != null) {
       console.log("in if");
+      console.log("Raw data is: ", rawData);
       console.log("raw data is", rawData);
       axios
         .post("http://localhost:5000/profile/user", rawData)
@@ -54,8 +59,6 @@ function Login() {
         buttonText="Login with Google"
         onSuccess={onSuccess}
         onFailure={onFailure}
-        approvalPrompt="force"
-        prompt="consent"
         cookiePolicy={"single_host_origin"}
         style={{ marginTop: "100px" }}
         isSignedIn={true}
