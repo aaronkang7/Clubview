@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import Fab from "@material-ui/core/Fab";
-import "./Club.css";
 import { AuthContext, UserContext } from "../../context/user";
+import "./Club.css";
+import moment, { now } from "moment";
 import axios from "axios";
+import { green, yellow } from "@material-ui/core/colors";
 
 function Club(props) {
   const infoLinkRoute = "clubs/" + props.id;
@@ -13,6 +15,10 @@ function Club(props) {
   const { user } = useContext(UserContext);
   const { isSignedIn } = useContext(AuthContext);
   const [isFav, setFav] = useState(props.isFav);
+
+  const nowMom = moment(new Date());
+  const startMom = moment(props.recruit.start);
+  const endMom = moment(props.recruit.end);
 
   const statusInd = {
     height: "17px",
@@ -37,6 +43,21 @@ function Club(props) {
       .then((res) => console.log(res));
     setFav(!isFav);
   };
+
+  function renderMessage() {
+    // if (startMom.diff(nowMom, "days") < 10) {
+    //   return yellow;
+    // } else if (nowMom.isBetween(startMom, endMom, undefined, "[]")) {
+    //   return green;
+    // } else {
+    //   return red;
+    // }
+    return "hello";
+  }
+
+  function renderDate() {
+    return startMom.format("MM/DD") + " - " + endMom.format("MM/DD");
+  }
 
   return (
     <>
@@ -72,10 +93,9 @@ function Club(props) {
         <div className="card-body">
           <Link to={infoLinkRoute}>
             <h4 style={{ color: "black" }}>{props.cname}</h4>
-            <p>{isFav ? "true" : "false"}</p>
           </Link>
-          <span style={statusInd}></span>
-          <p className="card-text">{props.recruit[0]}</p>
+          <span></span>
+          <p className="card-text">{renderDate()}</p>
         </div>
       </div>
     </>
