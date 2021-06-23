@@ -8,6 +8,7 @@ import { AuthContext, UserContext } from "../../context/user";
 function Dashboard() {
   const [searchTerm, setSearch] = useState("");
   const [clubs, setClubs] = useState([]);
+  const [favclubs, setFavClubs] = useState([]);
   const { user } = useContext(UserContext);
   const { isSignedIn } = useContext(AuthContext);
 
@@ -18,10 +19,18 @@ function Dashboard() {
       .catch((err) => console.log(err));
   };
 
+  const fetchFavsData = () => {
+    if (isSignedIn) {
+      axios
+        .get("http://localhost:5000/profile//favsID/" + user.email)
+        .then((res) => setFavClubs(res.data));
+    }
+  };
+
   useEffect(() => {
-    //axios.post
+    fetchFavsData();
     fetchClubsData();
-    console.log("user is ", user);
+    console.log("user in dashboard is ", user);
   }, [user]);
 
   function handleChange(event) {
@@ -44,8 +53,7 @@ function Dashboard() {
   }
 
   function findIsFav(clubItem) {
-    const userFavs = isSignedIn ? Array.from(user.favorites) : [];
-    return userFavs.includes(clubItem);
+    return favclubs.includes(clubItem._id);
   }
 
   function clubList() {
@@ -62,7 +70,6 @@ function Dashboard() {
           site={clubItem.site}
           emoji={clubItem.emoji}
           isFav={findIsFav(clubItem)}
-          // setFav={editFavs}
           recruit={{ start: clubItem.start, end: clubItem.end }}
         />
       );

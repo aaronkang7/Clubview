@@ -68,28 +68,46 @@ router.post("/user", (req, res) => {
 router.post("/:email/editfav", (req, res) => {
   const toWhat = req.body.notisFav;
   const clubid = req.body.clubid;
-  let newFavs = [];
-  User.findOne({ email: req.params.email })
-    .then((result) => {
-      if (result != null) {
+  // console.log("TOWHAT IS :", toWhat);
+  // console.log("clubid is: ", clubid);
+  let newFav = [];
+  User.findOne({ email: req.params.email }).then((result) => {
+    if (result != null) {
+      let oldFav = result.favorites;
+      // console.log("Oldfav is", oldFav);
+      var doStuff = new Promise((resolve, reject) => {
         if (toWhat === false) {
-          newFavs = result.favorites.filter((fav) => {
-            fav.id !== clubid;
+          oldFav.forEach((fav, index, array) => {
+            console.log("IN DELETE IF");
+            if (fav._id != clubid) {
+              // console.log("favid is:", fav._id);
+              // console.log("NOT EQUAL");
+              // console.log("adding: favid is:", fav._id);
+              newFav.push(fav._id);
+            }
+            if (index === array.length - 1) {
+              resolve(newFav);
+            }
           });
         } else {
-          newFavs = result.favorites;
-          newFavs.push(clubid); //CHECK LATER
+          oldFav.push(clubid);
+          console.log(" ADDING: newFavs is: ", oldFav);
+
+          resolve(oldFav);
         }
-      } else {
-        res.send("user not found");
-      }
-    })
-    .then(() => {
-      User.updateOne(
-        { email: req.params.email },
-        { $set: { favorites: newFavs } }
-      );
-    });
+      });
+      doStuff.then((endFav) => {
+        User.updateOne(
+          { email: req.params.email },
+          { $set: { favorites: endFav } }
+        )
+          .then(() => res.send(endFav))
+          .catch((err) => console.log(err));
+      });
+    } else {
+      res.send("user not found");
+    }
+  });
 });
 
 export default router;
