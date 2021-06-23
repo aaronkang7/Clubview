@@ -24,20 +24,9 @@ router.get("/favsFull/:email", (req, res) => {
   const FavArray = [];
   User.findOne({ email: req.params.email }).then((result) => {
     if (result) {
-      var doLoop = new Promise((resolve, reject) => {
-        result.favorites.forEach((favID, index, array) => {
-          Club.findById(favID)
-            .then((club) => {
-              FavArray.push(club);
-            })
-            .then(() => {
-              if (index === array.length - 1) resolve();
-            });
-        });
-      });
-      doLoop.then(() => {
-        res.send(FavArray);
-      });
+      Club.find({ _id: { $in: result.favorites } }).then((clublist) =>
+        res.send(clublist)
+      );
     } else {
       console.log("user not found");
     }

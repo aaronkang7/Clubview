@@ -13,13 +13,16 @@ function Favs() {
   //TO-DO:
   //Find out why database is giving empty arry for fav array
 
-  useEffect(() => {
+  const fetchFavData = async () => {
     if (isSignedIn) {
-      axios
+      await axios
         .get("http://localhost:5000/profile/favsFull/" + user.email)
         .then((res) => setFavs(res.data))
         .then(() => console.log("fetched favs"));
     }
+  };
+  useEffect(() => {
+    fetchFavData();
   }, []);
 
   useEffect(() => {
