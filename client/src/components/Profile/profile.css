@@ -6,3 +6,12 @@
   padding: 5% 3%;
   float: left;
 }
+
+table {
+  font-size: 15px;
+}
+
+.sizeSmall {
+  height: 30px !important;
+  width: 30px !important;
+}

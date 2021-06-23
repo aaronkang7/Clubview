@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext, UserContext } from "../../../context/user";
+import Fab from "@material-ui/core/Fab";
+import NotificationsIcon from "@material-ui/icons/Notifications";
 import moment from "moment";
 
 function Favs() {
@@ -15,7 +17,8 @@ function Favs() {
     if (isSignedIn) {
       axios
         .get("http://localhost:5000/profile/favsFull/" + user.email)
-        .then((res) => setFavs(res.data));
+        .then((res) => setFavs(res.data))
+        .then(() => console.log("fetched favs"));
     }
   }, []);
 
@@ -30,6 +33,15 @@ function Favs() {
     } else {
       return (
         <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Rec. Start</th>
+              <th scope="col">Rec. End</th>
+              <th scope="col">Category</th>
+              <th scope="col">Notifications</th>
+            </tr>
+          </thead>
           <tbody>
             {data.map(({ cname, start, end, category }) => {
               return (
@@ -38,6 +50,11 @@ function Favs() {
                   <td>{category}</td>
                   <td>{moment(start).format("MM/DD/YYYY")}</td>
                   <td>{moment(end).format("MM/DD/YYYY")}</td>
+                  <td>
+                    <Fab className="sizeSmall">
+                      <NotificationsIcon fontSize="small" />
+                    </Fab>
+                  </td>
                 </tr>
               );
             })}
