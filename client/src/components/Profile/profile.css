@@ -1,6 +1,7 @@
 .profileContent {
   height: 33rem;
   width: 100%;
+  overflow: hidden;
   margin-top: 2rem;
   padding: 5% 3%;
   float: left;
