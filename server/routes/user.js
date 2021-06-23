@@ -78,7 +78,7 @@ router.post("/:email/editfav", (req, res) => {
       var doStuff = new Promise((resolve, reject) => {
         if (toWhat === false) {
           oldFav.forEach((fav, index, array) => {
-            console.log("IN DELETE IF");
+            // console.log("IN DELETE IF");
             if (fav._id != clubid) {
               // console.log("favid is:", fav._id);
               // console.log("NOT EQUAL");

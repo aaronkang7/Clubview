@@ -40,10 +40,12 @@
   font-size: 17px;
 }
 
+.status-container {
+  margin-top: 2px;
+}
+
 .status {
-  bottom: 20%;
-  right: 5%;
-  background-color: green;
+  padding: 10px 10px;
 }
 
 @media (min-width: 1px) {

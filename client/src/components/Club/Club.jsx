@@ -3,17 +3,18 @@ import { Link } from "react-router-dom";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import Fab from "@material-ui/core/Fab";
+import Chip from "@material-ui/core/Chip";
 import { AuthContext, UserContext } from "../../context/user";
 import "./Club.css";
-import moment, { now } from "moment";
+import moment from "moment";
 import axios from "axios";
-import { green, yellow } from "@material-ui/core/colors";
 
 function Club(props) {
   const infoLinkRoute = "clubs/" + props.id;
   const editLinkRoute = "edit/" + props.id;
   const { user } = useContext(UserContext);
   const { isSignedIn } = useContext(AuthContext);
+  const [status, setStatus] = useState({ message: "", color: "gray" });
   const [isFav, setFav] = useState(props.isFav);
 
   const nowMom = moment(new Date());
@@ -30,7 +31,9 @@ function Club(props) {
     zIndex: "2",
   };
 
-  useEffect(() => {}, [isFav]);
+  useEffect(() => {
+    renderTag();
+  }, [isFav]);
 
   const handleFavClick = () => {
     const notisFav = !isFav;
@@ -45,14 +48,14 @@ function Club(props) {
   };
 
   function renderTag() {
-    // if (startMom.diff(nowMom, "days") < 10) {
-    //   return yellow;
-    // } else if (nowMom.isBetween(startMom, endMom, undefined, "[]")) {
-    //   return green;
-    // } else {
-    //   return red;
-    // }
-    return "hello";
+    const diff = startMom.diff(nowMom, "days");
+    if (diff < 10 && diff > 0) {
+      setStatus({ color: "#FFF1BC", message: "INCOMING" });
+    } else if (nowMom.isBetween(startMom, endMom, undefined, "[]")) {
+      setStatus({ color: "#D4FFD2", message: "OPEN" });
+    } else {
+      setStatus({ color: "#FFBEAA", message: "CLOSED" });
+    }
   }
 
   function renderDate() {
@@ -94,7 +97,18 @@ function Club(props) {
                 {props.cname}
               </p>
             </Link>
-            <span className="status ml-auto">{renderTag()}</span>
+            <div className="ml-auto status-container">
+              <Chip
+                label={status.message}
+                style={{ backgroundColor: status.color }}
+              />
+              {/* <span
+                className="status"
+                style={{ backgroundColor: status.color }}
+              >
+                {status.message}
+              </span> */}
+            </div>
           </div>
           <p className="recDate">{renderDate()}</p>
         </div>
