@@ -32,12 +32,7 @@
 
 .clubName {
   text-align: left;
-  font-size: 23px;
-}
-
-.recDate {
-  text-align: left;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 .status-container {
@@ -49,6 +44,16 @@
 }
 
 @media (min-width: 1px) {
+  .recDate {
+    text-align: left;
+    font-size: 12px;
+  }
+
+  .clubName {
+    text-align: left;
+    font-size: 16px;
+  }
+
   .card-img-container .card-text {
     position: absolute;
     top: 50%;
@@ -59,7 +64,29 @@
   }
 }
 
+@media (min-width: 600px) {
+  .recDate {
+    text-align: left;
+    font-size: 14px;
+  }
+
+  .clubName {
+    text-align: left;
+    font-size: 17px;
+  }
+}
+
 @media (min-width: 992px) {
+  .recDate {
+    text-align: left;
+    font-size: 17px;
+  }
+
+  .clubName {
+    text-align: left;
+    font-size: 20px;
+  }
+
   .card-img-container .card-text {
     position: absolute;
     top: 50%;

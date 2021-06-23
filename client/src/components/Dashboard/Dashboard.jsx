@@ -1,22 +1,31 @@
 import React, { useState, useEffect, useContext } from "react";
-import Club from "../Club/Club";
 import axios from "axios";
 import "./Dashboard.css";
+import Club from "../Club/Club";
+import ClubsPage from "../ClubsPage/ClubsPage";
+import PaginationTab from "../Pagination/Pagiation";
 import Filter from "../Filter/Filter";
 import { AuthContext, UserContext } from "../../context/user";
 
 function Dashboard() {
   const [searchTerm, setSearch] = useState("");
   const [clubs, setClubs] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [clubsPerPage] = useState(8);
+
   const [favclubs, setFavClubs] = useState([]);
   const { user } = useContext(UserContext);
   const { isSignedIn } = useContext(AuthContext);
 
+  const indexOfLastClub = currentPage * clubsPerPage;
+  const indexOfFirstClub = indexOfLastClub - clubsPerPage;
+  const currentClubs = clubs.slice(indexOfFirstClub, indexOfLastClub);
+
   const fetchClubsData = async () => {
-    await axios
-      .get("https://clubview-server.herokuapp.com/clubs")
-      .then((res) => setClubs(res.data))
-      .catch((err) => console.log(err));
+    const res = await axios.get("https://clubview-server.herokuapp.com/clubs");
+    setClubs(res.data);
+    setLoading(false);
   };
 
   const fetchFavsData = () => {
@@ -56,24 +65,9 @@ function Dashboard() {
     return favclubs.includes(clubItem._id);
   }
 
-  function clubList() {
-    return clubs.map((clubItem) => {
-      return (
-        <Club
-          key={clubItem._id}
-          id={clubItem._id}
-          cname={clubItem.cname}
-          lead={clubItem.lead}
-          email={clubItem.email}
-          category={clubItem.category}
-          desc={clubItem.desc}
-          site={clubItem.site}
-          emoji={clubItem.emoji}
-          isFav={findIsFav(clubItem)}
-          recruit={{ start: clubItem.start, end: clubItem.end }}
-        />
-      );
-    });
+  function paginate(pageNumber) {
+    console.log(pageNumber);
+    setCurrentPage(pageNumber);
   }
 
   return (
@@ -96,7 +90,18 @@ function Dashboard() {
         </button>
         <Filter className="mr-0" />
       </form>
-      <div className="dashboard"> {clubList()}</div>
+      <div className="dashboard">
+        <ClubsPage
+          clubs={currentClubs}
+          loading={loading}
+          isFavFinder={findIsFav}
+        />
+      </div>
+      <PaginationTab
+        clubsPerPage={clubsPerPage}
+        totalClubs={clubs.length}
+        paginate={paginate}
+      />
     </div>
   );
 }

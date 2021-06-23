@@ -2,6 +2,10 @@
   padding: 2% 5%;
 }
 
+.club-paper {
+  padding: 30px;
+}
+
 @media (min-width: 1px) {
   .content {
     position: relative;

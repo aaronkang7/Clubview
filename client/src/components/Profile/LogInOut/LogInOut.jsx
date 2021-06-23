@@ -11,11 +11,13 @@ function LogInOut() {
 
   return (
     <>
-      <div className={styles[logoutStyle]}>
-        <Logout />
-      </div>
-      <div className={styles[loginStyle]}>
-        <Login />
+      <div>
+        <div className={styles[logoutStyle]}>
+          <Logout />
+        </div>
+        <div className={styles[loginStyle]}>
+          <Login />
+        </div>
       </div>
     </>
   );

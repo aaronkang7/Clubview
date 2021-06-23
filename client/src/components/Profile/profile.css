@@ -4,24 +4,10 @@
   overflow: hidden;
   margin-top: 2rem;
   padding: 5% 3%;
-  float: left;
 }
 
-table {
-  font-size: 15px;
-}
-
-.vert {
-  max-height: 100%;
-  overflow-x: auto;
-  overflow-y: auto;
-}
-
-td {
-  vertical-align: middle;
-  justify-content: center;
-}
-
-th {
-  position: sticky;
+.icon-noFavs {
+  margin-top: 3%;
+  width: 30%;
+  height: 340%;
 }

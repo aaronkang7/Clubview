@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { AuthContext, UserContext } from "../../../context/user";
 import Fab from "@material-ui/core/Fab";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import { HangOut } from "../../../images/index";
 import moment from "moment";
 
 function Favs() {
@@ -30,9 +31,22 @@ function Favs() {
   }, [favs]);
 
   function renderFavs() {
+    // const header = [
+    //   "Name",
+    //   "Rec. Start",
+    //   "Rec. End",
+    //   "Category",
+    //   "Notification",
+    // ];
+    // const columns = ["cname", "start", "end", "category"];
     const data = Array.from(favs);
     if (data.length === 0) {
-      return <div>You have no clubs</div>;
+      return (
+        <div>
+          <h4>You have no favorite clubs...</h4>
+          <img className="icon-noFavs" src={HangOut} />
+        </div>
+      );
     } else {
       return (
         <div className="table-responsive vert">
@@ -43,7 +57,7 @@ function Favs() {
                 <th scope="col">Rec. Start</th>
                 <th scope="col">Rec. End</th>
                 <th scope="col">Category</th>
-                <th scope="col">Notifications</th>
+                <th scope="col">Notification</th>
               </tr>
             </thead>
             <tbody>

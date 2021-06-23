@@ -1,0 +1,18 @@
+table {
+  font-size: 15px;
+}
+
+.vert {
+  max-height: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+td {
+  vertical-align: middle;
+  justify-content: center;
+}
+
+th {
+  position: sticky;
+}
