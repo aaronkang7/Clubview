@@ -52,7 +52,7 @@ function Club(props) {
     if (diff < 10 && diff > 0) {
       setStatus({ color: "#FFF1BC", message: "INCOMING" });
     } else if (nowMom.isBetween(startMom, endMom, undefined, "[]")) {
-      setStatus({ color: "#D4FFD2", message: "OPEN" });
+      setStatus({ color: "#C2e5aa", message: "OPEN" });
     } else {
       setStatus({ color: "#FFBEAA", message: "CLOSED" });
     }
