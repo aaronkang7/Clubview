@@ -49,36 +49,39 @@ function Favs() {
       );
     } else {
       return (
-        <div className="table-responsive vert">
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Rec. Start</th>
-                <th scope="col">Rec. End</th>
-                <th scope="col">Category</th>
-                <th scope="col">Notification</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map(({ cname, start, end, category }) => {
-                return (
-                  <tr>
-                    <td>{cname}</td>
-                    <td>{category}</td>
-                    <td>{moment(start).format("MM/DD/YYYY")}</td>
-                    <td>{moment(end).format("MM/DD/YYYY")}</td>
-                    <td>
-                      <Fab size="small">
-                        <NotificationsIcon fontSize="small" />
-                      </Fab>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <>
+          <h3 className="title">Favorites</h3>
+          <div className="table-responsive vert">
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Rec. Start</th>
+                  <th scope="col">Rec. End</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Notification</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map(({ cname, start, end, category }) => {
+                  return (
+                    <tr>
+                      <td>{cname}</td>
+                      <td>{category}</td>
+                      <td>{moment(start).format("MM/DD/YYYY")}</td>
+                      <td>{moment(end).format("MM/DD/YYYY")}</td>
+                      <td>
+                        <Fab size="small">
+                          <NotificationsIcon fontSize="small" />
+                        </Fab>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </>
       );
     }
   }

@@ -2,8 +2,13 @@
   height: 33rem;
   width: 100%;
   overflow: hidden;
-  margin-top: 2rem;
-  padding: 5% 3%;
+  margin-top: 1rem;
+  padding: 3% 3%;
+}
+
+.title {
+  text-align: left;
+  margin-bottom: 1%;
 }
 
 .icon-noFavs {
