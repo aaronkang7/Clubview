@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { check } from "../../icons/other/index";
-import styles from "./confirmationtoast.module.css";
+import "./Toast.css";
 
 const Toast = ({ message }) => {
   const [visible, setVisible] = useState(true);
