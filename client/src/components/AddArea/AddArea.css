@@ -8,6 +8,10 @@
   padding: 2% 5%;
 }
 
+.add-form {
+  margin-top: 1%;
+}
+
 @media (min-width: 1px) {
   .content {
     position: relative;

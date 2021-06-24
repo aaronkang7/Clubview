@@ -1,7 +1,7 @@
 .card {
   border-radius: calc(0.25rem);
-  display: inline-block;
   width: 100%;
+  break-inside: avoid;
 }
 
 .fav-icon-container {

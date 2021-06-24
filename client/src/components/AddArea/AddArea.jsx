@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Paper from "@material-ui/core/Paper";
 import "./AddArea.css";
 
 function AddArea(props) {
@@ -102,73 +103,78 @@ function AddArea(props) {
             />
           </div>
 
-          <div className="container-fluid-add col-lg-7 col-md-12">
+          <Paper
+            className="container-fluid-add col-lg-7 col-md-12 add-form"
+            elevation="3"
+          >
             <h4>Club Information</h4>
 
-            <div className="form-group row">
-              <label for="cName_">Club Name*</label>
-              <input
-                name="cname"
-                type="text"
-                className="form-control"
-                id="cName_"
-                onChange={handleChange}
-                value={club.cname}
-                required
-              />
-            </div>
-
-            <div className="form-group row">
-              <label for="cLead">Club Lead Name(s)*</label>
-              <input
-                name="lead"
-                type="text"
-                className="form-control"
-                id="cLead"
-                onChange={handleChange}
-                value={club.lead}
-                required
-              />
-            </div>
-
-            <div className="form-group row">
-              <label for="email">Club Lead e-mail*</label>
-              <div className="input-group">
+            <div className="form-row">
+              <div className="form-group col-md-7">
+                <label for="cName_">Club Name*</label>
                 <input
-                  name="email"
+                  name="cname"
                   type="text"
                   className="form-control"
-                  id="email"
+                  id="cName_"
                   onChange={handleChange}
-                  aria-describedby="emailHelp"
-                  value={club.email}
+                  value={club.cname}
                   required
                 />
               </div>
+              <div className="form-group col-md-5">
+                <label for="category">Club Category*</label>
+                <select
+                  name="category"
+                  className="form-control"
+                  id="category"
+                  onChange={handleChange}
+                  value={club.category}
+                  required
+                >
+                  <option> </option>
+                  <option>Academic and Educational</option>
+                  <option>Community service</option>
+                  <option>Media and Publication</option>
+                  <option>Political or multicultural</option>
+                  <option>Recreation and sports</option>
+                  <option>Religious and spiritual</option>
+                  <option>Student government</option>
+                </select>
+              </div>
             </div>
 
-            <div className="form-group row">
-              <label for="category">Club Category*</label>
-              <select
-                name="category"
-                className="form-control"
-                id="category"
-                onChange={handleChange}
-                value={club.category}
-                required
-              >
-                <option> </option>
-                <option>Academic and Educational</option>
-                <option>Community service</option>
-                <option>Media and Publication</option>
-                <option>Political or multicultural</option>
-                <option>Recreation and sports</option>
-                <option>Religious and spiritual</option>
-                <option>Student government</option>
-              </select>
+            <div className="form-row">
+              <div className="form-group col-md-6">
+                <label for="cLead">Club Lead Name(s)*</label>
+                <input
+                  name="lead"
+                  type="text"
+                  className="form-control"
+                  id="cLead"
+                  onChange={handleChange}
+                  value={club.lead}
+                  required
+                />
+              </div>
+              <div className="form-group col-md-6">
+                <label for="email">Club Lead e-mail*</label>
+                <div className="input-group">
+                  <input
+                    name="email"
+                    type="text"
+                    className="form-control"
+                    id="email"
+                    onChange={handleChange}
+                    aria-describedby="emailHelp"
+                    value={club.email}
+                    required
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="form-group row">
+            <div className="form-row form-group">
               <label for="clubDesc">Description of the Club*</label>
               <textarea
                 className="form-control"
@@ -181,7 +187,7 @@ function AddArea(props) {
               ></textarea>
             </div>
 
-            <div className="form-group row">
+            <div className="form-row form-group">
               <label for="clubSite">Website/Social Media Link</label>
               <input
                 name="site"
@@ -194,36 +200,32 @@ function AddArea(props) {
               />
             </div>
 
-            <div className="row">
+            <div className="form-row">
               <label for="RecruitmentPeriod">Recruitment Period*</label>
               <div id="RecruitmentPeriod">
-                <div className="row">
-                  <div className="form-group col">
-                    <div className="col-10">
-                      <input
-                        name="start"
-                        className="form-control"
-                        type="datetime-local"
-                        id="startDate"
-                        onChange={handleChange}
-                        value={club.start}
-                        required
-                      />
-                    </div>
+                <div className="form-row">
+                  <div className="form-group col-md-6">
+                    <input
+                      name="start"
+                      className="form-control"
+                      type="datetime-local"
+                      id="startDate"
+                      onChange={handleChange}
+                      value={club.start}
+                      required
+                    />
                   </div>
-                  <div className="form-group col">
-                    <div className="col-10">
-                      <input
-                        name="end"
-                        className="form-control"
-                        type="datetime-local"
-                        placeholder="End Date"
-                        id="startDate"
-                        onChange={handleChange}
-                        value={club.end}
-                        required
-                      />
-                    </div>
+                  <div className="form-group col-md-6">
+                    <input
+                      name="end"
+                      className="form-control"
+                      type="datetime-local"
+                      placeholder="End Date"
+                      id="startDate"
+                      onChange={handleChange}
+                      value={club.end}
+                      required
+                    />
                   </div>
                 </div>
               </div>
@@ -236,7 +238,7 @@ function AddArea(props) {
             >
               {props.isEdit ? "Update" : "Submit"}
             </button>
-          </div>
+          </Paper>
         </div>
       </form>
     </section>
