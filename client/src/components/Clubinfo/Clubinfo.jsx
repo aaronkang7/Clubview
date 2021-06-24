@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import axios from "axios";
 import "./Clubinfo.css";
+import moment from "moment";
 
 function Clubinfo() {
   const currentURL_string = window.location.href;
@@ -24,22 +25,27 @@ function Clubinfo() {
         </div>
       </div>
       <div
-        className="container-fluid-add col-lg-5 col-md-12"
+        className="container-fluid-info col-lg-5 col-md-12"
         style={{ textAlign: "left" }}
       >
         <Paper className="club-paper" elevation="3">
           <h2>{clubInfo.cname}</h2>
-          <p>{clubInfo.category}</p>
           <p>
-            Application process starts:{" "}
-            {String(clubInfo.start).substring(0, 16)}
+            <b>{clubInfo.category}</b>
           </p>
           <p>
-            Application process ends: {String(clubInfo.end).substring(0, 16)}
+            Apps Open: <b>{moment(clubInfo.end).format("MMM Do YYYY h:m A")}</b>
+          </p>
+          <p>
+            Apps Close:{" "}
+            <b>{moment(clubInfo.end).format("MMM Do YYYY h:m A")}</b>
           </p>
           <p>{clubInfo.desc}</p>
           <h6>
-            Learn more on <a href={clubInfo.site}>their website</a>
+            Learn more on{" "}
+            <em href={clubInfo.site}>
+              <u>their website</u>
+            </em>
           </h6>
         </Paper>
       </div>

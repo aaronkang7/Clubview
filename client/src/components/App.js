@@ -5,10 +5,10 @@ import Dashboard from "../components/Dashboard/Dashboard";
 import Profile from "../components/Profile/Profile";
 import AddArea from "../components/AddArea/AddArea";
 import Clubinfo from "../components/Clubinfo/Clubinfo";
+import Footer from "../components/Footer/Footer";
 import { UserContext, AuthContext } from "../context/user";
 import "../styles/Styles.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Club from "./Club/Club";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -23,12 +23,12 @@ function App() {
               <Header />
               <Switch>
                 <Route path="/clubs" exact component={Dashboard} />
+                <Route path="/profile/edit">
+                  <AddArea isEdit={true} />
+                </Route>
                 <Route path="/profile" component={Profile} />
                 <Route path="/clubs/add" exact>
                   <AddArea isEdit={false} />
-                </Route>
-                <Route path="/edit">
-                  <AddArea isEdit={true} />
                 </Route>
                 <Route path="/clubs/" component={Clubinfo} />
                 <Route path="/" exact component={Welcome} />
@@ -37,6 +37,7 @@ function App() {
           </UserContext.Provider>
         </AuthContext.Provider>
       </div>
+      <Footer />
     </div>
   );
 }

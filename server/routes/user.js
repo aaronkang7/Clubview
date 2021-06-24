@@ -33,6 +33,10 @@ router.get("/favsFull/:email", (req, res) => {
   });
 });
 
+router.get("/my/:email", (req, res) => {
+  Club.find({ email: req.params.email }).then((clubs) => res.send(clubs));
+});
+
 router.post("/user", (req, res) => {
   User.findOne({ email: req.body.email }).then((result) => {
     if (result) {

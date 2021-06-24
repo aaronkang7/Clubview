@@ -42,6 +42,7 @@ function Login() {
 
   const onSuccess = (res) => {
     console.log("login success!!!");
+    console.log(process.env.API_URL);
     setRawData(res.profileObj);
     setSignedIn(true);
     refreshTokenSetup(res);

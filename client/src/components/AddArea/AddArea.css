@@ -5,11 +5,8 @@
 }
 
 .container-fluid-add {
-  padding: 2% 5%;
-}
-
-.add-form {
   margin-top: 1%;
+  padding: 3% 5%;
 }
 
 @media (min-width: 1px) {
