@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext, UserContext } from "../../../context/user";
 import Fab from "@material-ui/core/Fab";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+import GetAppIcon from "@material-ui/icons/GetApp";
 import { HangOut } from "../../../images/index";
 import moment from "moment";
 
@@ -50,7 +50,17 @@ function Favs() {
     } else {
       return (
         <>
-          <h3 className="title">Favorites</h3>
+          <div className="row mb-1">
+            <div className="col-auto mr-auto">
+              <h3>Favorites</h3>
+            </div>
+            <div className="col-auto">
+              <Fab variant="extended" size="small">
+                <GetAppIcon className="classes.extendedIcon" size="small" />
+                Download .ics file
+              </Fab>
+            </div>
+          </div>
           <div className="table-responsive vert">
             <table className="table table-striped">
               <thead>
@@ -59,7 +69,6 @@ function Favs() {
                   <th scope="col">Rec. Start</th>
                   <th scope="col">Rec. End</th>
                   <th scope="col">Category</th>
-                  <th scope="col">Notification</th>
                 </tr>
               </thead>
               <tbody>
@@ -70,11 +79,6 @@ function Favs() {
                       <td>{category}</td>
                       <td>{moment(start).format("MM/DD/YYYY")}</td>
                       <td>{moment(end).format("MM/DD/YYYY")}</td>
-                      <td>
-                        <Fab size="small">
-                          <NotificationsIcon fontSize="small" />
-                        </Fab>
-                      </td>
                     </tr>
                   );
                 })}

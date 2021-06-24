@@ -9,10 +9,15 @@
 .title {
   text-align: left;
   margin-bottom: 1%;
+  width: fit-content;
 }
 
 .icon-noFavs {
-  margin-top: 3%;
-  width: 30%;
-  height: 340%;
+  margin-top: 5%;
+  width: 45%;
+  height: 45%;
+}
+
+.download-icon {
+  float: left;
 }

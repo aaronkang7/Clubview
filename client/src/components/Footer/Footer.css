@@ -1,6 +1,5 @@
-.footer {
-  padding: 20px;
-  height: 50px;
+.footer-custom {
+  margin-top: 30px;
   z-index: 50;
   background-color: red;
   width: 100%;

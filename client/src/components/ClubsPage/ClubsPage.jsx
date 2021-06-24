@@ -1,9 +1,10 @@
 import React from "react";
 import Club from "../Club/Club";
+import "./ClubsPage";
 
 function ClubsPage({ clubs, loading, isFavFinder }) {
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <div className="loading">Loading...</div>;
   }
   return (
     <div>

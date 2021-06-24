@@ -42,8 +42,8 @@ function Header() {
           </li>
           <li className="nav-item">
             <Link to="/clubs/add">
-              <Fab variant="extended" size="large">
-                <AddIcon />
+              <Fab variant="extended" size="medium">
+                <AddIcon className="classes.extendedIcon" />
                 Add Club
               </Fab>
             </Link>

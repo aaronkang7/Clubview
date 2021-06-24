@@ -35,7 +35,9 @@ function MyClubs() {
     } else {
       return (
         <>
-          <h3 className="title">My Clubs</h3>
+          <div className="mb-1">
+            <h3 className="title">My Clubs</h3>
+          </div>
           <div className="table-responsive vert">
             <table className="table table-striped">
               <thead>

@@ -10,7 +10,7 @@ import { AuthContext, UserContext } from "../../context/user";
 function Dashboard() {
   const [searchTerm, setSearch] = useState("");
   const [clubs, setClubs] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [clubsPerPage] = useState(8);
 
