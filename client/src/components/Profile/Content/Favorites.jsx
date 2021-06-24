@@ -15,7 +15,7 @@ function Favs() {
   //Find out why database is giving empty arry for fav array
 
   const fetchFavData = async () => {
-    if (isSignedIn) {
+    if (isSignedIn && user != null) {
       await axios
         .get("http://localhost:5000/profile/favsFull/" + user.email)
         .then((res) => setFavs(res.data))

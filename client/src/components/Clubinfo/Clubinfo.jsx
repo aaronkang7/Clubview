@@ -9,17 +9,7 @@ function Clubinfo() {
     currentURL_string.lastIndexOf("/") + 1
   );
 
-  const [clubInfo, setclubinfo] = useState({
-    cname: "",
-    lead: "",
-    email: "",
-    category: "",
-    desc: "",
-    site: "",
-    start: new Date(),
-    end: new Date(),
-    emoji: "",
-  });
+  const [clubInfo, setclubinfo] = useState({});
 
   axios
     .get("https://clubview-server.herokuapp.com/clubs/" + id)
