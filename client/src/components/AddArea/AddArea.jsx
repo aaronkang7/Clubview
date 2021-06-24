@@ -71,7 +71,7 @@ function AddArea(props) {
           .then((res) => console.log(res.data))
           .catch((err) => console.log(err));
       } else {
-        alert("Club Infomration Updated!!!!! ");
+        alert("Club Information Updated!!!!! ");
         axios
           .post(
             "https://clubview-server.herokuapp.com/clubs/update/" + id,
@@ -92,15 +92,6 @@ function AddArea(props) {
             <h4>Choose an emoji!</h4>
             <p>that best represents your club</p>
             <div className="content">{club.emoji}</div>
-            <input
-              name="emoji"
-              type="text"
-              className="input-styling form-control mx-auto"
-              onChange={handleChange}
-              value={club.emoji}
-              maxLength="3"
-              required
-            />
           </div>
 
           <Paper
@@ -187,17 +178,32 @@ function AddArea(props) {
               ></textarea>
             </div>
 
-            <div className="form-row form-group">
-              <label for="clubSite">Website/Social Media Link</label>
-              <input
-                name="site"
-                type="url"
-                className="form-control"
-                id="clubSite"
-                onChange={handleChange}
-                value={club.site}
-                required
-              />
+            <div className="form-row">
+              <div className="form-group col-md-11">
+                <label for="clubSite">Website/Social Media Link</label>
+                <input
+                  name="site"
+                  type="url"
+                  className="form-control"
+                  id="clubSite"
+                  onChange={handleChange}
+                  value={club.site}
+                  required
+                />
+              </div>
+              <div className="form-group col-md-1">
+                <label for="emo">emoji:</label>
+                <input
+                  name="emoji"
+                  id="emo"
+                  type="text"
+                  className="input-styling form-control mx-auto"
+                  onChange={handleChange}
+                  value={club.emoji}
+                  maxLength="3"
+                  required
+                />
+              </div>
             </div>
 
             <div className="form-row">

@@ -30,6 +30,10 @@ function Favs() {
     console.log("favs is now", favs);
   }, [favs]);
 
+  function generateFile(data) {
+    return false;
+  }
+
   function renderFavs() {
     // const header = [
     //   "Name",
@@ -55,7 +59,7 @@ function Favs() {
               <h3>Favorites</h3>
             </div>
             <div className="col-auto">
-              <Fab variant="extended" size="small">
+              <Fab variant="extended" size="small" onClick={generateFile(data)}>
                 <GetAppIcon className="classes.extendedIcon" size="small" />
                 Download .ics file
               </Fab>

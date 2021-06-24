@@ -37,6 +37,10 @@ router.get("/my/:email", (req, res) => {
   Club.find({ email: req.params.email }).then((clubs) => res.send(clubs));
 });
 
+router.delete("/:id", (req, res) => {
+  Club.deleteOne({ _id: req.params.id }).then(() => res.send("done"));
+});
+
 router.post("/user", (req, res) => {
   User.findOne({ email: req.body.email }).then((result) => {
     if (result) {
