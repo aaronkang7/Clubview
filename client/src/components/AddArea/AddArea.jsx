@@ -67,7 +67,7 @@ function AddArea(props) {
       alert("Please fill in all required sections");
       event.preventDefault();
     } else {
-      if (props.isEdit == false) {
+      if (props.isEdit === false) {
         axios
           .post("https://clubview-server.herokuapp.com/clubs/add", club)
           .then((res) => setMessage(res.data))

@@ -48,7 +48,7 @@ function Favs() {
       return (
         <div>
           <h4>You have no favorite clubs...</h4>
-          <img className="icon-noFavs" src={HangOut} />
+          <img alt="hangout" className="icon-noFavs" src={HangOut} />
         </div>
       );
     } else {

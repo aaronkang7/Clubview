@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext, UserContext } from "../../../context/user";
+import Toast from "../../Toast/Toast";
 import { Link } from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -10,7 +11,8 @@ import { HangOut } from "../../../images/index";
 function MyClubs() {
   const { isSignedIn } = useContext(AuthContext);
   const { user } = useContext(UserContext);
-  const [isDeleting, setDelete] = useState(false);
+  const [message, setMessage] = useState("");
+  const [showingToast, setToast] = useState(false);
   const [my, setMy] = useState([]);
 
   const fetchMyData = async () => {
@@ -23,12 +25,13 @@ function MyClubs() {
   };
   useEffect(() => {
     fetchMyData();
-  }, []);
+  }, [showingToast]);
 
   const handleDelete = (_id) => {
     axios
       .delete("http://localhost:5000/profile/" + _id)
-      .then((res) => console.log(res.data));
+      .then((res) => setMessage(res.data))
+      .then(() => setToast(true));
   };
 
   function renderMy() {
@@ -37,12 +40,13 @@ function MyClubs() {
       return (
         <div>
           <h4>You own no clubs...</h4>
-          <img className="icon-noFavs" src={HangOut} />
+          <img alt="hangout" className="icon-noFavs" src={HangOut} />
         </div>
       );
     } else {
       return (
         <>
+          {showingToast ? <Toast message={message} /> : null}
           <div className="mb-1">
             <h3 className="title">My Clubs</h3>
           </div>

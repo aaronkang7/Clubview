@@ -38,7 +38,9 @@ router.get("/my/:email", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-  Club.deleteOne({ _id: req.params.id }).then(() => res.send("done"));
+  Club.deleteOne({ _id: req.params.id }).then(() =>
+    res.send("Club has been deleted.")
+  );
 });
 
 router.post("/user", (req, res) => {

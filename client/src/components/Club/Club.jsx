@@ -11,7 +11,6 @@ import axios from "axios";
 
 function Club(props) {
   const infoLinkRoute = "clubs/" + props.id;
-  const editLinkRoute = "edit/" + props.id;
   const { user } = useContext(UserContext);
   const { isSignedIn } = useContext(AuthContext);
   const [status, setStatus] = useState({ message: "", color: "gray" });
@@ -20,16 +19,6 @@ function Club(props) {
   const nowMom = moment(new Date());
   const startMom = moment(props.recruit.start);
   const endMom = moment(props.recruit.end);
-
-  const statusInd = {
-    height: "17px",
-    width: "17px",
-    backgroundColor: props.recruit[1],
-    borderRadius: "50%",
-    display: "inline-block",
-    float: "left",
-    zIndex: "2",
-  };
 
   useEffect(() => {
     renderTag();
@@ -85,7 +74,7 @@ function Club(props) {
             <img
               className="card-img-top"
               src="./images/smallLong.png"
-              alt="Card image cap"
+              alt="clubphoto"
             />
             <p className="card-text">{props.emoji}</p>
           </div>
