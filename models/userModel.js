@@ -5,8 +5,9 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   firstName: String,
   lastName: String,
+  imageUrl: String,
   email: String,
-  favorites: [{ type: Schema.Types.ObjectId, ref: 'Club' }]
+  favorites: [{ type: Schema.Types.ObjectId, ref: "Club" }],
 });
 
 const User = mongoose.model("User", userSchema);

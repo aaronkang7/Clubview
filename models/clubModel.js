@@ -12,6 +12,7 @@ const clubSchema = new Schema({
   start: Date,
   end: Date,
   emoji: String,
+  isFav: Boolean,
 });
 
 const Club = mongoose.model("Club", clubSchema);
