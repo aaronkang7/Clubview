@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./Dashboard.css";
-import Club from "../Club/Club";
 import ClubsPage from "../ClubsPage/ClubsPage";
 import PaginationTab from "../Pagination/Pagiation";
 import Filter from "../Filter/Filter";
-import Toast from "../Toast/Toast";
 import { AuthContext, UserContext } from "../../context/user";
 
 function Dashboard() {

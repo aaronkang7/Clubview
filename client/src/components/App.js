@@ -9,7 +9,6 @@ import Footer from "../components/Footer/Footer";
 import { UserContext, AuthContext } from "../context/user";
 import "../styles/Styles.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { requirePropFactory } from "@material-ui/core";
 
 require("dotenv").config();
 
