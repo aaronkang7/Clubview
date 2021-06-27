@@ -49,18 +49,18 @@ function Dashboard() {
     console.log(searchTerm);
   }
 
-  function handleSearch(event) {
-    console.log(searchTerm);
-    const sTerm = searchTerm.toLowerCase();
-    const c = clubs.find((club) => String(club.cname).toLowerCase() === sTerm);
+  // function handleSearch(event) {
+  //   console.log(searchTerm);
+  //   const sTerm = searchTerm.toLowerCase();
+  //   const c = clubs.find((club) => String(club.cname).toLowerCase() === sTerm);
 
-    if (c === undefined) {
-      alert("Club not found");
-      setSearch("");
-    } else {
-      window.location.href = "/clubs/" + c._id;
-    }
-  }
+  //   if (c === undefined) {
+  //     alert("Club not found");
+  //     setSearch("");
+  //   } else {
+  //     window.location.href = "/clubs/" + c._id;
+  //   }
+  // }
 
   function findIsFav(clubItem) {
     return favclubs.includes(clubItem._id);
@@ -82,13 +82,7 @@ function Dashboard() {
           placeholder="Search Club"
           aria-label="Search"
         />
-        <button
-          type="button"
-          onClick={handleSearch}
-          className="btn btn-outline-danger my-2 my-sm-0"
-        >
-          Search
-        </button>
+
         <Filter className="mr-0" />
       </form>
       <div className="dashboard">

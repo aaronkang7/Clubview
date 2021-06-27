@@ -4,7 +4,8 @@ import { refreshTokenSetup } from "../../utils/refreshToken";
 import { AuthContext, UserContext } from "../../context/user";
 import { GoogleLogin } from "react-google-login";
 
-const clientID = process.env.CLIENT_ID;
+const clientID =
+  "321312020600-t1b4guo1u9dajoegr8ova94veijnm43l.apps.googleusercontent.com";
 
 function Login() {
   const { user, setUser } = useContext(UserContext);
@@ -16,19 +17,14 @@ function Login() {
   // that we can get rid of null pointer exceptions
 
   useEffect(() => {
+    console.log("CLIENT ID IS: ", clientID);
     console.log("USER IS NOW: ", user);
     console.log("RAW DATA IS: ", rawData);
     console.log("ISSIGNEDIN is: ", isSignedIn);
   }, [user, rawData, isSignedIn]);
 
   useEffect(() => {
-    console.log("IS IN isSignedIn USEEFFECT");
-    console.log("ISSIGNEDIN is: ", isSignedIn);
-    console.log("RAWDATA is: ", rawData);
     if (isSignedIn && rawData != null) {
-      console.log("in if");
-      console.log("Raw data is: ", rawData);
-      console.log("raw data is", rawData);
       axios
         .post("http://localhost:5000/profile/user", rawData)
         .then((res) => setUser(res.data))
@@ -55,7 +51,7 @@ function Login() {
   return (
     <div>
       <GoogleLogin
-        clientId={clientID}
+        client_id={clientID}
         accessType="offline"
         buttonText="Login with Google"
         onSuccess={onSuccess}
