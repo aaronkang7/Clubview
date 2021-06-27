@@ -9,6 +9,9 @@ function Login() {
   const [rawData, setRawData] = useState(null);
   const { isSignedIn, setSignedIn } = useContext(AuthContext);
 
+  const clientID =
+    "321312020600-t1b4guo1u9dajoegr8ova94veijnm43l.apps.googleusercontent.com";
+
   useEffect(() => {
     console.log("CLIENT ID IS: ", clientID);
     console.log("USER IS NOW: ", user);
