@@ -1,7 +1,10 @@
 import passport from "passport";
+import dotenv from "dotenv";
 import { Strategy } from "passport-google-oauth20";
 
 const GoogleStrategy = Strategy;
+
+dotenv.config();
 
 passport.serializeUser(function (user, done) {
   done(null, user.id);

@@ -34,14 +34,7 @@ router.get("/success", isLoggedIn, (req, res) =>
   res.send(`Welcome ms ${req.user}`)
 );
 
-router.get(
-  "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/failed" }),
-  function (req, res) {
-    // Successful authentication, redirect home.
-    res.redirect("/");
-  }
-);
+router.get("/");
 
 router.get("/logout", (req, res) => {
   req.session = null;

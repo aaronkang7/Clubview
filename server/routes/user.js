@@ -4,10 +4,6 @@ import Club from "../models/clubModel.js";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("hello");
-});
-
 //TO-DO: send an array of all complete favoriteis
 router.get("/favsID/:email", (req, res) => {
   User.findOne({ email: req.params.email }).then((result) => {
@@ -21,7 +17,6 @@ router.get("/favsID/:email", (req, res) => {
 
 //sends and array of full fav clubs
 router.get("/favsFull/:email", (req, res) => {
-  const FavArray = [];
   User.findOne({ email: req.params.email }).then((result) => {
     if (result) {
       Club.find({ _id: { $in: result.favorites } }).then((clublist) =>
