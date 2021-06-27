@@ -18,7 +18,7 @@ function MyClubs() {
   const fetchMyData = async () => {
     if (isSignedIn && user != null) {
       await axios
-        .get("http://localhost:5000/profile/my/" + user.email)
+        .get("https://clubview-server.herokuapp.com/profile/my/" + user.email)
         .then((res) => setMy(res.data))
         .then(() => console.log("fetched favs"));
     }
@@ -29,7 +29,7 @@ function MyClubs() {
 
   const handleDelete = (_id) => {
     axios
-      .delete("http://localhost:5000/profile/" + _id)
+      .delete("https://clubview-server.herokuapp.com/profile/" + _id)
       .then((res) => setMessage(res.data))
       .then(() => setToast(true));
   };

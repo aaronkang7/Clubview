@@ -32,7 +32,9 @@ function Dashboard() {
   const fetchFavsData = () => {
     if (isSignedIn) {
       axios
-        .get("http://localhost:5000/profile//favsID/" + user.email)
+        .get(
+          "https://clubview-server.herokuapp.com/profile//favsID/" + user.email
+        )
         .then((res) => setFavClubs(res.data));
     }
   };
@@ -89,7 +91,7 @@ function Dashboard() {
           aria-label="Search"
         />
 
-        <Filter className="mr-0" />
+        {/* <Filter className="mr-0" /> */}
       </form>
       <div className="dashboard">
         <ClubsPage

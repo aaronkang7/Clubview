@@ -28,10 +28,15 @@ function Club(props) {
     const notisFav = !isFav;
     const clubid = props.id;
     axios
-      .post("http://localhost:5000/profile/" + user.email + "/editfav", {
-        notisFav,
-        clubid,
-      })
+      .post(
+        "https://clubview-server.herokuapp.com/profile/" +
+          user.email +
+          "/editfav",
+        {
+          notisFav,
+          clubid,
+        }
+      )
       .then((res) => console.log(res.data));
     setFav(!isFav);
   };

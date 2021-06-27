@@ -10,7 +10,6 @@
     "bootstrap": "^4.5.3",
     "dotenv": "^10.0.0",
     "ics-js": "^0.10.2",
-    "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -21,6 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "build": "react-scripts build && echo '/* /index.html 200' | cat >build/_redirects",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -17,7 +17,9 @@ function Favs() {
   const fetchFavData = async () => {
     if (isSignedIn && user != null) {
       await axios
-        .get("http://localhost:5000/profile/favsFull/" + user.email)
+        .get(
+          "https://clubview-server.herokuapp.com/profile/favsFull/" + user.email
+        )
         .then((res) => setFavs(res.data))
         .then(() => console.log("fetched favs"));
     }
@@ -59,10 +61,10 @@ function Favs() {
               <h3>Favorites</h3>
             </div>
             <div className="col-auto">
-              <Fab variant="extended" size="small" onClick={generateFile(data)}>
+              {/* <Fab variant="extended" size="small" onClick={generateFile(data)}>
                 <GetAppIcon className="classes.extendedIcon" size="small" />
                 Download .ics file
-              </Fab>
+              </Fab> */}
             </div>
           </div>
           <div className="table-responsive vert">

@@ -21,7 +21,10 @@ function Login() {
     console.log("login success!!!");
     console.log(process.env.API_URL);
     axios
-      .post("http://localhost:5000/profile/user", res.profileObj)
+      .post(
+        "https://clubview-server.herokuapp.com/profile/user",
+        res.profileObj
+      )
       .then((res) => setUser(res.data))
       .catch((err) => console.log(err));
     setSignedIn(true);

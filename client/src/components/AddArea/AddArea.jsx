@@ -16,7 +16,7 @@ function AddArea(props) {
     cname: "",
     lead: "",
     email: "",
-    category: "                        ",
+    category: "",
     desc: "",
     site: "",
     start: "",
@@ -54,7 +54,7 @@ function AddArea(props) {
       club.cname === "" ||
       club.lead === "" ||
       club.email === "" ||
-      club.category === "                        " ||
+      club.category === "" ||
       club.desc === "" ||
       club.start === "" ||
       club.end === ""
@@ -68,12 +68,13 @@ function AddArea(props) {
       event.preventDefault();
     } else {
       if (props.isEdit === false) {
+        setMessage("Club has been added");
         axios
           .post("https://clubview-server.herokuapp.com/clubs/add", club)
-          .then((res) => setMessage(res.data))
           .then(() => setToast(true))
           .catch((err) => console.log(err));
       } else {
+        setMessage("Club has been updated");
         axios
           .post(
             "https://clubview-server.herokuapp.com/clubs/update/" + id,
