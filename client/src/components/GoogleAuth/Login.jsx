@@ -4,17 +4,10 @@ import { refreshTokenSetup } from "../../utils/refreshToken";
 import { AuthContext, UserContext } from "../../context/user";
 import { GoogleLogin } from "react-google-login";
 
-const clientID =
-  "321312020600-t1b4guo1u9dajoegr8ova94veijnm43l.apps.googleusercontent.com";
-
 function Login() {
   const { user, setUser } = useContext(UserContext);
   const [rawData, setRawData] = useState(null);
   const { isSignedIn, setSignedIn } = useContext(AuthContext);
-
-  //TO-DO:
-  //make user have imageURL and seperate from raw data so that
-  // that we can get rid of null pointer exceptions
 
   useEffect(() => {
     console.log("CLIENT ID IS: ", clientID);
