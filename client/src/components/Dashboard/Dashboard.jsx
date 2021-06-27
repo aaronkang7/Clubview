@@ -21,7 +21,7 @@ function Dashboard() {
 
   const indexOfLastClub = currentPage * clubsPerPage;
   const indexOfFirstClub = indexOfLastClub - clubsPerPage;
-  const currentClubs = clubs.slice(indexOfFirstClub, indexOfLastClub);
+  const currentClubs = dynamicSearch().slice(indexOfFirstClub, indexOfLastClub);
 
   const fetchClubsData = async () => {
     const res = await axios.get("https://clubview-server.herokuapp.com/clubs");
@@ -47,6 +47,12 @@ function Dashboard() {
     const val = event.target.value;
     setSearch(val);
     console.log(searchTerm);
+  }
+
+  function dynamicSearch() {
+    return clubs.filter((club) =>
+      club.cname.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   }
 
   // function handleSearch(event) {
@@ -94,7 +100,7 @@ function Dashboard() {
       </div>
       <PaginationTab
         clubsPerPage={clubsPerPage}
-        totalClubs={clubs.length}
+        totalClubs={dynamicSearch().length}
         paginate={paginate}
       />
     </div>
