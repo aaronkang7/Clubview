@@ -6,7 +6,6 @@ import { GoogleLogin } from "react-google-login";
 
 function Login() {
   const { user, setUser } = useContext(UserContext);
-  const [rawData, setRawData] = useState(null);
   const { isSignedIn, setSignedIn } = useContext(AuthContext);
 
   const clientID =
@@ -15,27 +14,16 @@ function Login() {
   useEffect(() => {
     console.log("CLIENT ID IS: ", clientID);
     console.log("USER IS NOW: ", user);
-    console.log("RAW DATA IS: ", rawData);
     console.log("ISSIGNEDIN is: ", isSignedIn);
-  }, [user, rawData, isSignedIn]);
-
-  useEffect(() => {
-    if (isSignedIn && rawData != null) {
-      axios
-        .post("http://localhost:5000/profile/user", rawData)
-        .then((res) => setUser(res.data))
-        .catch((err) => console.log(err));
-    }
-    //when logging out
-    else {
-      console.log("logging out", user);
-    }
-  }, [isSignedIn]);
+  }, [user, isSignedIn]);
 
   const onSuccess = (res) => {
     console.log("login success!!!");
     console.log(process.env.API_URL);
-    setRawData(res.profileObj);
+    axios
+      .post("http://localhost:5000/profile/user", res.profileObj)
+      .then((res) => setUser(res.data))
+      .catch((err) => console.log(err));
     setSignedIn(true);
     refreshTokenSetup(res);
   };
