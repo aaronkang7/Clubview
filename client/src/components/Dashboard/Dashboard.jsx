@@ -45,6 +45,7 @@ function Dashboard() {
 
   function handleChange(event) {
     const val = event.target.value;
+    setCurrentPage(1);
     setSearch(val);
     console.log(searchTerm);
   }
