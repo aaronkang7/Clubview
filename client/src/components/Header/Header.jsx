@@ -40,8 +40,8 @@ function Header() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/clubs/add">
-              <Fab variant="extended" size="medium">
+            <Link to={isSignedIn ? "/clubs/add" : "/clubs"}>
+              <Fab variant="extended" size="medium" disabled={!isSignedIn}>
                 <AddIcon className="classes.extendedIcon" />
                 Add Club
               </Fab>
