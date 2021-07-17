@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Paper from "@material-ui/core/Paper";
+import moment from "moment";
 import "./AddArea.css";
 import Toast from "../Toast/Toast";
+import { AuthContext } from "../../context/user";
 
 function AddArea(props) {
   const [showingToast, setToast] = useState(false);
   const [message, setMessage] = useState("");
+  const [nameChecked, setChecked] = useState(false);
+  const { isSignedIn } = useContext(AuthContext);
   const currentURL_string = window.location.href;
   const id = currentURL_string.substring(
     currentURL_string.lastIndexOf("/") + 1
@@ -49,28 +53,16 @@ function AddArea(props) {
     });
   }
 
-  function stillEmpty() {
-    return (
-      club.cname === "" ||
-      club.lead === "" ||
-      club.email === "" ||
-      club.category === "" ||
-      club.desc === "" ||
-      club.start === "" ||
-      club.end === ""
-    );
-  }
-
   function submitClub(event) {
     setToast(false);
-    if (stillEmpty()) {
-      alert("Please fill in all required sections");
+    if (inValidInputs()) {
       event.preventDefault();
     } else {
       if (props.isEdit === false) {
         setMessage("Club has been added");
         axios
           .post("https://clubview-server.herokuapp.com/clubs/add", club)
+          .then(() => window.location.assign("/clubs"))
           .then(() => setToast(true))
           .catch((err) => console.log(err));
       } else {
@@ -80,7 +72,7 @@ function AddArea(props) {
             "https://clubview-server.herokuapp.com/clubs/update/" + id,
             club
           )
-          .then((res) => setMessage(res.data))
+          .then(() => window.location.assign("/clubs"))
           .then(() => setToast(true))
           .catch((err) => console.log(err));
       }
@@ -88,41 +80,103 @@ function AddArea(props) {
     event.preventDefault();
   }
 
+  // function checkName() {
+  //   if (club.cname == "") {
+  //     alert("Please enter club name.");
+  //   } else {
+  //     axios
+  //       .get("http://localhost:5000/clubs/check/" + club.cname)
+  //       .then((res) => console.log(res.data));
+  //   }
+  // }
+
+  function inValidInputs() {
+    let Amessage = "";
+
+    if (!isSignedIn) {
+      alert("Please sign in.");
+      return true;
+    }
+
+    if (
+      club.cname === "" ||
+      club.lead === "" ||
+      club.email === "" ||
+      club.category === "" ||
+      club.desc === "" ||
+      club.start === null ||
+      club.end === null
+    ) {
+      Amessage += "Please fill in all required slots. \n";
+    }
+
+    if (!nameChecked) {
+      Amessage += "Please check name availability. \n";
+    }
+    if (moment(club.end).isBefore(club.start)) {
+      Amessage += "Make sure End date is after Start date.";
+    }
+    if (Amessage == "") {
+      return false;
+    } else {
+      alert(Amessage);
+      return true;
+    }
+  }
+
   return (
     <>
       {showingToast ? <Toast message={message} /> : null}
       <section>
-        <form className="needs-validation" noValidate>
-          <div className="row add-Area">
-            <div className="container-fluid-add col-lg-5 col-md-12">
-              <h4>Choose an emoji!</h4>
-              <p>that best represents your club</p>
-              <div className="content">{club.emoji}</div>
-            </div>
+        <div className="row add-Area">
+          <div className="container-fluid-add col-lg-5 col-md-12">
+            <h4>Choose an emoji!</h4>
+            <p>that best represents your club</p>
+            <div className="content">{club.emoji}</div>
+          </div>
 
-            <Paper
-              className="container-fluid-add col-lg-7 col-md-12 add-form"
-              elevation="3"
-            >
-              <h4>Club Information</h4>
-
+          <Paper
+            className="container-fluid-add col-lg-7 col-md-12 add-form"
+            elevation="3"
+          >
+            <h4>Club Information</h4>
+            <form>
               <div className="form-row">
-                <div className="form-group col-md-7">
+                <div
+                  className="form-group col-md-7"
+                  style={{ textAlign: "left" }}
+                >
                   <label for="cName_">Club Name*</label>
-                  <input
-                    name="cname"
-                    type="text"
-                    className="form-control"
-                    id="cName_"
-                    onChange={handleChange}
-                    value={club.cname}
-                    required
-                  />
+                  <div className="input-group">
+                    <input
+                      name="cname"
+                      type="text"
+                      placeholder="Club Name"
+                      className="form-control"
+                      id="cName_"
+                      onChange={handleChange}
+                      value={club.cname}
+                      required
+                    />
+                    <div class="input-group-append">
+                      <button
+                        class="input-group-text"
+                        type="button"
+                        // onClick={checkName}
+                      >
+                        Check
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div className="form-group col-md-5">
+                <div
+                  className="form-group col-md-5"
+                  style={{ textAlign: "left" }}
+                >
                   <label for="category">Club Category*</label>
                   <select
                     name="category"
+                    placeholder="Category"
                     className="form-control"
                     id="category"
                     onChange={handleChange}
@@ -131,22 +185,26 @@ function AddArea(props) {
                   >
                     <option> </option>
                     <option>Academic and Educational</option>
-                    <option>Community service</option>
+                    <option>Community Service</option>
                     <option>Media and Publication</option>
-                    <option>Political or multicultural</option>
-                    <option>Recreation and sports</option>
-                    <option>Religious and spiritual</option>
-                    <option>Student government</option>
+                    <option>Political or Multicultural</option>
+                    <option>Recreation and Sports</option>
+                    <option>Religious and Spiritual</option>
+                    <option>Student Government</option>
                   </select>
                 </div>
               </div>
 
               <div className="form-row">
-                <div className="form-group col-md-6">
-                  <label for="cLead">Club Lead Name(s)*</label>
+                <div
+                  className="form-group col-md-6"
+                  style={{ textAlign: "left" }}
+                >
+                  <label for="cLead">Lead Name(s)*</label>
                   <input
                     name="lead"
                     type="text"
+                    placeholder="Lead Names"
                     className="form-control"
                     id="cLead"
                     onChange={handleChange}
@@ -154,12 +212,17 @@ function AddArea(props) {
                     required
                   />
                 </div>
-                <div className="form-group col-md-6">
-                  <label for="email">Club Lead e-mail*</label>
+                <div
+                  className="form-group col-md-6"
+                  style={{ textAlign: "left" }}
+                >
+                  <label for="email">Manager e-mail*</label>
+
                   <div className="input-group">
                     <input
                       name="email"
                       type="text"
+                      placeholder="E-mail"
                       className="form-control"
                       id="email"
                       onChange={handleChange}
@@ -167,7 +230,15 @@ function AddArea(props) {
                       value={club.email}
                       required
                     />
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="inputGroupPrepend2">
+                        @cornell.edu
+                      </span>
+                    </div>
                   </div>
+                  <small id="emailHelp" class="form-text text-muted">
+                    Club info manager
+                  </small>
                 </div>
               </div>
 
@@ -176,6 +247,7 @@ function AddArea(props) {
                 <textarea
                   className="form-control"
                   name="desc"
+                  placeholder="Tell us what your club is all about"
                   id="clubDesc"
                   rows="3"
                   onChange={handleChange}
@@ -190,11 +262,11 @@ function AddArea(props) {
                   <input
                     name="site"
                     type="url"
+                    placeholder="Link"
                     className="form-control"
                     id="clubSite"
                     onChange={handleChange}
                     value={club.site}
-                    required
                   />
                 </div>
                 <div className="form-group col-md-1">
@@ -246,13 +318,12 @@ function AddArea(props) {
                 type="button"
                 onClick={submitClub}
                 className="btn btn-primary"
-                style={{ textAlign: "right" }}
               >
                 {props.isEdit ? "Update" : "Submit"}
               </button>
-            </Paper>
-          </div>
-        </form>
+            </form>
+          </Paper>
+        </div>
       </section>
     </>
   );
