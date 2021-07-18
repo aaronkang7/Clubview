@@ -72,7 +72,6 @@ function Dashboard() {
   // }
 
   function findIsFav(clubItem) {
-    console.log("finding");
     return favclubs.includes(clubItem._id);
   }
 
@@ -95,7 +94,7 @@ function Dashboard() {
       <div className="dashboard">
         <ClubsPage
           clubs={currentClubs}
-          loading={loadingClubs || loadingFavs}
+          loading={loadingClubs || (isSignedIn && loadingFavs)}
           isFavFinder={findIsFav}
         />
       </div>
