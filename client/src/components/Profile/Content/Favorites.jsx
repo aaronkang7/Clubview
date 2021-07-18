@@ -15,11 +15,10 @@ function Favs() {
 
   const fetchFavData = async () => {
     if (isSignedIn && user != null) {
-      const uemail = user.email;
-      const atInd = uemail.indexOf("@");
-      const netId = uemail.substring(0, atInd);
       await axios
-        .get("https://clubview-server.herokuapp.com/profile/favsFull/" + netId)
+        .get(
+          "https://clubview-server.herokuapp.com/profile/favsFull/" + user.email
+        )
         .then((res) => setFavs(res.data))
         .then(() => console.log("fetched favs"));
     }

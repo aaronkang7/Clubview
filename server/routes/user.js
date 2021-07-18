@@ -29,7 +29,10 @@ router.get("/favsFull/:email", (req, res) => {
 });
 
 router.get("/my/:email", (req, res) => {
-  Club.find({ email: req.params.email }).then((clubs) => res.send(clubs));
+  const uemail = req.params.email;
+  const atInd = uemail.indexOf("@");
+  const netId = uemail.substring(0, atInd);
+  Club.find({ email: netId }).then((clubs) => res.send(clubs));
 });
 
 router.delete("/:id", (req, res) => {
