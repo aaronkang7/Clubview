@@ -45,10 +45,7 @@ router.post("/add", (req, res) => {
     isAlwaysOpen,
   });
 
-  newClub
-    .save()
-    .then(() => res.redirect("/"))
-    .catch((err) => res.status(400).json("Error" + err));
+  newClub.save().catch((err) => res.status(400).json("Error" + err));
 });
 
 router.get("/:id", (req, res) => {
@@ -70,10 +67,7 @@ router.post("/update/:id", (req, res) => {
     club.emoji = req.body.emoji;
     club.isAlwaysOpen = req.body.isAlwaysOpen;
 
-    club
-      .save()
-      .then(() => res.redirect("/"))
-      .catch((err) => res.status(400).json("Error" + err));
+    club.save().catch((err) => res.status(400).json("Error" + err));
   });
 });
 
