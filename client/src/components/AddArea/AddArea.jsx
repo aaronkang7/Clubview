@@ -324,7 +324,7 @@ function AddArea(props) {
                           type="datetime-local"
                           id="startDate"
                           onChange={handleChange}
-                          value={club.start}
+                          value={club.start.substring(0, 16)}
                           required={!club.isAlwaysOpen}
                           disabled={club.isAlwaysOpen}
                         />
@@ -337,7 +337,7 @@ function AddArea(props) {
                           placeholder="End Date"
                           id="startDate"
                           onChange={handleChange}
-                          value={club.end}
+                          value={club.end.substring(0, 16)}
                           required={!club.isAlwaysOpen}
                           disabled={club.isAlwaysOpen}
                         />
