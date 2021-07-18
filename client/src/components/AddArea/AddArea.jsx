@@ -26,6 +26,7 @@ function AddArea(props) {
     start: "",
     end: "",
     emoji: "💡",
+    isAlwaysOpen: false,
   });
 
   useEffect(() => {
@@ -45,12 +46,21 @@ function AddArea(props) {
   function handleChange(event) {
     let { name, value } = event.target;
     setClub((prevClub) => {
-      console.log(prevClub);
       return {
         ...prevClub,
         [name]: value,
       };
     });
+  }
+
+  function handleClick(event){
+    let { checked } = event.target;
+    setClub((prevClub)=>{
+      return {
+        ...prevClub,
+        isAlwaysOpen: checked,
+      };
+    })
   }
 
   function submitClub(event) {
@@ -237,7 +247,7 @@ function AddArea(props) {
                     </div>
                   </div>
                   <small id="emailHelp" class="form-text text-muted">
-                    Club info manager
+                    Club information manager
                   </small>
                 </div>
               </div>
@@ -257,7 +267,7 @@ function AddArea(props) {
               </div>
 
               <div className="form-row">
-                <div className="form-group col-md-11">
+                <div className="form-group col-md-11 " style={{ textAlign: "left" }}>
                   <label for="clubSite">Website/Social Media Link</label>
                   <input
                     name="site"
@@ -286,6 +296,12 @@ function AddArea(props) {
 
               <div className="form-row">
                 <label for="RecruitmentPeriod">Recruitment Period*</label>
+                <div class="form-check ml-auto">
+                  <input name="isAlwaysOpen" class="form-check-input" checked={club.isAlwaysOpen} type="checkbox" onChange={handleClick} id="defaultCheck1" />
+                  <label class="form-check-label" for="defaultCheck1">
+                  Always open
+                  </label>
+                </div>
                 <div id="RecruitmentPeriod">
                   <div className="form-row">
                     <div className="form-group col-md-6">
@@ -309,6 +325,7 @@ function AddArea(props) {
                         onChange={handleChange}
                         value={club.end}
                         required
+                        disabled={true}
                       />
                     </div>
                   </div>

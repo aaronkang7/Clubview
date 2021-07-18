@@ -30,6 +30,7 @@ router.post("/add", (req, res) => {
   const start = req.body.start;
   const end = req.body.end;
   const emoji = req.body.emoji;
+  const isAlwaysOpen = req.body.isAlwaysOpen;
 
   const newClub = new Club({
     cname,
@@ -41,6 +42,7 @@ router.post("/add", (req, res) => {
     start,
     end,
     emoji,
+    isAlwaysOpen,
   });
 
   newClub
@@ -67,6 +69,7 @@ router.post("/update/:id", (req, res) => {
       club.start = req.body.start;
       club.end = req.body.end;
       club.emoji = req.body.emoji;
+      club.isAlwaysOpen = req.body.isAlwaysOpen;
 
       club.save().catch((err) => res.status(400).json("Error" + err));
     })
