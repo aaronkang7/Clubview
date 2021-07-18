@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Welcome from "../components/Welcome";
+import Welcome from "../components/Welcome/Welcome";
 import Header from "../components/Header/Header";
 import Dashboard from "../components/Dashboard/Dashboard";
 import Profile from "../components/Profile/Profile";
@@ -9,8 +9,6 @@ import Footer from "../components/Footer/Footer";
 import { UserContext, AuthContext } from "../context/user";
 import "../styles/Styles.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-require("dotenv").config();
 
 function App() {
   const [user, setUser] = useState(null);
