@@ -29,11 +29,10 @@ function Dashboard() {
 
   const fetchFavsData = () => {
     if (isSignedIn) {
-      const uemail = user.email;
-      const atInd = uemail.indexOf("@");
-      const netId = uemail.substring(0, atInd);
       axios
-        .get("https://clubview-server.herokuapp.com/profile/favsID/" + netId)
+        .get(
+          "https://clubview-server.herokuapp.com/profile/favsID/" + user.email
+        )
         .then((res) => setFavClubs(res.data));
     }
   };
