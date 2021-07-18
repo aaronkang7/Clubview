@@ -1,8 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext, UserContext } from "../../../context/user";
-import Fab from "@material-ui/core/Fab";
-import GetAppIcon from "@material-ui/icons/GetApp";
+
 import { HangOut } from "../../../images/index";
 import moment from "moment";
 
@@ -16,10 +15,11 @@ function Favs() {
 
   const fetchFavData = async () => {
     if (isSignedIn && user != null) {
+      const uemail = user.email;
+      const atInd = uemail.indexOf("@");
+      const netId = uemail.substring(0, atInd);
       await axios
-        .get(
-          "https://clubview-server.herokuapp.com/profile/favsFull/" + user.email
-        )
+        .get("https://clubview-server.herokuapp.com/profile/favsFull/" + netId)
         .then((res) => setFavs(res.data))
         .then(() => console.log("fetched favs"));
     }
@@ -31,10 +31,6 @@ function Favs() {
   useEffect(() => {
     console.log("favs is now", favs);
   }, [favs]);
-
-  function generateFile(data) {
-    return false;
-  }
 
   function renderFavs() {
     // const header = [
