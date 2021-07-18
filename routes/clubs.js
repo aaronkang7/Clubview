@@ -58,23 +58,23 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/update/:id", (req, res) => {
-  Club.findById(req.params.id)
-    .then((club) => {
-      club.cname = req.body.cname;
-      club.lead = req.body.lead;
-      club.email = req.body.email;
-      club.category = req.body.category;
-      club.desc = req.body.desc;
-      club.site = req.body.site;
-      club.start = req.body.start;
-      club.end = req.body.end;
-      club.emoji = req.body.emoji;
-      club.isAlwaysOpen = req.body.isAlwaysOpen;
+  Club.findById(req.params.id).then((club) => {
+    club.cname = req.body.cname;
+    club.lead = req.body.lead;
+    club.email = req.body.email;
+    club.category = req.body.category;
+    club.desc = req.body.desc;
+    club.site = req.body.site;
+    club.start = req.body.start;
+    club.end = req.body.end;
+    club.emoji = req.body.emoji;
+    club.isAlwaysOpen = req.body.isAlwaysOpen;
 
-      club.save().catch((err) => res.status(400).json("Error" + err));
-    })
-
-    .catch((err) => res.status(400).json("Error" + err));
+    club
+      .save()
+      .then(() => res.redirect("/"))
+      .catch((err) => res.status(400).json("Error" + err));
+  });
 });
 
 export default router;
