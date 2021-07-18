@@ -9,7 +9,7 @@ import { AuthContext } from "../../context/user";
 function AddArea(props) {
   const [showingToast, setToast] = useState(false);
   const [message, setMessage] = useState("");
-  const [nameChecked, setChecked] = useState(false);
+  const [nameChecked, setChecked] = useState(true);
   const { isSignedIn } = useContext(AuthContext);
   const currentURL_string = window.location.href;
   const id = currentURL_string.substring(
@@ -113,17 +113,18 @@ function AddArea(props) {
       club.lead === "" ||
       club.email === "" ||
       club.category === "" ||
-      club.desc === "" ||
-      club.start === null ||
-      club.end === null
-    ) {
+      club.desc === "") {
       Amessage += "Please fill in all required slots. \n";
+    }
+
+    if (!club.isAlwaysOpen && (club.start === "" || club.start==="")){
+      Amessage += "Please enter recruitment information. \n"
     }
 
     if (!nameChecked) {
       Amessage += "Please check name availability. \n";
     }
-    if (moment(club.end).isBefore(club.start)) {
+    if (!club.isAlwaysOpen && moment(club.end).isBefore(club.start)) {
       Amessage += "Make sure End date is after Start date.";
     }
     if (Amessage == "") {
@@ -252,18 +253,20 @@ function AddArea(props) {
                 </div>
               </div>
 
-              <div className="form-row form-group">
-                <label for="clubDesc">Description of the Club*</label>
-                <textarea
-                  className="form-control"
-                  name="desc"
-                  placeholder="Tell us what your club is all about"
-                  id="clubDesc"
-                  rows="3"
-                  onChange={handleChange}
-                  value={club.desc}
-                  required
-                ></textarea>
+              <div className="form-row">
+                <div className="form-group col-md-12" style={{ textAlign: "left" }} >
+                  <label for="clubDesc">Description of the Club*</label>
+                  <textarea
+                    className="form-control"
+                    name="desc"
+                    placeholder="Tell us what your club is all about"
+                    id="clubDesc"
+                    rows="3"
+                    onChange={handleChange}
+                    value={club.desc}
+                    required
+                  ></textarea>
+                </div>
               </div>
 
               <div className="form-row">
@@ -295,12 +298,14 @@ function AddArea(props) {
               </div>
 
               <div className="form-row">
-                <label for="RecruitmentPeriod">Recruitment Period*</label>
-                <div class="form-check ml-auto">
-                  <input name="isAlwaysOpen" class="form-check-input" checked={club.isAlwaysOpen} type="checkbox" onChange={handleClick} id="defaultCheck1" />
-                  <label class="form-check-label" for="defaultCheck1">
-                  Always open
-                  </label>
+                <div className="form-group">
+                  <label for="RecruitmentPeriod">Recruitment Period*</label>
+                  <div class="form-check form-check-inline">
+                    <input name="isAlwaysOpen" class="form-check-input" checked={club.isAlwaysOpen} type="checkbox" onChange={handleClick} id="defaultCheck1" />
+                    <label class="form-check-label" for="defaultCheck1">
+                    Always open
+                    </label>
+                  </div>
                 </div>
                 <div id="RecruitmentPeriod">
                   <div className="form-row">
@@ -312,7 +317,8 @@ function AddArea(props) {
                         id="startDate"
                         onChange={handleChange}
                         value={club.start}
-                        required
+                        required={!club.isAlwaysOpen}
+                        disabled={club.isAlwaysOpen}
                       />
                     </div>
                     <div className="form-group col-md-6">
@@ -324,8 +330,8 @@ function AddArea(props) {
                         id="startDate"
                         onChange={handleChange}
                         value={club.end}
-                        required
-                        disabled={true}
+                        required={!club.isAlwaysOpen}
+                        disabled={club.isAlwaysOpen}
                       />
                     </div>
                   </div>
