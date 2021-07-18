@@ -47,7 +47,7 @@ router.post("/add", (req, res) => {
 
   newClub
     .save()
-    .then(() => res.redirect("/"))
+    .then(() => res.status(200))
     .catch((err) => res.status(400).json("Error" + err));
 });
 
@@ -72,7 +72,7 @@ router.post("/update/:id", (req, res) => {
 
     club
       .save()
-      .then(() => res.redirect("/"))
+      .then(() => res.status(200))
       .catch((err) => res.status(400).json("Error" + err));
   });
 });
