@@ -126,7 +126,7 @@ function AddArea(props) {
 
   return (
     <>
-      <section>
+      <section className="mb-4">
         <div className="row add-Area">
           <div className="container-fluid-add col-lg-5 col-md-12">
             <h4>Choose an emoji!</h4>
@@ -236,7 +236,8 @@ function AddArea(props) {
                     </div>
                   </div>
                   <small id="emailHelp" class="form-text text-muted">
-                    Club information manager
+                    Person logged in with this email will be able to edit/delete
+                    club information.
                   </small>
                 </div>
               </div>

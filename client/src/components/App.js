@@ -23,18 +23,20 @@ function App() {
           <UserContext.Provider value={{ user, setUser }}>
             <Router>
               <Header />
-              <Switch>
-                <Route path="/clubs" exact component={Dashboard} />
-                <Route path="/profile/edit">
-                  <AddArea isEdit={true} />
-                </Route>
-                <Route path="/profile" component={Profile} />
-                <Route path="/clubs/add" exact>
-                  <AddArea isEdit={false} />
-                </Route>
-                <Route path="/clubs/" component={Clubinfo} />
-                <Route path="/" exact component={Welcome} />
-              </Switch>
+              <div className="mb-5 pb-1">
+                <Switch>
+                  <Route path="/clubs" exact component={Dashboard} />
+                  <Route path="/profile/edit">
+                    <AddArea isEdit={true} />
+                  </Route>
+                  <Route path="/profile" component={Profile} />
+                  <Route path="/clubs/add" exact>
+                    <AddArea isEdit={false} />
+                  </Route>
+                  <Route path="/clubs/" component={Clubinfo} />
+                  <Route path="/" exact component={Welcome} />
+                </Switch>
+              </div>
             </Router>
           </UserContext.Provider>
         </AuthContext.Provider>

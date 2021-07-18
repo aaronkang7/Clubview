@@ -1,6 +1,10 @@
 .footer-custom {
-  margin-top: 30px;
-  z-index: 50;
-  background-color: red;
+  color: black;
+  z-index: 10;
+  position: fixed;
+  left: 0;
+  bottom: 0;
   width: 100%;
+  background-color: #f3f3f3;
+  text-align: center;
 }
