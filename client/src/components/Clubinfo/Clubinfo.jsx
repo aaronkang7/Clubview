@@ -33,13 +33,20 @@ function Clubinfo() {
           <p>
             <b>{clubInfo.category}</b>
           </p>
-          <p>
-            Apps Open: <b>{moment(clubInfo.end).format("MMM Do YYYY h:m A")}</b>
-          </p>
-          <p>
-            Apps Close:{" "}
-            <b>{moment(clubInfo.end).format("MMM Do YYYY h:m A")}</b>
-          </p>
+          {clubInfo.isAlwaysOpen ? (
+            <p>Always open for new members</p>
+          ) : (
+            <>
+              <p>
+                Apps Open:{" "}
+                <b>{moment(clubInfo.end).format("MMM Do YYYY h:m A")}</b>
+              </p>
+              <p>
+                Apps Close:{" "}
+                <b>{moment(clubInfo.end).format("MMM Do YYYY h:m A")}</b>
+              </p>
+            </>
+          )}
           <p>{clubInfo.desc}</p>
           <h6>
             Learn more on{" "}

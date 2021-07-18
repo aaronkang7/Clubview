@@ -21,6 +21,7 @@ function ClubsPage({ clubs, loading, isFavFinder }) {
             site={clubItem.site}
             emoji={clubItem.emoji}
             isFav={isFavFinder(clubItem)}
+            isAlwaysOpen={clubItem.isAlwaysOpen}
             recruit={{ start: clubItem.start, end: clubItem.end }}
           />
         );

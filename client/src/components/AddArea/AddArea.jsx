@@ -3,12 +3,9 @@ import axios from "axios";
 import Paper from "@material-ui/core/Paper";
 import moment from "moment";
 import "./AddArea.css";
-import Toast from "../Toast/Toast";
 import { AuthContext } from "../../context/user";
 
 function AddArea(props) {
-  const [showingToast, setToast] = useState(false);
-  const [message, setMessage] = useState("");
   const [nameChecked, setChecked] = useState(true);
   const { isSignedIn } = useContext(AuthContext);
   const currentURL_string = window.location.href;
@@ -44,6 +41,7 @@ function AddArea(props) {
   }
 
   function handleChange(event) {
+    console.log(club);
     let { name, value } = event.target;
     setClub((prevClub) => {
       return {
@@ -53,37 +51,32 @@ function AddArea(props) {
     });
   }
 
-  function handleClick(event){
+  function handleClick(event) {
     let { checked } = event.target;
-    setClub((prevClub)=>{
+    setClub((prevClub) => {
       return {
         ...prevClub,
         isAlwaysOpen: checked,
       };
-    })
+    });
   }
 
   function submitClub(event) {
-    setToast(false);
     if (inValidInputs()) {
       event.preventDefault();
     } else {
       if (props.isEdit === false) {
-        setMessage("Club has been added");
         axios
           .post("https://clubview-server.herokuapp.com/clubs/add", club)
           .then(() => window.location.assign("/clubs"))
-          .then(() => setToast(true))
           .catch((err) => console.log(err));
       } else {
-        setMessage("Club has been updated");
         axios
           .post(
             "https://clubview-server.herokuapp.com/clubs/update/" + id,
             club
           )
           .then(() => window.location.assign("/clubs"))
-          .then(() => setToast(true))
           .catch((err) => console.log(err));
       }
     }
@@ -113,12 +106,13 @@ function AddArea(props) {
       club.lead === "" ||
       club.email === "" ||
       club.category === "" ||
-      club.desc === "") {
+      club.desc === ""
+    ) {
       Amessage += "Please fill in all required slots. \n";
     }
 
-    if (!club.isAlwaysOpen && (club.start === "" || club.start==="")){
-      Amessage += "Please enter recruitment information. \n"
+    if (!club.isAlwaysOpen && (club.start === "" || club.start === "")) {
+      Amessage += "Please enter recruitment information. \n";
     }
 
     if (!nameChecked) {
@@ -137,7 +131,6 @@ function AddArea(props) {
 
   return (
     <>
-      {showingToast ? <Toast message={message} /> : null}
       <section>
         <div className="row add-Area">
           <div className="container-fluid-add col-lg-5 col-md-12">
@@ -254,7 +247,10 @@ function AddArea(props) {
               </div>
 
               <div className="form-row">
-                <div className="form-group col-md-12" style={{ textAlign: "left" }} >
+                <div
+                  className="form-group col-md-12"
+                  style={{ textAlign: "left" }}
+                >
                   <label for="clubDesc">Description of the Club*</label>
                   <textarea
                     className="form-control"
@@ -270,7 +266,10 @@ function AddArea(props) {
               </div>
 
               <div className="form-row">
-                <div className="form-group col-md-11 col-sm-11 " style={{ textAlign: "left" }}>
+                <div
+                  className="form-group col-md-11 col-sm-11 "
+                  style={{ textAlign: "left" }}
+                >
                   <label for="clubSite">Website/Social Media Link</label>
                   <input
                     name="site"
@@ -299,44 +298,52 @@ function AddArea(props) {
 
               <div className="form-row" style={{ paddingLeft: "5px" }}>
                 <div className="form-group" style={{ textAlign: "left" }}>
-                  <label for="RecruitmentPeriod">Recruitment Period* 
+                  <label for="RecruitmentPeriod">
+                    Recruitment Period*
                     <div class="form-check form-check-inline ml-1">
-                      <input name="isAlwaysOpen" class="form-check-input" checked={club.isAlwaysOpen} type="checkbox" onChange={handleClick} id="defaultCheck1" />
+                      <input
+                        name="isAlwaysOpen"
+                        class="form-check-input"
+                        checked={club.isAlwaysOpen}
+                        type="checkbox"
+                        onChange={handleClick}
+                        id="defaultCheck1"
+                      />
                       <label class="form-check-label" for="defaultCheck1">
-                      Always open
+                        Always open
                       </label>
                     </div>
                   </label>
-                
-                <div id="RecruitmentPeriod">
-                  <div className="form-row">
-                    <div className="form-group col-6">
-                      <input
-                        name="start"
-                        className="form-control"
-                        type="datetime-local"
-                        id="startDate"
-                        onChange={handleChange}
-                        value={club.start}
-                        required={!club.isAlwaysOpen}
-                        disabled={club.isAlwaysOpen}
-                      />
-                    </div>
-                    <div className="form-group col-6">
-                      <input
-                        name="end"
-                        className="form-control"
-                        type="datetime-local"
-                        placeholder="End Date"
-                        id="startDate"
-                        onChange={handleChange}
-                        value={club.end}
-                        required={!club.isAlwaysOpen}
-                        disabled={club.isAlwaysOpen}
-                      />
+
+                  <div id="RecruitmentPeriod">
+                    <div className="form-row">
+                      <div className="form-group col-6">
+                        <input
+                          name="start"
+                          className="form-control"
+                          type="datetime-local"
+                          id="startDate"
+                          onChange={handleChange}
+                          value={club.start}
+                          required={!club.isAlwaysOpen}
+                          disabled={club.isAlwaysOpen}
+                        />
+                      </div>
+                      <div className="form-group col-6">
+                        <input
+                          name="end"
+                          className="form-control"
+                          type="datetime-local"
+                          placeholder="End Date"
+                          id="startDate"
+                          onChange={handleChange}
+                          value={club.end}
+                          required={!club.isAlwaysOpen}
+                          disabled={club.isAlwaysOpen}
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
                 </div>
               </div>
               <button

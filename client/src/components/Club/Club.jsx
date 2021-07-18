@@ -42,17 +42,25 @@ function Club(props) {
   };
 
   function renderTag() {
-    const diff = startMom.diff(nowMom, "days");
-    if (diff < 10 && diff > 0) {
-      setStatus({ color: "#FFF1BC", message: "INCOMING" });
-    } else if (nowMom.isBetween(startMom, endMom, undefined, "[]")) {
+    if (props.isAlwaysOpen) {
       setStatus({ color: "#C2e5aa", message: "OPEN" });
     } else {
-      setStatus({ color: "#FFBEAA", message: "CLOSED" });
+      const diff = startMom.diff(nowMom, "days");
+      if (diff < 10 && diff > 0) {
+        setStatus({ color: "#FFF1BC", message: "INCOMING" });
+      } else if (nowMom.isBetween(startMom, endMom, undefined, "[]")) {
+        setStatus({ color: "#C2e5aa", message: "OPEN" });
+      } else {
+        setStatus({ color: "#FFBEAA", message: "CLOSED" });
+      }
     }
   }
 
   function renderDate() {
+    if (props.isAlwaysOpen) {
+      console.log(props.isAlwaysOpen);
+      return "Always open";
+    }
     return startMom.format("MM/DD") + " - " + endMom.format("MM/DD");
   }
 
