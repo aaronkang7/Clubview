@@ -270,7 +270,7 @@ function AddArea(props) {
               </div>
 
               <div className="form-row">
-                <div className="form-group col-md-11 " style={{ textAlign: "left" }}>
+                <div className="form-group col-md-11 col-sm-11 " style={{ textAlign: "left" }}>
                   <label for="clubSite">Website/Social Media Link</label>
                   <input
                     name="site"
@@ -282,7 +282,7 @@ function AddArea(props) {
                     value={club.site}
                   />
                 </div>
-                <div className="form-group col-md-1">
+                <div className="form-group col-md-1 col-sm-1">
                   <label for="emo">emoji:</label>
                   <input
                     name="emoji"
@@ -297,19 +297,20 @@ function AddArea(props) {
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label for="RecruitmentPeriod">Recruitment Period*</label>
-                  <div class="form-check form-check-inline">
-                    <input name="isAlwaysOpen" class="form-check-input" checked={club.isAlwaysOpen} type="checkbox" onChange={handleClick} id="defaultCheck1" />
-                    <label class="form-check-label" for="defaultCheck1">
-                    Always open
-                    </label>
-                  </div>
-                </div>
+              <div className="form-row" style={{ paddingLeft: "5px" }}>
+                <div className="form-group" style={{ textAlign: "left" }}>
+                  <label for="RecruitmentPeriod">Recruitment Period* 
+                    <div class="form-check form-check-inline ml-1">
+                      <input name="isAlwaysOpen" class="form-check-input" checked={club.isAlwaysOpen} type="checkbox" onChange={handleClick} id="defaultCheck1" />
+                      <label class="form-check-label" for="defaultCheck1">
+                      Always open
+                      </label>
+                    </div>
+                  </label>
+                
                 <div id="RecruitmentPeriod">
                   <div className="form-row">
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-6">
                       <input
                         name="start"
                         className="form-control"
@@ -321,7 +322,7 @@ function AddArea(props) {
                         disabled={club.isAlwaysOpen}
                       />
                     </div>
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-6">
                       <input
                         name="end"
                         className="form-control"
@@ -335,6 +336,7 @@ function AddArea(props) {
                       />
                     </div>
                   </div>
+                </div>
                 </div>
               </div>
               <button
