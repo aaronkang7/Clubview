@@ -67,19 +67,27 @@ function Favs() {
               <thead>
                 <tr>
                   <th scope="col">Name</th>
+                  <th scope="col">Category</th>
                   <th scope="col">Rec. Start</th>
                   <th scope="col">Rec. End</th>
-                  <th scope="col">Category</th>
                 </tr>
               </thead>
               <tbody>
-                {data.map(({ cname, start, end, category }) => {
+                {data.map(({ cname, start, end, category, isAlwaysOpen }) => {
                   return (
                     <tr>
                       <td>{cname}</td>
                       <td>{category}</td>
-                      <td>{moment(start).format("MM/DD/YYYY")}</td>
-                      <td>{moment(end).format("MM/DD/YYYY")}</td>
+                      <td>
+                        {isAlwaysOpen
+                          ? "None"
+                          : moment(start).format("MM/DD/YYYY")}
+                      </td>
+                      <td>
+                        {isAlwaysOpen
+                          ? "None"
+                          : moment(end).format("MM/DD/YYYY")}
+                      </td>
                     </tr>
                   );
                 })}

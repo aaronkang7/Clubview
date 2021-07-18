@@ -65,20 +65,15 @@ function AddArea(props) {
     if (inValidInputs()) {
       event.preventDefault();
     } else {
-      if (props.isEdit === false) {
-        axios
-          .post("https://clubview-server.herokuapp.com/clubs/add", club)
-          .then(() => window.location.assign("/clubs"))
-          .catch((err) => console.log(err));
-      } else {
-        axios
-          .post(
-            "https://clubview-server.herokuapp.com/clubs/update/" + id,
-            club
-          )
-          .then(() => window.location.assign("/clubs"))
-          .catch((err) => console.log(err));
-      }
+      axios
+        .post(
+          props.isEdit === false
+            ? "https://clubview-server.herokuapp.com/clubs/add"
+            : "https://clubview-server.herokuapp.com/clubs/update/" + id,
+          club
+        )
+        .then((res) => alert(res.data))
+        .catch((err) => console.log(err));
     }
     event.preventDefault();
   }
