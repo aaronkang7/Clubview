@@ -9,7 +9,8 @@ import { AuthContext, UserContext } from "../../context/user";
 function Dashboard() {
   const [searchTerm, setSearch] = useState("");
   const [clubs, setClubs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loadingClubs, setLoadingClubs] = useState(true);
+  const [loadingFavs, setLoadingFavs] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [clubsPerPage] = useState(8);
 
@@ -24,7 +25,7 @@ function Dashboard() {
   const fetchClubsData = async () => {
     const res = await axios.get("https://clubview-server.herokuapp.com/clubs");
     setClubs(res.data);
-    setLoading(false);
+    setLoadingClubs(false);
   };
 
   const fetchFavsData = () => {
@@ -33,7 +34,8 @@ function Dashboard() {
         .get(
           "https://clubview-server.herokuapp.com/profile/favsID/" + user.email
         )
-        .then((res) => setFavClubs(res.data));
+        .then((res) => setFavClubs(res.data))
+        .then(() => setLoadingFavs(false));
     }
   };
 
@@ -70,11 +72,11 @@ function Dashboard() {
   // }
 
   function findIsFav(clubItem) {
+    console.log("finding");
     return favclubs.includes(clubItem._id);
   }
 
   function paginate(pageNumber) {
-    console.log(pageNumber);
     setCurrentPage(pageNumber);
   }
 
@@ -89,13 +91,11 @@ function Dashboard() {
           placeholder="Search Club"
           aria-label="Search"
         />
-
-        {/* <Filter className="mr-0" /> */}
       </form>
       <div className="dashboard">
         <ClubsPage
           clubs={currentClubs}
-          loading={loading}
+          loading={loadingClubs || loadingFavs}
           isFavFinder={findIsFav}
         />
       </div>
