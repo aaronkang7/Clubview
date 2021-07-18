@@ -49,10 +49,10 @@ function Clubinfo() {
           )}
           <p>{clubInfo.desc}</p>
           <h6>
-            Learn more on{" "}
-            <em href={clubInfo.site}>
-              <u>their website</u>
-            </em>
+            Learn more on their{" "}
+            <a href={clubInfo.site}>
+              <u>website</u>
+            </a>
           </h6>
         </Paper>
       </div>

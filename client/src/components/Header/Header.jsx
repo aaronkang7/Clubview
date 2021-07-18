@@ -48,7 +48,7 @@ function Header() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/profile/settings">
+            <Link to={isSignedIn ? "/profile/my" : "/profile/settings"}>
               <Fab size="medium">
                 {isSignedIn ? (
                   <img
