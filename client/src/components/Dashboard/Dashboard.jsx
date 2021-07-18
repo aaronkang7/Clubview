@@ -5,6 +5,7 @@ import ClubsPage from "../ClubsPage/ClubsPage";
 import PaginationTab from "../Pagination/Pagiation";
 import Filter from "../Filter/Filter";
 import { AuthContext, UserContext } from "../../context/user";
+import moment from "moment";
 
 function Dashboard() {
   const [searchTerm, setSearch] = useState("");
@@ -13,7 +14,7 @@ function Dashboard() {
   const [loadingFavs, setLoadingFavs] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [clubsPerPage] = useState(8);
-
+  const [onlyOpen, setOnlyOpen] = useState(false);
   const [favclubs, setFavClubs] = useState([]);
   const { user } = useContext(UserContext);
   const { isSignedIn } = useContext(AuthContext);
@@ -53,9 +54,19 @@ function Dashboard() {
   }
 
   function dynamicSearch() {
-    return clubs.filter((club) =>
+    console.log(onlyOpen);
+    const result = clubs.filter((club) =>
       club.cname.toLowerCase().includes(searchTerm.toLowerCase())
     );
+    if (onlyOpen) {
+      return result.filter(
+        (club) =>
+          club.isAlwaysOpen == true ||
+          (moment(club.start).isBefore(new Date()) &&
+            moment(club.end).isAfter(new Date()))
+      );
+    }
+    return result;
   }
 
   // function handleSearch(event) {
@@ -90,6 +101,18 @@ function Dashboard() {
           placeholder="Search Club"
           aria-label="Search"
         />
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            onClick={() => setOnlyOpen(!onlyOpen)}
+            checked={onlyOpen}
+            id="defaultCheck1"
+          />
+          <label class="form-check-label" for="defaultCheck1">
+            Open Clubs Only
+          </label>
+        </div>
       </form>
       <div className="dashboard">
         <ClubsPage

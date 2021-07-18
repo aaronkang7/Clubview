@@ -58,7 +58,6 @@ function Club(props) {
 
   function renderDate() {
     if (props.isAlwaysOpen) {
-      console.log(props.isAlwaysOpen);
       return "Always open";
     }
     return startMom.format("MM/DD") + " - " + endMom.format("MM/DD");
