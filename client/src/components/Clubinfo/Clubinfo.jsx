@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import axios from "axios";
 import "./Clubinfo.css";
@@ -11,11 +11,12 @@ function Clubinfo() {
   );
 
   const [clubInfo, setclubinfo] = useState({});
-
-  axios
-    .get("https://clubview-server.herokuapp.com/clubs/" + id)
-    .then((res) => setclubinfo(res.data))
-    .catch((err) => console.log(err));
+  useEffect(() => {
+    axios
+      .get("https://clubview-server.herokuapp.com/clubs/" + id)
+      .then((res) => setclubinfo(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div>
