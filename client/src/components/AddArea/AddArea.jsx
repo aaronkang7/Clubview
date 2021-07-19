@@ -279,6 +279,7 @@ function AddArea(props) {
                 </div>
                 <div className="form-group col-md-1 col-sm-1">
                   <label for="emo">emoji:</label>
+
                   <input
                     name="emoji"
                     id="emo"
@@ -327,14 +328,13 @@ function AddArea(props) {
                       </div>
                       <div className="form-group col-6">
                         <input
-                          name="end"
+                          name="isAlwaysOpen"
                           className="form-control"
                           type="datetime-local"
                           placeholder="End Date"
                           id="startDate"
                           onChange={handleChange}
                           value={club.end.substring(0, 16)}
-                          required={!club.isAlwaysOpen}
                           disabled={club.isAlwaysOpen}
                         />
                       </div>
@@ -342,6 +342,7 @@ function AddArea(props) {
                   </div>
                 </div>
               </div>
+
               <button
                 type="button"
                 onClick={submitClub}
