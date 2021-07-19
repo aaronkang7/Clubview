@@ -1,6 +1,6 @@
+import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 import cors from "cors";
 import passport from "passport";
 import session from "express-session";
@@ -8,18 +8,13 @@ import clubRoutes from "./routes/clubs.js";
 import profileRoutes from "./routes/user.js";
 import authRoutes from "./routes/auth.js";
 import User from "./models/userModel.js";
+dotenv.config();
 
 const app = express();
-dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
-app.use("/clubs", clubRoutes);
-app.use("/profile", profileRoutes);
-app.use("/auth", authRoutes);
-
-const PORT = process.env.PORT || 5000;
 
 //Session setup
 
@@ -30,9 +25,12 @@ app.use(
     saveUninitialized: false, //CHANGE LATER
   })
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
+app.use("/clubs", clubRoutes);
+app.use("/profile", profileRoutes);
+
+const PORT = process.env.PORT || 5000;
 
 //MongoDB Section
 mongoose
@@ -52,6 +50,8 @@ mongoose.set("useCreateIndex", true);
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+app.use("/auth", authRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello ClubView API");
