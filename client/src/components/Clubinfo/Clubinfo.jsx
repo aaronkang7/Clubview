@@ -30,21 +30,32 @@ function Clubinfo() {
           style={{ textAlign: "left" }}
         >
           <Paper className="club-paper" elevation="3">
-            <h2>{clubInfo.cname}</h2>
+            <div>
+              <h2 className="first-row">{clubInfo.cname}</h2>
+              <a href={clubInfo.site}>
+                <img className="svg" src={`/assets/internet.svg`}></img>
+              </a>
+            </div>
             <p>
               <b>{clubInfo.category}</b>
             </p>
             {clubInfo.isAlwaysOpen ? (
-              <p>Always open for new members</p>
+              <p>
+                <mark>Always open for new members</mark>
+              </p>
             ) : (
               <>
                 <p>
                   Apps Open:{" "}
-                  <b>{moment(clubInfo.end).format("MMM Do YYYY h:m A")}</b>
+                  <mark>
+                    <b>{moment(clubInfo.end).format("MMM Do YYYY h:m A")}</b>
+                  </mark>
                 </p>
                 <p>
                   Apps Close:{" "}
-                  <b>{moment(clubInfo.end).format("MMM Do YYYY h:m A")}</b>
+                  <mark>
+                    <b>{moment(clubInfo.end).format("MMM Do YYYY h:m A")}</b>
+                  </mark>
                 </p>
               </>
             )}
