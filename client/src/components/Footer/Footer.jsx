@@ -8,7 +8,8 @@ function Footer() {
         Made with love by
         <a href="https://github.com/aaronkang7">
           <b> Aaron</b>
-        </a>
+        </a>{" "}
+        | Contact: clubviewcontact@gmail.com
       </div>
     </footer>
   );
