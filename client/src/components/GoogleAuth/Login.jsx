@@ -13,26 +13,30 @@ function Login() {
 
   useEffect(() => {}, [user, isSignedIn]);
 
-  const onSuccess = (res) => {
-    console.log(process.env.API_URL);
-    axios
-      .post(
-        "https://clubview-server.herokuapp.com/profile/user",
-        res.profileObj
-      )
-      .then((res) => setUser(res.data))
-      .catch((err) => console.log(err));
-    setSignedIn(true);
-    refreshTokenSetup(res);
-  };
+  function handleLogin() {
+    window.open("http://localhost:5000/auth/google", "_self");
+  }
 
-  const onFailure = (res) => {
-    console.log("Login failed", res);
-  };
+  // const onSuccess = (res) => {
+  //   console.log(process.env.API_URL);
+  //   axios
+  //     .post(
+  //       "https://clubview-server.herokuapp.com/profile/user",
+  //       res.profileObj
+  //     )
+  //     .then((res) => setUser(res.data))
+  //     .catch((err) => console.log(err));
+  //   setSignedIn(true);
+  //   refreshTokenSetup(res);
+  // };
+
+  // const onFailure = (res) => {
+  //   console.log("Login failed", res);
+  // };
 
   return (
     <div>
-      <GoogleLogin
+      {/* <GoogleLogin
         client_id={clientID}
         accessType="offline"
         buttonText="Login with Google"
@@ -40,7 +44,8 @@ function Login() {
         onFailure={onFailure}
         cookiePolicy={"single_host_origin"}
         isSignedIn={true}
-      />
+      /> */}
+      <button onClick={handleLogin}>Sign In </button>
     </div>
   );
 }
