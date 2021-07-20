@@ -26,7 +26,6 @@ function MyClubs() {
   }, []);
 
   const handleDelete = (_id) => {
-    console.log("http://localhost:5000/profile/" + _id + "/" + user.email);
     axios
       .delete("http://localhost:5000/profile/" + _id + "/" + user.email)
       .then((res) => alert(res.data));
