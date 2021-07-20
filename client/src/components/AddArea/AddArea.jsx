@@ -89,14 +89,18 @@ function AddArea(props) {
 
   function checkName() {
     const trimmed = club.cname.trim();
-    axios.get("http://localhost:5000/clubs/check/" + trimmed).then((res) => {
-      setChecked(res.data);
-      if (res.data === true) {
-        alert("Name is available.");
-      } else {
-        alert("Name is unavailable.");
-      }
-    });
+    if (trimmed.length === 0) {
+      alert("Enter name");
+    } else {
+      axios.get("http://localhost:5000/clubs/check/" + trimmed).then((res) => {
+        setChecked(res.data);
+        if (res.data === true) {
+          alert("Name is available.");
+        } else {
+          alert("Name is unavailable.");
+        }
+      });
+    }
   }
 
   function inValidInputs() {
