@@ -2,8 +2,8 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import passport from "passport";
-import session from "express-session";
+// import passport from "passport";
+// import session from "express-session";
 import clubRoutes from "./routes/clubs.js";
 import profileRoutes from "./routes/user.js";
 import authRoutes from "./routes/auth.js";
@@ -18,15 +18,15 @@ app.use(cors());
 
 //Session setup
 
-app.use(
-  session({
-    secret: "Our little secret...",
-    resave: false,
-    saveUninitialized: false, //CHANGE LATER
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(
+//   session({
+//     secret: "Our little secret...",
+//     resave: false,
+//     saveUninitialized: false, //CHANGE LATER
+//   })
+// );
+// app.use(passport.initialize());
+// app.use(passport.session());
 app.use("/clubs", clubRoutes);
 app.use("/profile", profileRoutes);
 
@@ -47,11 +47,11 @@ mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 
 //Passort Section
-passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.use(User.createStrategy());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
-app.use("/auth", authRoutes);
+// app.use("/auth", authRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello ClubView API");
