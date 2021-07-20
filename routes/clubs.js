@@ -58,9 +58,12 @@ router.get("/:id", (req, res) => {
     .catch((err) => res.status(400).json("Error" + err));
 });
 
-router.post("/update/:id", (req, res) => {
+router.post("/update/:id/:email", (req, res) => {
   Club.findById(req.params.id)
     .then((club) => {
+      if (club.email + "@cornell.edu" !== req.params.email) {
+        res.status(401).json("Unauthorized action.");
+      }
       club.cname = req.body.cname;
       club.lead = req.body.lead;
       club.email = req.body.email;
