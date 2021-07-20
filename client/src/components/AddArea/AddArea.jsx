@@ -6,12 +6,16 @@ import "./AddArea.css";
 import { AuthContext } from "../../context/user";
 
 function AddArea(props) {
-  const [nameChecked, setChecked] = useState(true);
+  const [nameChecked, setChecked] = useState(false);
   const { isSignedIn } = useContext(AuthContext);
   const currentURL_string = window.location.href;
   const id = currentURL_string.substring(
     currentURL_string.lastIndexOf("/") + 1
   );
+
+  useEffect(() => {
+    console.log(nameChecked);
+  }, [nameChecked]);
 
   const [club, setClub] = useState({
     cname: "",
@@ -43,6 +47,11 @@ function AddArea(props) {
   function handleChange(event) {
     console.log(club);
     let { name, value } = event.target;
+
+    if (name === "cname") {
+      setChecked(false);
+    }
+
     setClub((prevClub) => {
       return {
         ...prevClub,
@@ -78,15 +87,17 @@ function AddArea(props) {
     event.preventDefault();
   }
 
-  // function checkName() {
-  //   if (club.cname == "") {
-  //     alert("Please enter club name.");
-  //   } else {
-  //     axios
-  //       .get("http://localhost:5000/clubs/check/" + club.cname)
-  //       .then((res) => console.log(res.data));
-  //   }
-  // }
+  function checkName() {
+    const trimmed = club.cname.trim();
+    axios.get("http://localhost:5000/clubs/check/" + trimmed).then((res) => {
+      setChecked(res.data);
+      if (res.data === true) {
+        alert("Name is available.");
+      } else {
+        alert("Name is unavailable.");
+      }
+    });
+  }
 
   function inValidInputs() {
     let Amessage = "";
@@ -106,6 +117,10 @@ function AddArea(props) {
       Amessage += "Please fill in all required slots. \n";
     }
 
+    if (!nameChecked) {
+      Amessage += "Please check name availability. \n";
+    }
+
     if (!club.isAlwaysOpen && (club.start === "" || club.start === "")) {
       Amessage += "Please enter recruitment information. \n";
     }
@@ -116,7 +131,7 @@ function AddArea(props) {
     if (!club.isAlwaysOpen && moment(club.end).isBefore(club.start)) {
       Amessage += "Make sure End date is after Start date.";
     }
-    if (Amessage == "") {
+    if (Amessage === "") {
       return false;
     } else {
       alert(Amessage);
@@ -161,7 +176,7 @@ function AddArea(props) {
                       <button
                         class="input-group-text"
                         type="button"
-                        // onClick={checkName}
+                        onClick={checkName}
                       >
                         Check
                       </button>
