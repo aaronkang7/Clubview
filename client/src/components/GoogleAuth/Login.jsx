@@ -33,7 +33,7 @@ function Login() {
   return (
     <div>
       <GoogleLogin
-        client_id={clientID}
+        clientId={clientID}
         accessType="offline"
         buttonText="Login with Google"
         onSuccess={onSuccess}
