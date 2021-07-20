@@ -4,12 +4,13 @@ import axios from "axios";
 import Paper from "@material-ui/core/Paper";
 import moment from "moment";
 import "./AddArea.css";
-import { AuthContext } from "../../context/user";
+import { AuthContext, UserContext } from "../../context/user";
 
 function AddArea(props) {
   const history = useHistory();
   const [nameChecked, setChecked] = useState(false);
   const { isSignedIn } = useContext(AuthContext);
+  const { user } = useContext(UserContext);
   const currentURL_string = window.location.href;
   const id = currentURL_string.substring(
     currentURL_string.lastIndexOf("/") + 1
@@ -85,7 +86,7 @@ function AddArea(props) {
         .post(
           props.isEdit === false
             ? "https://clubview-server.herokuapp.com/clubs/add"
-            : "https://clubview-server.herokuapp.com/clubs/update/" + id,
+            : "http://localhost:5000/clubs/update/" + id + "/" + user.email,
           club
         )
         .then((res) => {
