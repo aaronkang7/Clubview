@@ -53,14 +53,13 @@ function Dashboard() {
   }
 
   function dynamicSearch() {
-    console.log(onlyOpen);
     const result = clubs.filter((club) =>
       club.cname.toLowerCase().includes(searchTerm.toLowerCase())
     );
     if (onlyOpen) {
       return result.filter(
         (club) =>
-          club.isAlwaysOpen == true ||
+          club.isAlwaysOpen ||
           (moment(club.start).isBefore(new Date()) &&
             moment(club.end).isAfter(new Date()))
       );
