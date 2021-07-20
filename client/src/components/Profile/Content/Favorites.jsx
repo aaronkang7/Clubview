@@ -4,6 +4,7 @@ import { AuthContext, UserContext } from "../../../context/user";
 
 import { HangOut } from "../../../images/index";
 import moment from "moment";
+import "./Content.css";
 
 function Favs() {
   const [favs, setFavs] = useState([]);
@@ -62,7 +63,7 @@ function Favs() {
               </Fab> */}
             </div>
           </div>
-          <div className="table-responsive vert">
+          <div className="table-responsive scrollable">
             <table className="table table-striped">
               <thead>
                 <tr>

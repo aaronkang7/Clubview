@@ -7,6 +7,7 @@ import Fab from "@material-ui/core/Fab";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import { HangOut } from "../../../images/index";
+import "./Content.css";
 
 function MyClubs() {
   const { isSignedIn } = useContext(AuthContext);
@@ -50,7 +51,7 @@ function MyClubs() {
           <div className="mb-1">
             <h3 className="title">My Clubs</h3>
           </div>
-          <div className="table-responsive vert">
+          <div className="table-responsive scrollable">
             <table className="table table-striped">
               <thead>
                 <tr>
