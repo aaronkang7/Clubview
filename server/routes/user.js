@@ -35,10 +35,18 @@ router.get("/my/:email", (req, res) => {
   Club.find({ email: netId }).then((clubs) => res.send(clubs));
 });
 
-router.delete("/:id", (req, res) => {
-  Club.deleteOne({ _id: req.params.id }).then(() =>
-    res.send("Club has been deleted.")
-  );
+router.delete("/:id/:email", (req, res) => {
+  Club.findById({ _id: req.params.id }).then((club) => {
+    console.log(club.email);
+    console.log(req.params.email);
+    if (club.email + "@cornell.edu" === req.params.email) {
+      Club.deleteOne({ _id: req.params.id }).then(() =>
+        res.send("Club has been deleted.")
+      );
+    } else {
+      res.send("Unauthorized action.");
+    }
+  });
 });
 
 router.post("/user", (req, res) => {

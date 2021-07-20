@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext, UserContext } from "../../../context/user";
-import Toast from "../../Toast/Toast";
 import { Link } from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -12,8 +11,6 @@ import "./Content.css";
 function MyClubs() {
   const { isSignedIn } = useContext(AuthContext);
   const { user } = useContext(UserContext);
-  const [message, setMessage] = useState("");
-  const [showingToast, setToast] = useState(false);
   const [my, setMy] = useState([]);
 
   const fetchMyData = async () => {
@@ -26,13 +23,13 @@ function MyClubs() {
   };
   useEffect(() => {
     fetchMyData();
-  }, [showingToast]);
+  }, []);
 
   const handleDelete = (_id) => {
+    console.log("http://localhost:5000/profile/" + _id + "/" + user.email);
     axios
-      .delete("https://clubview-server.herokuapp.com/profile/" + _id)
-      .then((res) => setMessage(res.data))
-      .then(() => setToast(true));
+      .delete("http://localhost:5000/profile/" + _id + "/" + user.email)
+      .then((res) => alert(res.data));
   };
 
   function renderMy() {
@@ -47,7 +44,6 @@ function MyClubs() {
     } else {
       return (
         <>
-          {showingToast ? <Toast message={message} /> : null}
           <div className="mb-1">
             <h3 className="title">My Clubs</h3>
           </div>
