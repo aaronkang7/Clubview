@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Paper from "@material-ui/core/Paper";
 import moment from "moment";
@@ -6,6 +7,7 @@ import "./AddArea.css";
 import { AuthContext } from "../../context/user";
 
 function AddArea(props) {
+  const history = useHistory();
   const [nameChecked, setChecked] = useState(false);
   const { isSignedIn } = useContext(AuthContext);
   const currentURL_string = window.location.href;
@@ -14,10 +16,13 @@ function AddArea(props) {
   );
 
   useEffect(() => {
+    if (props.isEdit == true) {
+      setChecked(true);
+    }
     console.log(nameChecked);
   }, [nameChecked]);
 
-  const [club, setClub] = useState({
+  const defaultClub = {
     cname: "",
     lead: "",
     email: "",
@@ -28,7 +33,9 @@ function AddArea(props) {
     end: "",
     emoji: "💡",
     isAlwaysOpen: false,
-  });
+  };
+
+  const [club, setClub] = useState(defaultClub);
 
   useEffect(() => {
     if (props.isEdit === true) {
@@ -81,7 +88,10 @@ function AddArea(props) {
             : "https://clubview-server.herokuapp.com/clubs/update/" + id,
           club
         )
-        .then((res) => alert(res.data))
+        .then((res) => {
+          history.push(`/clubs`);
+          alert(res.data);
+        })
         .catch((err) => console.log(err));
     }
     event.preventDefault();
@@ -92,14 +102,16 @@ function AddArea(props) {
     if (trimmed.length === 0) {
       alert("Enter name");
     } else {
-      axios.get("http://localhost:5000/clubs/check/" + trimmed).then((res) => {
-        setChecked(res.data);
-        if (res.data === true) {
-          alert("Name is available.");
-        } else {
-          alert("Name is unavailable.");
-        }
-      });
+      axios
+        .get("https://clubview-server.herokuapp.com/clubs/check/" + trimmed)
+        .then((res) => {
+          setChecked(res.data);
+          if (res.data === true) {
+            alert("Name is available.");
+          } else {
+            alert("Name is unavailable.");
+          }
+        });
     }
   }
 
@@ -119,10 +131,6 @@ function AddArea(props) {
       club.desc === ""
     ) {
       Amessage += "Please fill in all required slots. \n";
-    }
-
-    if (!nameChecked) {
-      Amessage += "Please check name availability. \n";
     }
 
     if (!club.isAlwaysOpen && (club.start === "" || club.start === "")) {
@@ -167,6 +175,7 @@ function AddArea(props) {
                   <label for="cName_">Club Name*</label>
                   <div className="input-group">
                     <input
+                      disabled={props.isEdit}
                       name="cname"
                       type="text"
                       placeholder="Club Name"
@@ -178,6 +187,7 @@ function AddArea(props) {
                     />
                     <div class="input-group-append">
                       <button
+                        disabled={props.isEdit}
                         class="input-group-text"
                         type="button"
                         onClick={checkName}
@@ -347,11 +357,11 @@ function AddArea(props) {
                       </div>
                       <div className="form-group col-6">
                         <input
-                          name="isAlwaysOpen"
+                          name="end"
                           className="form-control"
                           type="datetime-local"
                           placeholder="End Date"
-                          id="startDate"
+                          id="endDate"
                           onChange={handleChange}
                           value={club.end.substring(0, 16)}
                           disabled={club.isAlwaysOpen}
