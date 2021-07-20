@@ -86,7 +86,10 @@ function AddArea(props) {
         .post(
           props.isEdit === false
             ? "https://clubview-server.herokuapp.com/clubs/add"
-            : "http://localhost:5000/clubs/update/" + id + "/" + user.email,
+            : "https://clubview-server.herokuapp.com/clubs/update/" +
+                id +
+                "/" +
+                user.email,
           club
         )
         .then((res) => {
