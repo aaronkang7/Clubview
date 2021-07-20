@@ -3,7 +3,6 @@ import axios from "axios";
 import "./Dashboard.css";
 import ClubsPage from "../ClubsPage/ClubsPage";
 import PaginationTab from "../Pagination/Pagiation";
-import Filter from "../Filter/Filter";
 import { AuthContext, UserContext } from "../../context/user";
 import moment from "moment";
 
