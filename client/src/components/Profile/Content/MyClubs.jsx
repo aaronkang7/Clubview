@@ -11,6 +11,7 @@ import "./Content.css";
 function MyClubs() {
   const { isSignedIn } = useContext(AuthContext);
   const { user } = useContext(UserContext);
+  const [deleted, setDeleted] = useState(false);
   const [my, setMy] = useState([]);
 
   const fetchMyData = async () => {
@@ -23,7 +24,7 @@ function MyClubs() {
   };
   useEffect(() => {
     fetchMyData();
-  }, []);
+  }, [deleted]);
 
   const handleDelete = (_id) => {
     axios
@@ -33,7 +34,8 @@ function MyClubs() {
           "/" +
           user.email
       )
-      .then((res) => alert(res.data));
+      .then((res) => alert(res.data))
+      .then(() => setDeleted(true));
   };
 
   function renderMy() {
