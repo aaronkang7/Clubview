@@ -10,12 +10,13 @@ router.get("/", (req, res) => {
 });
 
 router.get("/check/:cname", (req, res) => {
-  console.log(req.params.cname);
   Club.find({ cname: req.params.cname }).then((result) => {
-    if (result) {
-      res.send(true);
+    if (result.length == 0) {
+      console.log(result);
+      res.json(true);
     } else {
-      res.send(false);
+      console.log(result);
+      res.json(false);
     }
   });
 });

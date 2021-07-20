@@ -65,21 +65,14 @@ router.post("/user", (req, res) => {
 router.post("/:email/editfav", (req, res) => {
   const toWhat = req.body.notisFav;
   const clubid = req.body.clubid;
-  // console.log("TOWHAT IS :", toWhat);
-  // console.log("clubid is: ", clubid);
   let newFav = [];
   User.findOne({ email: req.params.email }).then((result) => {
     if (result != null) {
       let oldFav = result.favorites;
-      // console.log("Oldfav is", oldFav);
       var doStuff = new Promise((resolve, reject) => {
         if (toWhat === false) {
           oldFav.forEach((fav, index, array) => {
-            // console.log("IN DELETE IF");
             if (fav._id != clubid) {
-              // console.log("favid is:", fav._id);
-              // console.log("NOT EQUAL");
-              // console.log("adding: favid is:", fav._id);
               newFav.push(fav._id);
             }
             if (index === array.length - 1) {
