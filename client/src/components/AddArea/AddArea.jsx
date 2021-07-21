@@ -183,7 +183,6 @@ function AddArea(props) {
                       disabled={props.isEdit}
                       name="cname"
                       type="text"
-                      placeholder="Club Name"
                       className="form-control"
                       id="cName_"
                       onChange={handleChange}
@@ -209,7 +208,6 @@ function AddArea(props) {
                   <label for="category">Club Category*</label>
                   <select
                     name="category"
-                    placeholder="Category"
                     className="form-control"
                     id="category"
                     onChange={handleChange}
@@ -237,7 +235,6 @@ function AddArea(props) {
                   <input
                     name="lead"
                     type="text"
-                    placeholder="Lead Names"
                     className="form-control"
                     id="cLead"
                     onChange={handleChange}
@@ -255,7 +252,7 @@ function AddArea(props) {
                     <input
                       name="email"
                       type="text"
-                      placeholder="E-mail"
+                      placeholder="NetID"
                       className="form-control"
                       id="email"
                       onChange={handleChange}
@@ -304,15 +301,18 @@ function AddArea(props) {
                   <input
                     name="site"
                     type="url"
-                    placeholder="Link"
+                    placeholder="Enter full URL"
                     className="form-control"
                     id="clubSite"
                     onChange={handleChange}
                     value={club.site}
                   />
                 </div>
-                <div className="form-group col-md-1 col-sm-1">
-                  <label for="emo">emoji:</label>
+                <div
+                  className="form-group col-md-1 col-sm-1"
+                  style={{ textAlign: "left" }}
+                >
+                  <label for="emo">Emoji:</label>
 
                   <input
                     name="emoji"
@@ -363,6 +363,9 @@ function AddArea(props) {
                           required={!club.isAlwaysOpen}
                           disabled={club.isAlwaysOpen}
                         />
+                        <small>
+                          if undecided, enter last recruitment dates.
+                        </small>
                       </div>
                       <div className="form-group col-6">
                         <input
@@ -378,9 +381,6 @@ function AddArea(props) {
                           disabled={club.isAlwaysOpen}
                         />
                       </div>
-                      <small>
-                        if undecided, enter latest recruitment information
-                      </small>
                     </div>
                   </div>
                 </div>
