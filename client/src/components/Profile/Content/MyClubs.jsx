@@ -43,7 +43,7 @@ function MyClubs() {
           user.email
       )
       .then((res) => alert(res.data))
-      .then(() => setDeleted(true));
+      .then(() => setDeleted(!deleted));
   };
 
   function renderMy() {
