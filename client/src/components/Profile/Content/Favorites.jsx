@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 import { AuthContext, UserContext } from "../../../context/user";
-
+import Loading from "../../animations/Loading/Loading";
 import { HangOut } from "../../../images/index";
 import moment from "moment";
 import "./Content.css";
@@ -10,9 +10,6 @@ function Favs() {
   const [favs, setFavs] = useState([]);
   const { isSignedIn } = useContext(AuthContext);
   const { user } = useContext(UserContext);
-
-  //TO-DO:
-  //Find out why database is giving empty arry for fav array
 
   const fetchFavData = async () => {
     if (isSignedIn && user != null) {
