@@ -101,7 +101,10 @@ function Dashboard() {
           <input
             class="form-check-input"
             type="checkbox"
-            onClick={() => setOnlyOpen(!onlyOpen)}
+            onClick={() => {
+              setOnlyOpen(!onlyOpen);
+              setCurrentPage(1);
+            }}
             checked={onlyOpen}
             id="defaultCheck1"
           />
