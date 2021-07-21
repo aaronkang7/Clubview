@@ -21,7 +21,8 @@ router.get("/check/:cname", (req, res) => {
   });
 });
 
-router.post("/add", (req, res) => {
+router.post("/add/:email", (req, res) => {
+  const addedBy = req.params.email;
   const cname = req.body.cname;
   const lead = req.body.lead;
   const email = req.body.email;
@@ -34,6 +35,7 @@ router.post("/add", (req, res) => {
   const isAlwaysOpen = req.body.isAlwaysOpen;
 
   const newClub = new Club({
+    addedBy,
     cname,
     lead,
     email,
