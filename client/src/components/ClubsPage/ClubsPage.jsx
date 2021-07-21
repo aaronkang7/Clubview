@@ -7,7 +7,7 @@ function ClubsPage({ clubs, loading, isFavFinder }) {
     return <div className="loading">Loading...</div>;
   }
   return (
-    <div>
+    <>
       {clubs.map((clubItem) => {
         return (
           <Club
@@ -26,7 +26,7 @@ function ClubsPage({ clubs, loading, isFavFinder }) {
           />
         );
       })}
-    </div>
+    </>
   );
 }
 

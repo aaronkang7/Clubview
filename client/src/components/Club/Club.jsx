@@ -103,12 +103,6 @@ function Club(props) {
                 label={status.message}
                 style={{ backgroundColor: status.color }}
               />
-              {/* <span
-                className="status"
-                style={{ backgroundColor: status.color }}
-              >
-                {status.message}
-              </span> */}
             </div>
           </div>
           <p className="recDate">{renderDate()}</p>
