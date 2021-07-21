@@ -6,7 +6,13 @@ function PaginationTab({ clubsPerPage, totalClubs, paginate }) {
   return (
     <div className="pagination">
       <Pagination
-        onChange={(event, page) => paginate(page)}
+        onChange={(event, page) => {
+          paginate(page);
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        }}
         count={Math.ceil(totalClubs / clubsPerPage)}
         color="secondary"
       />

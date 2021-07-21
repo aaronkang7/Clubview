@@ -12,7 +12,7 @@ function Dashboard() {
   const [loadingClubs, setLoadingClubs] = useState(true);
   const [loadingFavs, setLoadingFavs] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [clubsPerPage] = useState(8);
+  const [clubsPerPage] = useState(12);
   const [onlyOpen, setOnlyOpen] = useState(false);
   const [favclubs, setFavClubs] = useState([]);
   const { user } = useContext(UserContext);
