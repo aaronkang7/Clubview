@@ -6,8 +6,8 @@ import cors from "cors";
 // import session from "express-session";
 import clubRoutes from "./routes/clubs.js";
 import profileRoutes from "./routes/user.js";
-import authRoutes from "./routes/auth.js";
-import User from "./models/userModel.js";
+// import authRoutes from "./routes/auth.js";
+// import User from "./models/userModel.js";
 dotenv.config();
 
 const app = express();

@@ -82,7 +82,7 @@ function AddArea(props) {
       axios
         .post(
           props.isEdit === false
-            ? "https://clubview-server.herokuapp.com/clubs/add/" + user.email
+            ? "https://clubview-server.herokuapp.com/clubs/add"
             : "https://clubview-server.herokuapp.com/clubs/update/" +
                 id +
                 "/" +
