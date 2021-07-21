@@ -17,7 +17,7 @@ function AddArea(props) {
   );
 
   useEffect(() => {
-    if (props.isEdit == true) {
+    if (props.isEdit === true) {
       setChecked(true);
     }
     console.log(nameChecked);
