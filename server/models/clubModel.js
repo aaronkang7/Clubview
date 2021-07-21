@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const clubSchema = new Schema({
+  addedBy: String,
   cname: String,
   lead: String,
   email: String,
