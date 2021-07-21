@@ -37,8 +37,7 @@ function Club(props) {
           clubid,
         }
       )
-      .then((res) => console.log(res.data));
-    setFav(!isFav);
+      .then(() => setFav(!isFav));
   };
 
   function renderTag() {

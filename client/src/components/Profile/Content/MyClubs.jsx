@@ -32,9 +32,6 @@ function MyClubs() {
   }, [deleted]);
 
   const handleDelete = (_id) => {
-    console.log(
-      "https://clubview-server.herokuapp.com/profile/" + _id + "/" + user.email
-    );
     axios
       .delete(
         "https://clubview-server.herokuapp.com/profile/" +

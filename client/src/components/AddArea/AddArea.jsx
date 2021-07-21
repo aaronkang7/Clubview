@@ -38,7 +38,6 @@ function AddArea(props) {
   }, [nameChecked]);
 
   useEffect(() => {
-    console.log("in use effect");
     if (props.isEdit === true) {
       getClubInfo();
     }
@@ -54,7 +53,6 @@ function AddArea(props) {
   }
 
   function handleChange(event) {
-    console.log(club);
     let { name, value } = event.target;
 
     if (name === "cname") {
