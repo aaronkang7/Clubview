@@ -300,7 +300,7 @@ function AddArea(props) {
                   className="form-group col-md-11 col-sm-11 "
                   style={{ textAlign: "left" }}
                 >
-                  <label for="clubSite">Website/Social Media Link</label>
+                  <label for="clubSite">Website/Social Media Link (full)</label>
                   <input
                     name="site"
                     type="url"

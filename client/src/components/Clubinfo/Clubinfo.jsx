@@ -33,7 +33,7 @@ function Clubinfo() {
           <Paper className="club-paper" elevation="3">
             <div>
               <h2 className="first-row">{clubInfo.cname}</h2>
-              <a href={clubInfo.site}>
+              <a target="_blank" href={clubInfo.site}>
                 <img className="svg" src={`/assets/internet.svg`}></img>
               </a>
             </div>
@@ -63,12 +63,6 @@ function Clubinfo() {
               </>
             )}
             <p>{clubInfo.desc}</p>
-            <h6>
-              Learn more on their{" "}
-              <a href={clubInfo.site}>
-                <u>website</u>
-              </a>
-            </h6>
           </Paper>
         </div>
       </div>
