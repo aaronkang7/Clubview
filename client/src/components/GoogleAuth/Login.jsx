@@ -14,7 +14,6 @@ function Login() {
   useEffect(() => {}, [user, isSignedIn]);
 
   const onSuccess = (res) => {
-    console.log(process.env.API_URL);
     axios
       .post(
         "https://clubview-server.herokuapp.com/profile/user",

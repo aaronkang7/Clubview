@@ -20,7 +20,6 @@ function AddArea(props) {
     if (props.isEdit === true) {
       setChecked(true);
     }
-    console.log(nameChecked);
   }, [nameChecked]);
 
   const defaultClub = {
@@ -41,7 +40,6 @@ function AddArea(props) {
   useEffect(() => {
     if (props.isEdit === true) {
       getClubInfo();
-      console.log(club);
     }
   }, []);
 
@@ -53,7 +51,6 @@ function AddArea(props) {
   }
 
   function handleChange(event) {
-    console.log(club);
     let { name, value } = event.target;
 
     if (name === "cname") {

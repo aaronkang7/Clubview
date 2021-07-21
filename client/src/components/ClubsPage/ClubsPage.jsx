@@ -9,7 +9,6 @@ function ClubsPage({ clubs, loading, isFavFinder }) {
       <>
         <div className="page-container">
           <Loading />
-          <div>LOADING</div>
         </div>
       </>
     );

@@ -42,14 +42,12 @@ function Dashboard() {
   useEffect(() => {
     fetchFavsData();
     fetchClubsData();
-    console.log("user in dashboard is ", user);
   }, [user]);
 
   function handleChange(event) {
     const val = event.target.value;
     setCurrentPage(1);
     setSearch(val);
-    console.log(searchTerm);
   }
 
   function dynamicSearch() {
