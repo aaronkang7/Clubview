@@ -1,13 +1,21 @@
 import React from "react";
 import Club from "../Club/Club";
-import "./ClubsPage";
+import Loading from "../animations/Loading/Loading";
+import "./ClubsPage.css";
 
 function ClubsPage({ clubs, loading, isFavFinder }) {
   if (loading) {
-    return <div className="loading">Loading...</div>;
+    return (
+      <>
+        <div className="page-container">
+          <Loading />
+          <div>LOADING</div>
+        </div>
+      </>
+    );
   }
   return (
-    <>
+    <div className="dashboard">
       {clubs.map((clubItem) => {
         return (
           <Club
@@ -26,7 +34,7 @@ function ClubsPage({ clubs, loading, isFavFinder }) {
           />
         );
       })}
-    </>
+    </div>
   );
 }
 

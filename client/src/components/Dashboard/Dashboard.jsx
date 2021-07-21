@@ -112,7 +112,7 @@ function Dashboard() {
           </label>
         </div>
       </form>
-      <div className="dashboard">
+      <div>
         <ClubsPage
           clubs={currentClubs}
           loading={loadingClubs || (isSignedIn && loadingFavs)}
