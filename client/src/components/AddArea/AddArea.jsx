@@ -16,12 +16,6 @@ function AddArea(props) {
     currentURL_string.lastIndexOf("/") + 1
   );
 
-  useEffect(() => {
-    if (props.isEdit === true) {
-      setChecked(true);
-    }
-  }, [nameChecked]);
-
   const defaultClub = {
     cname: "",
     lead: "",
@@ -29,8 +23,8 @@ function AddArea(props) {
     category: "",
     desc: "",
     site: "",
-    start: " ",
-    end: " ",
+    start: "",
+    end: "",
     emoji: "💡",
     isAlwaysOpen: false,
   };
@@ -39,6 +33,13 @@ function AddArea(props) {
 
   useEffect(() => {
     if (props.isEdit === true) {
+      setChecked(true);
+    }
+  }, [nameChecked]);
+
+  useEffect(() => {
+    console.log("in use effect");
+    if (props.isEdit === true) {
       getClubInfo();
     }
   }, []);
@@ -46,7 +47,9 @@ function AddArea(props) {
   function getClubInfo() {
     axios
       .get("https://clubview-server.herokuapp.com/clubs/" + id)
-      .then((res) => setClub(res.data))
+      .then((res) => {
+        setClub(res.data);
+      })
       .catch((err) => console.log(err));
   }
 
@@ -327,7 +330,7 @@ function AddArea(props) {
               <div className="form-row" style={{ paddingLeft: "5px" }}>
                 <div className="form-group" style={{ textAlign: "left" }}>
                   <label for="RecruitmentPeriod">
-                    Recruitment Period*
+                    Recruitment Period *
                     <div class="form-check form-check-inline ml-1">
                       <input
                         name="isAlwaysOpen"
@@ -352,7 +355,11 @@ function AddArea(props) {
                           type="datetime-local"
                           id="startDate"
                           onChange={handleChange}
-                          value={club.start.substring(0, 16)}
+                          value={
+                            club.start != null
+                              ? club.start.substring(0, 16)
+                              : ""
+                          }
                           required={!club.isAlwaysOpen}
                           disabled={club.isAlwaysOpen}
                         />
@@ -365,10 +372,15 @@ function AddArea(props) {
                           placeholder="End Date"
                           id="endDate"
                           onChange={handleChange}
-                          value={club.end.substring(0, 16)}
+                          value={
+                            club.end != null ? club.end.substring(0, 16) : ""
+                          }
                           disabled={club.isAlwaysOpen}
                         />
                       </div>
+                      <small>
+                        if undecided, enter latest recruitment information
+                      </small>
                     </div>
                   </div>
                 </div>

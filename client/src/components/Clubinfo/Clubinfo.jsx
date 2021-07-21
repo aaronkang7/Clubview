@@ -49,13 +49,15 @@ function Clubinfo() {
                 <p>
                   Apps Open:{" "}
                   <mark>
-                    <b>{moment(clubInfo.end).format("MMM Do YYYY h:m A")}</b>
+                    <b>
+                      {moment(clubInfo.start).format("MMM Do YYYY hh:mm A")}
+                    </b>
                   </mark>
                 </p>
                 <p>
                   Apps Close:{" "}
                   <mark>
-                    <b>{moment(clubInfo.end).format("MMM Do YYYY h:m A")}</b>
+                    <b>{moment(clubInfo.end).format("MMM Do YYYY hh:mm A")}</b>
                   </mark>
                 </p>
               </>
