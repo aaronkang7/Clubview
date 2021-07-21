@@ -29,8 +29,8 @@ function AddArea(props) {
     category: "",
     desc: "",
     site: "",
-    start: "",
-    end: "",
+    start: " ",
+    end: " ",
     emoji: "💡",
     isAlwaysOpen: false,
   };
@@ -51,6 +51,7 @@ function AddArea(props) {
   }
 
   function handleChange(event) {
+    console.log(club);
     let { name, value } = event.target;
 
     if (name === "cname") {

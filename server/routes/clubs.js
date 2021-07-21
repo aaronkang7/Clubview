@@ -21,7 +21,6 @@ router.get("/check/:cname", (req, res) => {
   });
 });
 
-hello;
 router.post("/add/:email", (req, res) => {
   const addedBy = req.params.email;
   const cname = req.body.cname;
