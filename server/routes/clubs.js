@@ -33,7 +33,6 @@ router.post("/add/:email", (req, res) => {
   const end = req.body.end;
   const emoji = req.body.emoji;
   const isAlwaysOpen = req.body.isAlwaysOpen;
-  const addedBy = req.params.email;
 
   const newClub = new Club({
     addedBy,
