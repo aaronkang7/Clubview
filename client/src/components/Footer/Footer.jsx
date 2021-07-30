@@ -1,15 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 function Footer() {
   return (
     <footer className="page-footer font-small footer-custom">
-      <div className="text-center py-2">
+      <div className="py-2 pr-4">
         Made with love by
         <a href="https://github.com/aaronkang7">
           <b> Aaron</b>
         </a>{" "}
-        | Contact: clubviewcontact@gmail.com
+        <p>
+          clubviewcontact@gmail.com |{" "}
+          <Link to="/terms-of-service">Terms of Service</Link> |{" "}
+          <Link to="/privacy-policy">Privacy Policy</Link>{" "}
+        </p>
       </div>
     </footer>
   );
