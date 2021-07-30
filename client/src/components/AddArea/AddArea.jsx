@@ -138,26 +138,8 @@ function AddArea(props) {
       return true;
     }
 
-    if (
-      club.cname === "" ||
-      club.lead === "" ||
-      club.email === "" ||
-      club.category === "" ||
-      club.desc === ""
-    ) {
-      Amessage += "Please fill in all required slots. \n";
-    }
-
     if (!nameChecked) {
       Amessage += "Please check name availability. \n";
-    }
-
-    if (!validURL(club.site)) {
-      Amessage += "Please enter valid URL. \n";
-    }
-
-    if (!club.isAlwaysOpen && (club.start === "" || club.start === "")) {
-      Amessage += "Please enter recruitment information. \n";
     }
 
     if (!club.isAlwaysOpen && moment(club.end).isBefore(club.start)) {
@@ -186,16 +168,16 @@ function AddArea(props) {
             elevation="3"
           >
             <h4>Club Information</h4>
-            <form>
-              <div className="form-row">
+            <form onSubmit={submitClub}>
+              <div className="form-row mt-4">
                 <div
                   className="form-group col-md-7"
                   style={{ textAlign: "left" }}
                 >
-                  <label for="cName_">Club Name*</label>
                   <div className="input-group">
                     <input
                       disabled={props.isEdit}
+                      placeholder="Club Name"
                       name="cname"
                       type="text"
                       className="form-control"
@@ -220,8 +202,8 @@ function AddArea(props) {
                   className="form-group col-md-5"
                   style={{ textAlign: "left" }}
                 >
-                  <label for="category">Club Category*</label>
                   <select
+                    placeholder="Club Category"
                     name="category"
                     className="form-control"
                     id="category"
@@ -229,7 +211,9 @@ function AddArea(props) {
                     value={club.category}
                     required
                   >
-                    <option> </option>
+                    <option value="" disabled selected>
+                      Select Category
+                    </option>
                     <option>Academic and Educational</option>
                     <option>Community Service</option>
                     <option>Media and Publication</option>
@@ -241,13 +225,13 @@ function AddArea(props) {
                 </div>
               </div>
 
-              <div className="form-row">
+              <div className="form-row mt-2">
                 <div
                   className="form-group col-md-6"
                   style={{ textAlign: "left" }}
                 >
-                  <label for="cLead">Lead Name(s)*</label>
                   <input
+                    placeholder="Lead Name(s)"
                     name="lead"
                     type="text"
                     className="form-control"
@@ -261,13 +245,11 @@ function AddArea(props) {
                   className="form-group col-md-6"
                   style={{ textAlign: "left" }}
                 >
-                  <label for="email">Manager e-mail*</label>
-
                   <div className="input-group">
                     <input
+                      placeholder="Manager NetID"
                       name="email"
                       type="text"
-                      placeholder="NetID"
                       className="form-control"
                       id="email"
                       onChange={handleChange}
@@ -282,8 +264,7 @@ function AddArea(props) {
                     </div>
                   </div>
                   <small id="emailHelp" class="form-text text-muted">
-                    Person logged in with this email will be able to edit/delete
-                    club information.
+                    User who will be able to edit/delete club information.
                   </small>
                 </div>
               </div>
@@ -293,11 +274,10 @@ function AddArea(props) {
                   className="form-group col-md-12"
                   style={{ textAlign: "left" }}
                 >
-                  <label for="clubDesc">Description of the Club*</label>
                   <textarea
                     className="form-control"
                     name="desc"
-                    placeholder="Tell us what your club is all about"
+                    placeholder="Description of the Club*: Tell us what your club is all about"
                     id="clubDesc"
                     rows="3"
                     onChange={handleChange}
@@ -312,7 +292,7 @@ function AddArea(props) {
                   className="form-group col-md-11 col-sm-11 "
                   style={{ textAlign: "left" }}
                 >
-                  <label for="clubSite">Website/Social Media Link (full)</label>
+                  <label for="clubSite">Website/Social Media Link</label>
                   <input
                     name="site"
                     type="url"
@@ -378,9 +358,6 @@ function AddArea(props) {
                           required={!club.isAlwaysOpen}
                           disabled={club.isAlwaysOpen}
                         />
-                        <small>
-                          if undecided, enter last recruitment dates.
-                        </small>
                       </div>
                       <div className="form-group col-6">
                         <input
@@ -397,13 +374,14 @@ function AddArea(props) {
                         />
                       </div>
                     </div>
+                    <small>if undecided, enter last recruitment dates.</small>
                   </div>
                 </div>
               </div>
 
               <button
-                type="button"
-                onClick={submitClub}
+                type="submit"
+                // onClick={submitClub}
                 className="btn btn-primary"
               >
                 {props.isEdit ? "Update" : "Submit"}
