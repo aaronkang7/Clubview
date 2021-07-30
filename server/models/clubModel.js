@@ -14,6 +14,7 @@ const clubSchema = new Schema({
   end: Date,
   emoji: String,
   isAlwaysOpen: Boolean,
+  addedBy: String,
 });
 
 const Club = mongoose.model("Club", clubSchema);

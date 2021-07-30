@@ -33,6 +33,7 @@ router.post("/add/:email", (req, res) => {
   const end = req.body.end;
   const emoji = req.body.emoji;
   const isAlwaysOpen = req.body.isAlwaysOpen;
+  const addedBy = req.params.email;
 
   const newClub = new Club({
     addedBy,
@@ -46,6 +47,7 @@ router.post("/add/:email", (req, res) => {
     end,
     emoji,
     isAlwaysOpen,
+    addedBy,
   });
 
   newClub
@@ -76,8 +78,8 @@ router.post("/update/:id/:email", (req, res) => {
       club.end = req.body.end;
       club.emoji = req.body.emoji;
       club.isAlwaysOpen = req.body.isAlwaysOpen;
-
-      club.save().catch((err) => res.status(400).json("Error" + err));
+      club.addedBy = req.params.email;
+      club.club.save().catch((err) => res.status(400).json("Error" + err));
     })
     .then(() => res.json("Club updated"))
     .catch((err) => res.status(400).json("Error" + err));
