@@ -6,7 +6,7 @@ function Footer() {
   return (
     <footer className="page-footer font-small footer-custom">
       <div className="py-2 pr-4">
-        Made with love by
+        Made with the 😿 (oh, and 💖) of
         <a href="https://github.com/aaronkang7">
           <b> Aaron</b>
         </a>{" "}

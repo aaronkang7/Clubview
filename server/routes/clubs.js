@@ -78,7 +78,7 @@ router.post("/update/:id/:email", (req, res) => {
       club.emoji = req.body.emoji;
       club.isAlwaysOpen = req.body.isAlwaysOpen;
       club.addedBy = req.params.email;
-      club.club.save().catch((err) => res.status(400).json("Error" + err));
+      club.save().catch((err) => res.status(400).json("Error" + err));
     })
     .then(() => res.json("Club updated"))
     .catch((err) => res.status(400).json("Error" + err));

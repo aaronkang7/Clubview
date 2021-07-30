@@ -84,7 +84,7 @@ function AddArea(props) {
       axios
         .post(
           props.isEdit === false
-            ? "https://clubview-server.herokuapp.com/clubs/add"
+            ? "https://clubview-server.herokuapp.com/clubs/add/" + user.email
             : "https://clubview-server.herokuapp.com/clubs/update/" +
                 id +
                 "/" +
@@ -118,6 +118,18 @@ function AddArea(props) {
     }
   }
 
+  function validURL(str) {
+    let url;
+
+    try {
+      url = new URL(str);
+    } catch (_) {
+      return false;
+    }
+
+    return url.protocol === "http:" || url.protocol === "https:";
+  }
+
   function inValidInputs() {
     let Amessage = "";
 
@@ -136,13 +148,18 @@ function AddArea(props) {
       Amessage += "Please fill in all required slots. \n";
     }
 
+    if (!nameChecked) {
+      Amessage += "Please check name availability. \n";
+    }
+
+    if (!validURL(club.site)) {
+      Amessage += "Please enter valid URL. \n";
+    }
+
     if (!club.isAlwaysOpen && (club.start === "" || club.start === "")) {
       Amessage += "Please enter recruitment information. \n";
     }
 
-    if (!nameChecked) {
-      Amessage += "Please check name availability. \n";
-    }
     if (!club.isAlwaysOpen && moment(club.end).isBefore(club.start)) {
       Amessage += "Make sure End date is after Start date.";
     }
@@ -350,12 +367,12 @@ function AddArea(props) {
                         <input
                           name="start"
                           className="form-control"
-                          type="datetime-local"
+                          type="date"
                           id="startDate"
                           onChange={handleChange}
                           value={
                             club.start != null
-                              ? club.start.substring(0, 16)
+                              ? club.start.substring(0, 10)
                               : ""
                           }
                           required={!club.isAlwaysOpen}
@@ -369,12 +386,12 @@ function AddArea(props) {
                         <input
                           name="end"
                           className="form-control"
-                          type="datetime-local"
+                          type="date"
                           placeholder="End Date"
                           id="endDate"
                           onChange={handleChange}
                           value={
-                            club.end != null ? club.end.substring(0, 16) : ""
+                            club.end != null ? club.end.substring(0, 10) : ""
                           }
                           disabled={club.isAlwaysOpen}
                         />
