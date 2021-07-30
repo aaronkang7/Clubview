@@ -168,7 +168,7 @@ function AddArea(props) {
             elevation="3"
           >
             <h4>Club Information</h4>
-            <form onSubmit={submitClub}>
+            <form onSubmit={submitClub} enctype="multipart/form-data">
               <div className="form-row mt-4">
                 <div
                   className="form-group col-md-7"
