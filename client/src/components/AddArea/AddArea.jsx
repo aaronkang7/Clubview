@@ -27,6 +27,7 @@ function AddArea(props) {
     end: "",
     emoji: "💡",
     isAlwaysOpen: false,
+    cImage: null,
   };
 
   const [club, setClub] = useState(defaultClub);
@@ -53,6 +54,7 @@ function AddArea(props) {
   }
 
   function handleChange(event) {
+    console.log(club);
     let { name, value } = event.target;
 
     if (name === "cname") {
@@ -116,18 +118,6 @@ function AddArea(props) {
           }
         });
     }
-  }
-
-  function validURL(str) {
-    let url;
-
-    try {
-      url = new URL(str);
-    } catch (_) {
-      return false;
-    }
-
-    return url.protocol === "http:" || url.protocol === "https:";
   }
 
   function inValidInputs() {
@@ -358,6 +348,9 @@ function AddArea(props) {
                           required={!club.isAlwaysOpen}
                           disabled={club.isAlwaysOpen}
                         />
+                        <small>
+                          if undecided, enter last recruitment dates.
+                        </small>
                       </div>
                       <div className="form-group col-6">
                         <input
@@ -373,17 +366,26 @@ function AddArea(props) {
                           disabled={club.isAlwaysOpen}
                         />
                       </div>
+
+                      <div className="form-group col-12">
+                        <label for="clubImage">Upload Image</label>
+                        <input
+                          id="clubImage"
+                          placeholder="Upload Image"
+                          onChange={handleChange}
+                          value={club.cImage}
+                          className="form-control col-12"
+                          name="image"
+                          type="file"
+                          accept="image/png, image/jpeg"
+                        />
+                      </div>
                     </div>
-                    <small>if undecided, enter last recruitment dates.</small>
                   </div>
                 </div>
               </div>
 
-              <button
-                type="submit"
-                // onClick={submitClub}
-                className="btn btn-primary"
-              >
+              <button type="submit" className="btn btn-primary">
                 {props.isEdit ? "Update" : "Submit"}
               </button>
             </form>
