@@ -64,7 +64,7 @@
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 840px) {
   .recDate {
     text-align: left;
     font-size: 14px;
@@ -76,7 +76,7 @@
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .recDate {
     text-align: left;
     font-size: 17px;

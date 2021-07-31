@@ -42,7 +42,7 @@ function Dashboard() {
   useEffect(() => {
     fetchFavsData();
     fetchClubsData();
-  }, [user]);
+  }, [isSignedIn]);
 
   function handleChange(event) {
     const val = event.target.value;
@@ -64,19 +64,6 @@ function Dashboard() {
     }
     return result;
   }
-
-  // function handleSearch(event) {
-  //   console.log(searchTerm);
-  //   const sTerm = searchTerm.toLowerCase();
-  //   const c = clubs.find((club) => String(club.cname).toLowerCase() === sTerm);
-
-  //   if (c === undefined) {
-  //     alert("Club not found");
-  //     setSearch("");
-  //   } else {
-  //     window.location.href = "/clubs/" + c._id;
-  //   }
-  // }
 
   function findIsFav(clubItem) {
     return favclubs.includes(clubItem._id);

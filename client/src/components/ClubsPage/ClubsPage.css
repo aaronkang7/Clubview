@@ -5,13 +5,21 @@
 
 @media (min-width: 1px) {
   .dashboard {
+    column-count: 1;
+    column-fill: balance;
+    column-gap: 0px;
+  }
+}
+
+@media (min-width: 600px) {
+  .dashboard {
     column-count: 2;
     column-fill: balance;
     column-gap: 10px;
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 840px) {
   .dashboard {
     column-count: 3;
     column-fill: balance;
@@ -19,7 +27,7 @@
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .dashboard {
     column-count: 4;
     column-fill: balance;

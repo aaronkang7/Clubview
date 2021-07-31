@@ -16,7 +16,7 @@ function Header() {
     if (user && isSignedIn) {
       setProfile(user.imageUrl);
     }
-  }, [user]);
+  }, [isSignedIn]);
 
   return (
     <nav className="navbar sticky-top navbar-expand-lg navbar-light">

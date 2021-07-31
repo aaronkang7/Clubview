@@ -20,8 +20,8 @@ function Login() {
         res.profileObj
       )
       .then((res) => setUser(res.data))
+      .then(() => setSignedIn(true))
       .catch((err) => console.log(err));
-    setSignedIn(true);
     refreshTokenSetup(res);
   };
 
