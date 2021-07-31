@@ -148,8 +148,8 @@ function AddArea(props) {
       <section className="mb-4">
         <div className="row add-Area">
           <div className="container-fluid-add col-lg-5 col-md-12">
-            <h4>Choose an emoji!</h4>
-            <p>that best represents your club</p>
+            <h4>Select an Emoji:</h4>
+            <p>to represent your club</p>
             <div className="content">{club.emoji}</div>
           </div>
 
@@ -348,9 +348,6 @@ function AddArea(props) {
                           required={!club.isAlwaysOpen}
                           disabled={club.isAlwaysOpen}
                         />
-                        <small>
-                          if undecided, enter last recruitment dates.
-                        </small>
                       </div>
                       <div className="form-group col-6">
                         <input
@@ -366,8 +363,9 @@ function AddArea(props) {
                           disabled={club.isAlwaysOpen}
                         />
                       </div>
+                      <small>if undecided, enter last recruitment dates.</small>
 
-                      <div className="form-group col-12">
+                      {/* <div className="form-group col-12">
                         <label for="clubImage">Upload Image</label>
                         <input
                           id="clubImage"
@@ -379,7 +377,7 @@ function AddArea(props) {
                           type="file"
                           accept="image/png, image/jpeg"
                         />
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

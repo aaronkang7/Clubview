@@ -22,9 +22,11 @@ function Clubinfo() {
     <div>
       <div className="row">
         <div className="container-fluid-add col-lg-7 col-md-12">
-          <div className="content" style={{ fontSize: "220px" }}>
-            {clubInfo.emoji}
-          </div>
+          <Paper elevation="3" className="icon-paper">
+            <div className="content" style={{ fontSize: "220px" }}>
+              {clubInfo.emoji}
+            </div>
+          </Paper>
         </div>
         <div
           className="container-fluid-info col-lg-5 col-md-12"
@@ -32,10 +34,12 @@ function Clubinfo() {
         >
           <Paper className="club-paper" elevation="3">
             <div>
-              <h2 className="first-row">{clubInfo.cname}</h2>
-              <a target="_blank" href={clubInfo.site}>
-                <img className="svg" src={`/assets/internet.svg`}></img>
-              </a>
+              <h2 className="first-row">
+                {clubInfo.cname}
+                <a target="_blank" href={clubInfo.site}>
+                  <img className="svg" src={`/assets/internet.svg`}></img>
+                </a>
+              </h2>
             </div>
             <p>
               <b>{clubInfo.category}</b>
@@ -60,6 +64,7 @@ function Clubinfo() {
                 </p>
               </>
             )}
+            <h5>Description: </h5>
             <p>{clubInfo.desc}</p>
           </Paper>
         </div>
