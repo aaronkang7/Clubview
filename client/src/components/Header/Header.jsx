@@ -34,7 +34,7 @@ function Header() {
 
       <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
+          <li className="nav-item add-club">
             <Link className="nav-link active" to="/clubs">
               Clubs
             </Link>

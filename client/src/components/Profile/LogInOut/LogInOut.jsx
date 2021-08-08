@@ -11,7 +11,7 @@ function LogInOut() {
 
   return (
     <>
-      <div>
+      <div className={styles["login"]}>
         <div className={styles[logoutStyle]}>
           <Logout />
         </div>

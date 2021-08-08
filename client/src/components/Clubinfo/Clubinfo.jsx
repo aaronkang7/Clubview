@@ -36,7 +36,7 @@ function Clubinfo() {
             <div>
               <h2 className="first-row">
                 {clubInfo.cname}
-                <a target="_blank" href={clubInfo.site}>
+                <a target="_blank" href={clubInfo.site} rel="noreferrer">
                   <img className="svg" src={`/assets/internet.svg`}></img>
                 </a>
               </h2>
