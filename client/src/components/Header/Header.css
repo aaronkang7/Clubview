@@ -11,10 +11,6 @@
   color: #000;
 }
 
-.nav-item {
-  padding: 0px 18px;
-}
-
 .nav-link {
   font-size: 1.2rem;
   font-family: "Lato", sans-serif;
@@ -30,10 +26,16 @@
   .nav-item {
     padding: 10px 18px;
   }
+  .add-club {
+    margin-bottom: 5px;
+  }
 }
 
 @media (min-width: 992px) {
   .nav-item {
-    padding: 0px 18px;
+    padding: 10px 18px;
+  }
+  .add-club {
+    margin-top: 5px;
   }
 }
