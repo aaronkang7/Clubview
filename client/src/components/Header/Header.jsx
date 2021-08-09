@@ -12,6 +12,12 @@ function Header() {
 
   const [profile, setProfile] = useState("");
 
+  function handleClick() {
+    if (!isSignedIn) {
+      alert("Please Log In first.");
+    }
+  }
+
   useEffect(() => {
     if (user && isSignedIn) {
       setProfile(user.imageUrl);
@@ -40,7 +46,10 @@ function Header() {
             </Link>
           </li>
           <li className="nav-item add-club">
-            <Link to={isSignedIn ? "/clubs/add" : "/clubs"}>
+            <Link
+              to={isSignedIn ? "/clubs/add" : "/clubs"}
+              onClick={handleClick}
+            >
               <Fab variant="extended" size="medium" disabled={!isSignedIn}>
                 <AddIcon className="classes.extendedIcon" />
                 Register Club
