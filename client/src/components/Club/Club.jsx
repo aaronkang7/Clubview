@@ -93,9 +93,7 @@ function Club(props) {
         <div className="card-body">
           <div className="d-flex">
             <Link to={infoLinkRoute}>
-              <p style={{ color: "black" }} className="clubName">
-                {props.cname}
-              </p>
+              <div className="clubName">{props.cname}</div>
             </Link>
             <div className="ml-auto status-container">
               <Chip
