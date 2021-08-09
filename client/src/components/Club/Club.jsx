@@ -64,7 +64,7 @@ function Club(props) {
 
   return (
     <>
-      <div className="card mb-4">
+      <div className="card">
         <div className="fav-icon-container">
           <Fab
             className="fav-icon"
