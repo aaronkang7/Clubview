@@ -27,7 +27,7 @@ function Header() {
   return (
     <nav className="navbar sticky-top navbar-expand-lg navbar-light">
       <Link className="navbar-brand" to="/clubs">
-        Club View
+        ClubView
       </Link>
       <button
         className="navbar-toggler"
