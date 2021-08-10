@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "./Docs.css";
 
 function PrivacyPolicy() {
   useEffect(() => {
@@ -8,7 +9,7 @@ function PrivacyPolicy() {
   });
 
   return (
-    <div style={{ textAlign: "left" }}>
+    <div className="docs">
       <h1>Privacy Policy</h1>
       <p>Last updated: July 30, 2021</p>
       <p>
