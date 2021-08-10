@@ -45,7 +45,7 @@ function Club(props) {
       setStatus({ color: "#C2e5aa", message: "OPEN" });
     } else {
       const diff = startMom.diff(nowMom, "days");
-      if (diff < 10 && diff > 0) {
+      if (diff < 21 && diff > 0) {
         setStatus({ color: "#FFF1BC", message: "INCOMING" });
       } else if (nowMom.isBetween(startMom, endMom, undefined, "[]")) {
         setStatus({ color: "#C2e5aa", message: "OPEN" });
