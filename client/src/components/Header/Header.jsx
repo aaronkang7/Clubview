@@ -12,16 +12,22 @@ function Header() {
 
   const [profile, setProfile] = useState("");
 
+  function handleClick() {
+    if (!isSignedIn) {
+      alert("Please Log In first.");
+    }
+  }
+
   useEffect(() => {
     if (user && isSignedIn) {
       setProfile(user.imageUrl);
     }
-  }, [user]);
+  }, [isSignedIn]);
 
   return (
     <nav className="navbar sticky-top navbar-expand-lg navbar-light">
       <Link className="navbar-brand" to="/clubs">
-        Club View
+        ClubView
       </Link>
       <button
         className="navbar-toggler"
@@ -34,16 +40,19 @@ function Header() {
 
       <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
+          <li className="nav-item add-club">
             <Link className="nav-link active" to="/clubs">
               Clubs
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to={isSignedIn ? "/clubs/add" : "/clubs"}>
+          <li className="nav-item add-club">
+            <Link
+              to={isSignedIn ? "/clubs/add" : "/clubs"}
+              onClick={handleClick}
+            >
               <Fab variant="extended" size="medium" disabled={!isSignedIn}>
                 <AddIcon className="classes.extendedIcon" />
-                Add Club
+                Register Club
               </Fab>
             </Link>
           </li>

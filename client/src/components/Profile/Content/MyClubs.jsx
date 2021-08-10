@@ -55,7 +55,7 @@ function MyClubs() {
       if (data.length === 0) {
         return (
           <div>
-            <h4>You own no clubs...</h4>
+            <h4>You own no clubs silly 🙄...</h4>
             <img alt="hangout" className="icon-noFavs" src={HangOut} />
           </div>
         );

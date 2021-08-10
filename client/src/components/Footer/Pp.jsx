@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "./Docs.css";
 
 function PrivacyPolicy() {
   useEffect(() => {
@@ -8,7 +9,7 @@ function PrivacyPolicy() {
   });
 
   return (
-    <div style={{ textAlign: "left" }}>
+    <div className="docs">
       <h1>Privacy Policy</h1>
       <p>Last updated: July 30, 2021</p>
       <p>
@@ -25,6 +26,7 @@ function PrivacyPolicy() {
         <a
           href="https://www.termsfeed.com/privacy-policy-generator/"
           target="_blank"
+          rel="noreferrer"
         >
           Privacy Policy Generator
         </a>
@@ -106,7 +108,7 @@ function PrivacyPolicy() {
             <strong>Website</strong> refers to ClubView, accessible from{" "}
             <a
               href="https://clubview.netlify.app/"
-              rel="external nofollow noopener"
+              rel="external nofollow noopener noreferrer"
               target="_blank"
             >
               https://clubview.netlify.app/
@@ -189,7 +191,7 @@ function PrivacyPolicy() {
           disabling, or deleting local shared objects?&quot; available at{" "}
           <a
             href="https://helpx.adobe.com/flash-player/kb/disable-local-shared-objects-flash.html#main_Where_can_I_change_the_settings_for_disabling__or_deleting_local_shared_objects_"
-            rel="external nofollow noopener"
+            rel="external nofollow noopener noreferrer"
             target="_blank"
           >
             https://helpx.adobe.com/flash-player/kb/disable-local-shared-objects-flash.html#main_Where_can_I_change_the_settings_for_disabling__or_deleting_local_shared_objects_
@@ -210,7 +212,11 @@ function PrivacyPolicy() {
         Persistent Cookies remain on Your personal computer or mobile device
         when You go offline, while Session Cookies are deleted as soon as You
         close Your web browser. You can learn more about cookies here:{" "}
-        <a href="https://www.termsfeed.com/blog/cookies/" target="_blank">
+        <a
+          href="https://www.termsfeed.com/blog/cookies/"
+          target="_blank"
+          rel="noreferrer"
+        >
           All About Cookies by TermsFeed
         </a>
         .

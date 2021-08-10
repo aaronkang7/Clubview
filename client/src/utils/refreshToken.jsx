@@ -5,7 +5,6 @@ export const refreshTokenSetup = (res) => {
   const refreshToken = async () => {
     const newAuthRes = await res.reloadAuthResponse();
     refreshTiming = (newAuthRes.expires_in || 3600 - 5 * 60) * 1000;
-    console.log("newAuthRes:", newAuthRes);
     localStorage.setItem("authToken", newAuthRes.id_token);
 
     // Setup the other timer after the first one

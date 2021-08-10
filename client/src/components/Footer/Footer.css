@@ -6,3 +6,7 @@
   background-color: #fcfcfc;
   text-align: right;
 }
+
+.feedback {
+  float: inline-end;
+}

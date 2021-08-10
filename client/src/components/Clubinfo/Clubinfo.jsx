@@ -18,24 +18,33 @@ function Clubinfo() {
       .catch((err) => console.log(err));
   }, []);
 
+  function renderBackground(prop) {
+    let output = "";
+    for (let i = 0; i < 30; i++) {
+      output += prop + " ";
+    }
+    return output;
+  }
+
   return (
     <div>
       <div className="row">
-        <div className="container-fluid-add col-lg-7 col-md-12">
-          <div className="content" style={{ fontSize: "220px" }}>
-            {clubInfo.emoji}
-          </div>
+        <div className="container-fluid-info col-lg-7 col-12">
+          <Paper elevation="3" className="icon-paper">
+            <div className="icon-content">
+              {renderBackground(clubInfo.emoji)}
+            </div>
+          </Paper>
         </div>
-        <div
-          className="container-fluid-info col-lg-5 col-md-12"
-          style={{ textAlign: "left" }}
-        >
+        <div className="container-fluid-info col-lg-5 col-12">
           <Paper className="club-paper" elevation="3">
             <div>
-              <h2 className="first-row">{clubInfo.cname}</h2>
-              <a target="_blank" href={clubInfo.site}>
-                <img className="svg" src={`/assets/internet.svg`}></img>
-              </a>
+              <h2 className="first-row">
+                {clubInfo.cname}
+                <a target="_blank" href={clubInfo.site} rel="noreferrer">
+                  <img className="svg" src={`/assets/internet.svg`}></img>
+                </a>
+              </h2>
             </div>
             <p>
               <b>{clubInfo.category}</b>
@@ -60,6 +69,7 @@ function Clubinfo() {
                 </p>
               </>
             )}
+            <h5>Description: </h5>
             <p>{clubInfo.desc}</p>
           </Paper>
         </div>

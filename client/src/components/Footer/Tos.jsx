@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "./Docs.css";
 
 function TermsOfService() {
   useEffect(() => {
@@ -8,7 +9,7 @@ function TermsOfService() {
   });
 
   return (
-    <div style={{ textAlign: "left" }}>
+    <div className="docs">
       <h1>Website Terms and Conditions of Use</h1>
 
       <h2>1. Terms</h2>
