@@ -64,7 +64,11 @@ function Clubinfo() {
                 <p>
                   Apps Close:{" "}
                   <mark>
-                    <b>{moment(clubInfo.end).format("MMM Do YYYY")}</b>
+                    <b>
+                      {moment(clubInfo.end).isValid()
+                        ? moment(clubInfo.end).format("MM/DD")
+                        : "Undecided"}
+                    </b>
                   </mark>
                 </p>
               </>

@@ -59,7 +59,11 @@ function Club(props) {
     if (props.isAlwaysOpen) {
       return "Always open";
     }
-    return startMom.format("MM/DD") + " - " + endMom.format("MM/DD");
+    const startDate = startMom.isValid()
+      ? startMom.format("MM/DD")
+      : "Undecided";
+    const endDate = endMom.isValid() ? endMom.format("MM/DD") : "Undecided";
+    return startDate + " - " + endDate;
   }
 
   return (
